@@ -888,22 +888,323 @@
         </div>
     </footer>
 
-    <script type="module">
-        // Import the assessment framework data
-        import { assessmentFramework, assessmentUtils } from './data/assessment-framework.js';
+    <<script>
+        // Embedded Assessment Framework Data (for browser compatibility)
+        const assessmentFramework = {
+            metadata: {
+                title: "AI-Powered Digital Transformation Assessment for Fashion Retail",
+                version: "1.0.0",
+                totalDimensions: 12,
+                totalCategories: 36,
+                totalQuestions: 72,
+                description: "Comprehensive maturity assessment framework incorporating Penti Digital Fashion insights and real-world retail AI use cases"
+            },
+            
+            dimensions: [
+                {
+                    id: "dimension-1",
+                    title: "Digital Transformation Strategy & AI Vision",
+                    description: "Comprehensive strategic approach to digital transformation utilizing 3DVD technologies and AI-driven value creation",
+                    weight: 0.3,
+                    type: "strategic",
+                    categories: [
+                        {
+                            id: "cat-1-1",
+                            title: "Strategic Digital & AI Vision Leadership",
+                            description: "Leadership commitment and strategic vision for AI-powered transformation"
+                        },
+                        {
+                            id: "cat-1-2", 
+                            title: "Digital Transformation Maturity & Implementation Approach",
+                            description: "Organizational maturity in executing digital transformation initiatives"
+                        }
+                    ]
+                },
+                {
+                    id: "dimension-2",
+                    title: "AI-Driven Product Intelligence & Demand Forecasting",
+                    description: "Advanced AI capabilities for trend prediction, demand sensing, and intelligent product development",
+                    weight: 0.25,
+                    type: "operational",
+                    categories: [
+                        {
+                            id: "cat-2-1",
+                            title: "Advanced Trend Forecasting & Market Intelligence",
+                            description: "AI-powered trend detection and market analysis capabilities"
+                        },
+                        {
+                            id: "cat-2-2",
+                            title: "Digital Twins & Product Intelligence Systems", 
+                            description: "Comprehensive product lifecycle management through digital twin technology"
+                        }
+                    ]
+                },
+                {
+                    id: "dimension-3", 
+                    title: "AI-Powered Personalization & Customer Intelligence",
+                    description: "Advanced customer understanding and hyper-personalization capabilities using AI",
+                    weight: 0.25,
+                    type: "operational",
+                    categories: [
+                        {
+                            id: "cat-3-1",
+                            title: "Fashion Hyper-Personalization & Customer Segmentation",
+                            description: "Sophisticated personalization engines and customer intelligence"
+                        },
+                        {
+                            id: "cat-3-2",
+                            title: "AI-Driven Fit Technology & Virtual Try-On",
+                            description: "Advanced fit prediction and virtual try-on experiences"
+                        }
+                    ]
+                },
+                {
+                    id: "dimension-4",
+                    title: "Intelligent Commerce & Omnichannel Integration", 
+                    description: "Seamless commerce experiences across all channels with AI-driven optimization",
+                    weight: 0.25,
+                    type: "operational",
+                    categories: [
+                        {
+                            id: "cat-4-1",
+                            title: "Connected Retail & Seamless Channel Integration",
+                            description: "Comprehensive omnichannel commerce capabilities"
+                        },
+                        {
+                            id: "cat-4-2",
+                            title: "Immersive Virtual Environments & Metaverse Integration",
+                            description: "Advanced virtual commerce and metaverse capabilities"
+                        }
+                    ]
+                },
+                {
+                    id: "dimension-5",
+                    title: "AI-Enhanced Marketing & Customer Engagement",
+                    description: "Intelligent marketing automation and customer engagement powered by AI",
+                    weight: 0.25, 
+                    type: "operational",
+                    categories: [
+                        {
+                            id: "cat-5-1",
+                            title: "Generative AI Content Creation & Marketing Automation",
+                            description: "AI-powered content creation and campaign automation"
+                        },
+                        {
+                            id: "cat-5-2",
+                            title: "Digital Models, Influencer Strategy & Virtual Brand Experiences",
+                            description: "AI-generated models and virtual brand experiences"
+                        }
+                    ]
+                },
+                {
+                    id: "dimension-6",
+                    title: "Fashion AI Applications & Industry Innovation",
+                    description: "Cutting-edge AI applications specific to fashion retail innovation",
+                    weight: 0.25,
+                    type: "technical",
+                    categories: [
+                        {
+                            id: "cat-6-1",
+                            title: "3DVD Technologies & Digital Twins Integration",
+                            description: "Comprehensive 3D modeling, VR/AR, and digital twin implementation"
+                        },
+                        {
+                            id: "cat-6-2",
+                            title: "Advanced Visual AI & Virtual Reality Applications",
+                            description: "Sophisticated visual AI and immersive technology implementation"
+                        },
+                        {
+                            id: "cat-6-3",
+                            title: "Generative AI Design & Creative Innovation",
+                            description: "AI-powered design assistance and creative capabilities"
+                        },
+                        {
+                            id: "cat-6-4",
+                            title: "Web3, Metaverse & Digital Fashion Innovation",
+                            description: "Blockchain, NFT, and virtual fashion capabilities"
+                        }
+                    ]
+                },
+                {
+                    id: "dimension-7",
+                    title: "Intelligent Operations & AI-Driven Supply Chain",
+                    description: "AI-optimized operations and intelligent supply chain management",
+                    weight: 0.25,
+                    type: "operational",
+                    categories: [
+                        {
+                            id: "cat-7-1", 
+                            title: "Digital Supply Chain Transformation & 3DVD Integration",
+                            description: "Comprehensive supply chain digitalization with 3DVD technologies"
+                        },
+                        {
+                            id: "cat-7-2",
+                            title: "AI-Powered Demand Sensing & Production Intelligence", 
+                            description: "Intelligent demand prediction and production optimization"
+                        }
+                    ]
+                },
+                {
+                    id: "dimension-8",
+                    title: "Data Strategy & AI Governance",
+                    description: "Comprehensive data foundation and AI governance framework",
+                    weight: 0.25,
+                    type: "technical",
+                    categories: [
+                        {
+                            id: "cat-8-1",
+                            title: "AI Data Foundation & Architecture",
+                            description: "Robust data infrastructure supporting AI operations"
+                        }
+                    ]
+                },
+                {
+                    id: "dimension-9",
+                    title: "Technology Infrastructure & MACH Architecture", 
+                    description: "Modern, scalable technology foundation supporting AI initiatives",
+                    weight: 0.25,
+                    type: "technical",
+                    categories: [
+                        {
+                            id: "cat-9-1",
+                            title: "MACH Architecture Foundation & Implementation",
+                            description: "Microservices, API-first, Cloud-native, Headless architecture"
+                        }
+                    ]
+                },
+                {
+                    id: "dimension-10",
+                    title: "Workforce Transformation & AI Collaboration",
+                    description: "Human-AI collaboration and organizational change management",
+                    weight: 0.2,
+                    type: "organizational",
+                    categories: [
+                        {
+                            id: "cat-10-1",
+                            title: "AI Literacy & Skills Development",
+                            description: "Comprehensive AI education and skill development programs"
+                        }
+                    ]
+                },
+                {
+                    id: "dimension-11",
+                    title: "Performance Measurement & AI ROI Analytics",
+                    description: "Comprehensive measurement and optimization of AI transformation impact",
+                    weight: 0.2,
+                    type: "organizational",
+                    categories: [
+                        {
+                            id: "cat-11-1",
+                            title: "AI Impact Measurement & Business Value Tracking",
+                            description: "Sophisticated measurement of AI business impact and ROI"
+                        }
+                    ]
+                },
+                {
+                    id: "dimension-12",
+                    title: "Strategic Growth & Future-Ready Innovation",
+                    description: "AI-driven business model innovation and future technology readiness",
+                    weight: 0.3,
+                    type: "strategic",
+                    categories: [
+                        {
+                            id: "cat-12-1",
+                            title: "AI-Driven Business Model Innovation & Market Expansion",
+                            description: "Leveraging AI for new business models and growth opportunities"
+                        },
+                        {
+                            id: "cat-12-2",
+                            title: "Emerging Technology Integration & Future Readiness",
+                            description: "Preparedness for adopting emerging AI and fashion technologies"
+                        }
+                    ]
+                }
+            ],
 
-        // DOM Elements
-        const platformTitle = document.getElementById('platform-title');
-        const platformDescription = document.getElementById('platform-description');
-        const assessmentStats = document.getElementById('assessment-stats');
-        const frameworkDescription = document.getElementById('framework-description');
-        const dimensionsGrid = document.getElementById('dimensions-grid');
-        const methodologySteps = document.getElementById('methodology-steps');
-        const useCasesGrid = document.getElementById('use-cases-grid');
-        const insightsGrid = document.getElementById('insights-grid');
-        const tabButtons = document.querySelectorAll('.tab-btn');
-        const tabContents = document.querySelectorAll('.tab-content');
-        const contactForm = document.getElementById('contactForm');
+            useCases: [
+                {
+                    id: "hyper-personalization",
+                    title: "Hyper-Personalization Use Cases",
+                    examples: [
+                        {
+                            company: "Zalando",
+                            useCase: "Algorithmic Fashion Companion", 
+                            description: "AI-powered personal styling with deep customer preference learning"
+                        },
+                        {
+                            company: "Amazon",
+                            useCase: "AI Fashion & Fit Experience",
+                            description: "Comprehensive fit prediction and personalized recommendations"
+                        },
+                        {
+                            company: "Stitch Fix", 
+                            useCase: "Data Science-Driven Styling",
+                            description: "Algorithm-driven personal styling service with human stylist augmentation"
+                        }
+                    ]
+                },
+                {
+                    id: "intelligent-operations", 
+                    title: "Intelligent Operations Use Cases",
+                    examples: [
+                        {
+                            company: "SHEIN",
+                            useCase: "Agile Pricing & Demand Response",
+                            description: "Real-time demand sensing with responsive production and pricing"
+                        },
+                        {
+                            company: "H&M",
+                            useCase: "Markdown Optimization", 
+                            description: "AI-powered pricing optimization and inventory management"
+                        },
+                        {
+                            company: "Levi's",
+                            useCase: "Agentic AI Operations",
+                            description: "Autonomous operational decision-making and optimization"
+                        }
+                    ]
+                },
+                {
+                    id: "customer-engagement",
+                    title: "Customer Engagement Use Cases", 
+                    examples: [
+                        {
+                            company: "Saks",
+                            useCase: "Agentforce Customer Service",
+                            description: "AI-powered customer service with human agent augmentation"
+                        },
+                        {
+                            company: "PacSun",
+                            useCase: "Conversational Commerce",
+                            description: "AI shopping assistants with natural language interaction"
+                        }
+                    ]
+                }
+            ],
+
+            insights: {
+                pentiDocument: {
+                    title: "Digital Fashion Transformation Insights",
+                    keyPoints: [
+                        "3DVD Technologies transforming supply chains: 3D modeling, VR/AR, digital twinning",
+                        "Speed-to-market improvements: 30+ day reductions through digital workflows", 
+                        "Collaborative 3D creation workspaces bridging product lifecycle stages",
+                        "Digital transformation clusters: Partial → Full Hybrid → Full Virtual",
+                        "Fashion as a Service to Fashion as a Lifestyle strategic evolution"
+                    ]
+                },
+                retailAI: {
+                    title: "Retail AI Implementation Insights",
+                    keyPoints: [
+                        "89% of retailers planning to implement AI-powered personalization by 2025",
+                        "Hyper-personalization driving 15-20% increase in customer engagement",
+                        "AI-driven supply chain optimization reducing costs by 10-15%",
+                        "Conversational commerce increasing conversion rates by 25-30%",
+                        "Generative AI content creation improving marketing efficiency by 40%"
+                    ]
+                }
+            }
+        };
 
         // Navigation and Section Management
         function showSection(sectionName) {
@@ -936,6 +1237,9 @@
 
         // Assessment Tab Management
         function initializeAssessmentTabs() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
             tabButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const targetTab = button.dataset.tab;
@@ -972,6 +1276,11 @@
         }
 
         function generateOverview() {
+            const platformTitle = document.getElementById('platform-title');
+            const platformDescription = document.getElementById('platform-description');
+            const assessmentStats = document.getElementById('assessment-stats');
+            const frameworkDescription = document.getElementById('framework-description');
+
             // Set header content
             platformTitle.textContent = assessmentFramework.metadata.title;
             platformDescription.textContent = assessmentFramework.metadata.description;
@@ -1021,6 +1330,8 @@
         }
 
         function generateDimensions() {
+            const dimensionsGrid = document.getElementById('dimensions-grid');
+            
             dimensionsGrid.innerHTML = assessmentFramework.dimensions.map(dimension => `
                 <div class="dimension-card" data-dimension="${dimension.id}">
                     <div class="dimension-header">
@@ -1045,6 +1356,8 @@
         }
 
         function generateMethodologyContent() {
+            const methodologySteps = document.getElementById('methodology-steps');
+            
             const methodology = [
                 {
                     step: 1,
@@ -1088,6 +1401,8 @@
         }
 
         function generateUseCases() {
+            const useCasesGrid = document.getElementById('use-cases-grid');
+            
             useCasesGrid.innerHTML = assessmentFramework.useCases.map(category => `
                 <div class="use-case-category">
                     <div class="use-case-header">
@@ -1107,12 +1422,13 @@
         }
 
         function generateInsights() {
+            const insightsGrid = document.getElementById('insights-grid');
+            
             insightsGrid.innerHTML = Object.values(assessmentFramework.insights).map(insight => `
                 <div class="insight-card">
                     <div class="insight-title">${insight.title}</div>
                     <ul class="insight-list">
-                        ${insight.keyInsights ? insight.keyInsights.map(point => `<li>${point}</li>`).join('') : 
-                          insight.keyPoints ? insight.keyPoints.map(point => `<li>${point}</li>`).join('') : ''}
+                        ${insight.keyPoints ? insight.keyPoints.map(point => `<li>${point}</li>`).join('') : ''}
                     </ul>
                 </div>
             `).join('');
@@ -1133,6 +1449,8 @@
 
         // Form handling
         function initializeContactForm() {
+            const contactForm = document.getElementById('contactForm');
+            
             contactForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
