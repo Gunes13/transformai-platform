@@ -1414,26 +1414,26 @@
 
         // Start assessment function
         function startAssessment() {
-            document.getElementById('assessment').style.display = 'none';
-            document.getElementById('interactive-assessment').style.display = 'block';
-            
-            // Initialize if not already done
-            if (assessmentState.totalQuestions === 0) {
-                initializeAssessment();
-            }
-            
-            // Start with first question
-            assessmentState.currentQuestion = 0;
-            renderQuestion();
-        }
+    document.getElementById('assessment-section').style.display = 'none';
+    document.getElementById('interactive-assessment').style.display = 'block';
+    
+    // Initialize if not already done
+    if (assessmentState.totalQuestions === 0) {
+        initializeAssessment();
+    }
+    
+    // Start with first question
+    assessmentState.currentQuestion = 0;
+    renderQuestion();
+}
 
         // Return to overview function
         function returnToOverview() {
-            document.getElementById('interactive-assessment').style.display = 'none';
-            document.getElementById('results-section').style.display = 'none';
-            document.getElementById('assessment-questions').style.display = 'block';
-            document.getElementById('assessment').style.display = 'block';
-        }
+    document.getElementById('interactive-assessment').style.display = 'none';
+    document.getElementById('results-section').style.display = 'none';
+    document.getElementById('assessment-questions').style.display = 'block';
+    document.getElementById('assessment-section').style.display = 'block';
+}
 
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
