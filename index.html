@@ -185,6 +185,128 @@
             line-height: 1.6;
         }
         
+        /* Expandable Dimension Cards */
+        .dimension-card {
+            background: white;
+            border: 2px solid #e8eeff;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .dimension-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dimension-card.expanded {
+            border-color: #667eea;
+        }
+        
+        .dimension-header {
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8eeff 100%);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e8eeff;
+        }
+        
+        .dimension-header h4 {
+            color: #667eea;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+        
+        .expand-icon {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+            transition: transform 0.3s ease;
+        }
+        
+        .dimension-card.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+        
+        .dimension-content {
+            padding: 2rem;
+            display: none;
+        }
+        
+        .dimension-description {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .dimension-categories {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .category {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 3px solid #667eea;
+        }
+        
+        .category h5 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .questions {
+            list-style: none;
+        }
+        
+        .questions li {
+            padding: 0.5rem 0;
+            color: #666;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .questions li::before {
+            content: "?";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        /* Assessment Statistics */
+        .assessment-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+        
         /* Footer */
         footer {
             background: #1a1a1a;
@@ -201,6 +323,18 @@
             
             .nav-links {
                 display: none;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dimension-header {
+                padding: 1rem;
+            }
+            
+            .dimension-content {
+                padding: 1rem;
             }
         }
     </style>
@@ -243,31 +377,14 @@
                 <h2 class="section-title">AI-Powered Assessment Platform</h2>
                 <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: #666;">Comprehensive 12-dimension transformation framework</p>
                 
-                <div class="content-grid">
-                    <div class="feature-card">
-                        <h4>12 Assessment Dimensions</h4>
-                        <p>Complete evaluation across strategic, operational, technical, and organizational capabilities for fashion retail transformation</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>Real-World Use Cases</h4>
-                        <p>Examples from SHEIN, H&M, Zalando, Amazon Fashion, Stitch Fix, and other leading fashion retailers</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>Industry Research Insights</h4>
-                        <p>Incorporating transformation research and industry best practices from leading digital fashion companies</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>Business-First Approach</h4>
-                        <p>Proven 6-step methodology with implementation-ready frameworks and measurable outcomes</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>AI-Driven Personalization</h4>
-                        <p>Hyper-personalization strategies, customer intelligence, and AI-powered recommendation engines</p>
-                    </div>
-                    <div class="feature-card">
-                        <h4>MACH Architecture</h4>
-                        <p>Microservices, API-first, Cloud-native, Headless architecture guidance for modern retail</p>
-                    </div>
+                <!-- Assessment Statistics -->
+                <div class="assessment-stats" id="assessment-stats">
+                    <!-- Will be populated by JavaScript -->
+                </div>
+                
+                <!-- Dimension Cards -->
+                <div class="content-grid" id="dimension-container">
+                    <!-- Will be populated by JavaScript with expandable cards -->
                 </div>
             </div>
         </section>
@@ -382,7 +499,87 @@
         </div>
     </footer>
 
+    <!-- Load the headless assessment framework data -->
+    <script src="data/assessment-framework.js"></script>
+
+    <!-- Assessment rendering and interaction functions -->
     <script>
+        // Render assessment statistics
+        function renderAssessmentStats() {
+            const container = document.getElementById('assessment-stats');
+            if (!container || !assessmentFramework) return;
+
+            const stats = [
+                { number: assessmentFramework.metadata.totalDimensions, label: "Assessment Dimensions" },
+                { number: assessmentFramework.metadata.totalCategories, label: "Evaluation Categories" },
+                { number: assessmentFramework.metadata.totalQuestions, label: "Assessment Questions" },
+                { number: assessmentFramework.metadata.maturityLevels, label: "Maturity Levels" }
+            ];
+
+            container.innerHTML = stats.map(stat => `
+                <div class="stat-card">
+                    <div class="stat-number">${stat.number}</div>
+                    <div class="stat-label">${stat.label}</div>
+                </div>
+            `).join('');
+        }
+
+        // Render expandable dimension cards
+        function renderExpandableAssessment() {
+            const container = document.getElementById('dimension-container');
+            if (!container || !assessmentFramework) return;
+
+            // Clear existing content
+            container.innerHTML = '';
+            container.style.gridTemplateColumns = '1fr'; // Single column for expandable cards
+
+            // Render each dimension as an expandable card
+            Object.keys(assessmentFramework.dimensions).forEach(key => {
+                const dimension = assessmentFramework.dimensions[key];
+                
+                const card = document.createElement('div');
+                card.className = 'dimension-card';
+                card.innerHTML = `
+                    <div class="dimension-header" onclick="toggleDimension(this)">
+                        <h4>${dimension.title}</h4>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <div class="dimension-content">
+                        <p class="dimension-description">${dimension.description}</p>
+                        <div class="dimension-categories">
+                            ${Object.keys(dimension.categories).map(catKey => `
+                                <div class="category">
+                                    <h5>${dimension.categories[catKey].title}</h5>
+                                    <ul class="questions">
+                                        ${dimension.categories[catKey].questions.map(q => `<li>${q}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        // Toggle dimension card expand/collapse
+        function toggleDimension(header) {
+            const content = header.nextElementSibling;
+            const icon = header.querySelector('.expand-icon');
+            const card = header.parentElement;
+            
+            if (content.style.display === 'none' || !content.style.display) {
+                content.style.display = 'block';
+                icon.textContent = '−';
+                card.classList.add('expanded');
+            } else {
+                content.style.display = 'none';
+                icon.textContent = '+';
+                card.classList.remove('expanded');
+            }
+        }
+
         // Simple smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -402,6 +599,15 @@
             e.preventDefault();
             alert('Thank you for your interest! We will contact you soon to schedule your executive preview.');
             this.reset();
+        });
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Small delay to ensure data is loaded
+            setTimeout(() => {
+                renderAssessmentStats();
+                renderExpandableAssessment();
+            }, 100);
         });
     </script>
 </body>
