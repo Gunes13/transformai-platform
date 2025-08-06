@@ -76,13 +76,17 @@
         
         /* Page Sections */
         .page-section {
-            display: none;
-            min-height: calc(100vh - 80px);
-        }
-        
-        .page-section.active {
-            display: block;
-        }
+    display: none;
+    min-height: calc(100vh - 80px);
+}
+
+.page-section.active {
+    display: block;
+}
+
+#assessment-section:target {
+    display: block !important;
+}
         
         /* Hero Section */
         .hero {
@@ -751,7 +755,7 @@
             <a href="#" class="logo" onclick="showSection('home')">TransformAI</a>
             <ul class="nav-links">
                 <li><a onclick="showSection('home')" class="active">Home</a></li>
-                <li><a onclick="showSection('assessment')">Assessment Platform</a></li>
+                <li><a href="#assessment-section">Assessment Platform</a></li>
                 <li><a onclick="showSection('platform')">Platform</a></li>
                 <li><a onclick="showSection('methodology')">Methodology</a></li>
                 <li><a onclick="showSection('contact')">Contact</a></li>
