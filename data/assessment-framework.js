@@ -12,6 +12,12 @@ const assessmentFramework = {
     lastUpdated: "2025-01-08"
   },
 
+// Question types definition - ADD THIS HERE
+  questionTypes: {
+    "Given the rapid AI adoption rates and market growth projections, where do you see the most immediate competitive pressure or untapped opportunity within your specific market segment?": "open-ended",
+    "How do you approach transformation planning across the four key areas: Aspiration → Strategy → Operating Model → Execution?": "open-ended"
+  },
+
   dimensions: {
     1: {
       title: "Digital Transformation Strategy & AI Vision",
@@ -25,7 +31,7 @@ const assessmentFramework = {
         },
         "1.2": {
           title: "Competitive Intelligence & Market Positioning", 
-          questions: [
+          questions: [questionAnswers 
             "Given the rapid AI adoption rates and market growth projections, where do you see the most immediate competitive pressure or untapped opportunity within your specific market segment?",
             "How do you currently benchmark your AI adoption and investment strategy against industry leaders?"
           ]

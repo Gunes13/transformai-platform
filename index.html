@@ -953,36 +953,113 @@
         }
 
         // Get sophisticated question-specific answer options
-        function getSophisticatedAnswerOptions(questionText) {
-            // Check if we have specific answers for this question
-            if (assessmentFramework.questionAnswers[questionText]) {
-                return assessmentFramework.questionAnswers[questionText];
-            }
-            
-            // For manufacturing questions, check if N/A option exists
-            if (questionText.includes("manufacturing") || questionText.includes("production")) {
-                if (assessmentFramework.questionAnswers[questionText]) {
-                    return assessmentFramework.questionAnswers[questionText];
-                }
-                // Fallback with N/A for manufacturing
-                return [
-                    "N/A - Not applicable to our business model",
-                    "Initial Stage - Limited capabilities with basic manual processes",
-                    "Developing Stage - Some automation and basic digital tools", 
-                    "Defined Stage - Structured approach with integrated systems",
-                    "Managed Stage - Advanced capabilities with AI enhancement",
-                    "Optimized Stage - Autonomous operations with predictive intelligence"
-                ];
-            }
-            
-            // Use default sophisticated options
-            return assessmentFramework.questionAnswers["default"];
-        }
+        function // Get sophisticated question-specific answer options or open-ended input
+function getSophisticatedAnswerOptions(questionText) {
+    // Check if this is an open-ended question
+    if (assessmentFramework.questionTypes && assessmentFramework.questionTypes[questionText] === "open-ended") {
+        return "open-ended";
+    }
+    
+    // Check if we have specific answers for this question
+    if (assessmentFramework.questionAnswers[questionText]) {
+        return assessmentFramework.questionAnswers[questionText];
+    }
+    
+// Handle open-ended answer input
+function handleOpenEndedAnswer(questionIndex, value) {
+    const continueBtn = document.getElementById('continue-btn');
+    
+    if (value.trim().length > 10) {
+        continueBtn.disabled = false;
+        continueBtn.style.opacity = '1';
+    } else {
+        continueBtn.disabled = true;
+        continueBtn.style.opacity = '0.5';
+    }
+}
 
-        // Enhanced render question function with sophisticated answers
-        function renderQuestion() {
-            const current = assessmentState.questionsList[assessmentState.currentQuestion];
-            if (!current) return;
+// Save open-ended answer and continue
+function saveOpenEndedAndNext() {
+    const textarea = document.getElementById('open-ended-answer');
+    const answer = textarea.value.trim();
+    
+    if (answer.length > 10) {
+        // Store open-ended answer (no numeric score)
+        assessmentState.answers[assessmentState.currentQuestion] = {
+            value: answer,
+            score: null,
+            type: 'open-ended'
+        };
+        
+        // Continue to next question
+        setTimeout(() => {
+            nextQuestion();
+        }, 300);
+    }
+}
+
+    // For manufacturing questions, check if N/A option exists
+    if (questionText.includes("manufacturing") || questionText.includes("production")) {
+        return [
+            "N/A - Not applicable to our business model",
+            "Initial Stage - Limited capabilities with basic manual processes",
+            "Developing Stage - Some automation and basic digital tools", 
+            "Defined Stage - Structured approach with integrated systems",
+            "Managed Stage - Advanced capabilities with AI enhancement",
+            "Optimized Stage - Autonomous operations with predictive intelligence"
+        ];
+    }
+    
+    // Use default sophisticated options
+    return assessmentFramework.questionAnswers["default"];
+}
+
+      // Render question with sophisticated answer options or open-ended input
+const questionContainer = document.getElementById('current-question');
+const answerOptions = getSophisticatedAnswerOptions(current.questionText);
+
+if (answerOptions === "open-ended") {
+    // Render open-ended question
+    questionContainer.innerHTML = `
+        <div class="question-card">
+            <h3 class="question-text">${current.questionText}</h3>
+            <div class="open-ended-container">
+                <textarea 
+                    id="open-ended-answer" 
+                    placeholder="Please provide your detailed response here..."
+                    rows="6"
+                    style="width: 100%; padding: 1rem; border: 2px solid #e8eeff; border-radius: 12px; font-family: inherit; font-size: 1rem; line-height: 1.5; resize: vertical;"
+                    oninput="handleOpenEndedAnswer(${assessmentState.currentQuestion}, this.value)"
+                ></textarea>
+                <div style="margin-top: 1rem; text-align: right;">
+                    <button class="nav-button" onclick="saveOpenEndedAndNext()" disabled id="continue-btn">Continue →</button>
+                </div>
+            </div>
+        </div>
+    `;
+} else {
+    // Render multiple choice question (existing code)
+    questionContainer.innerHTML = `
+        <div class="question-card">
+            <h3 class="question-text">${current.questionText}</h3>
+            <div class="answer-options">
+                ${answerOptions.map((option, index) => {
+                    const isNA = option.startsWith('N/A');
+                    const value = isNA ? 'NA' : (index + (isNA ? 0 : 1));
+                    return `
+                        <div class="answer-option ${isNA ? 'na-option' : ''}" onclick="selectAnswer(${assessmentState.currentQuestion}, '${value}')">
+                            <div class="option-header">
+                                <span class="option-level">${isNA ? 'N/A' : `Level ${value}`}</span>
+                                <span class="option-indicator">○</span>
+                            </div>
+                            <div class="option-description">${option}</div>
+                        </div>
+                    `;
+                }).join('')}
+            </div>
+        </div>
+    `;
+}
             
             // Update dimension info
             document.getElementById('current-dimension').textContent = 
