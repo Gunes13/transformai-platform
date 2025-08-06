@@ -930,27 +930,69 @@
 
         // Initialize Assessment Content
         function initializeAssessmentContent() {
-            console.log('Initializing assessment content'); // Debug log
-            
-            // Set the assessment platform title and description
-            const platformTitle = document.getElementById('platform-title');
-            const platformDescription = document.getElementById('platform-description');
-            
-            if (platformTitle) {
-                platformTitle.textContent = "AI-Powered Digital Transformation Assessment for Fashion Retail";
-            }
-            if (platformDescription) {
-                platformDescription.textContent = "Comprehensive 12-dimension maturity assessment framework incorporating industry insights";
-            }
+    console.log('Initializing assessment content'); // Debug log
+    
+    // Set the assessment platform title and description
+    const platformTitle = document.getElementById('platform-title');
+    const platformDescription = document.getElementById('platform-description');
+    
+    if (platformTitle) {
+        platformTitle.textContent = "AI-Powered Digital Transformation Assessment for Fashion Retail";
+    }
+    if (platformDescription) {
+        platformDescription.textContent = "Comprehensive 12-dimension maturity assessment framework incorporating industry insights";
+    }
 
-            // Generate assessment stats
-            generateAssessmentStats();
-            generateFrameworkDescription();
-            generateDimensions();
-            generateMethodology();
-            generateUseCases();
-            generateInsights();
-        }
+    // Fill the assessment-stats div directly
+    const assessmentStats = document.getElementById('assessment-stats');
+    if (assessmentStats) {
+        assessmentStats.innerHTML = `
+            <div class="stat-card">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Assessment Dimensions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">36</div>
+                <div class="stat-label">Evaluation Categories</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">72</div>
+                <div class="stat-label">Assessment Questions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Maturity Levels</div>
+            </div>
+        `;
+    }
+
+    // Fill the framework-description div directly
+    const frameworkDescription = document.getElementById('framework-description');
+    if (frameworkDescription) {
+        frameworkDescription.innerHTML = `
+            <p style="font-size: 1.1rem; line-height: 1.7; color: #666; margin-bottom: 2rem;">
+                Comprehensive maturity assessment framework incorporating Penti Digital Fashion insights and real-world retail AI use cases
+            </p>
+            <div style="background: linear-gradient(135deg, #f8f9ff 0%, #e8eeff 100%); padding: 2rem; border-radius: 15px; border: 2px solid #e8eeff;">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">Framework Highlights</h3>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="padding: 0.5rem 0; color: #666; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
+                        Incorporates insights from Penti Digital Fashion transformation research
+                    </li>
+                    <li style="padding: 0.5rem 0; color: #666; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
+                        Real-world use cases from leading fashion retailers like SHEIN, H&M, Zalando
+                    </li>
+                    <li style="padding: 0.5rem 0; color: #666; position: relative; padding-left: 1.5rem;">
+                        <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
+                        Covers strategic, operational, technical, and organizational dimensions
+                    </li>
+                </ul>
+            </div>
+        `;
+    }
+}
 
         function generateAssessmentStats() {
             const assessmentStats = document.getElementById('assessment-stats');
