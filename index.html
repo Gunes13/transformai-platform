@@ -84,8 +84,34 @@
     display: block;
 }
 
+/* Make assessment section visible when targeted */
 #assessment-section:target {
     display: block !important;
+}
+
+#home-section:target {
+    display: block !important;
+}
+
+#platform-section:target {
+    display: block !important;
+}
+
+#methodology-section:target {
+    display: block !important;
+}
+
+#contact-section:target {
+    display: block !important;
+}
+
+/* Hide all sections by default when using anchors */
+.page-section:not(:target):not(.default-active) {
+    display: none;
+}
+
+#home-section {
+    display: block; /* Show home by default */
 }
         
         /* Hero Section */
@@ -754,12 +780,12 @@
         <nav class="container">
             <a href="#" class="logo" onclick="showSection('home')">TransformAI</a>
             <ul class="nav-links">
-                <li><a onclick="showSection('home')" class="active">Home</a></li>
-                <li><a href="#assessment-section">Assessment Platform</a></li>
-                <li><a onclick="showSection('platform')">Platform</a></li>
-                <li><a onclick="showSection('methodology')">Methodology</a></li>
-                <li><a onclick="showSection('contact')">Contact</a></li>
-            </ul>
+    <li><a href="#home-section" class="active">Home</a></li>
+    <li><a href="#assessment-section">Assessment Platform</a></li>
+    <li><a href="#platform-section">Platform</a></li>
+    <li><a href="#methodology-section">Methodology</a></li>
+    <li><a href="#contact-section">Contact</a></li>
+</ul>
         </nav>
     </header>
 
