@@ -913,7 +913,7 @@
     <!-- Load the enhanced 14-dimension assessment framework data -->
     <script src="assessment-framework.js"></script>
 <script>
-// Global navigation functions - move this to the top
+// Global navigation functions
 function showSection(sectionId) {
     console.log('Showing section:', sectionId);
     
@@ -937,50 +937,156 @@ function showSection(sectionId) {
         if (navLink) {
             navLink.classList.add('active');
         }
+        
+        console.log('Section activated:', sectionId);
+        
+        // Initialize assessment content if needed
+        if (sectionId === 'assessment') {
+            setTimeout(() => {
+                if (typeof assessmentFramework !== 'undefined') {
+                    initializeAssessmentContent();
+                    renderExpandableAssessment();
+                }
+            }, 100);
+        }
+    } else {
+        console.error('Section not found:', sectionId + '-section');
     }
 }
-</script>
-    <!-- Assessment rendering and interaction functions -->
-    <script>
-        // Enhanced Interactive Assessment Tool Logic with Question-Specific Answers
-        let assessmentState = {
-            currentQuestion: 0,
-            answers: {},
-            totalQuestions: 0,
-            questionsList: [],
-            scores: {},
-            naQuestions: [] // Track questions answered with N/A
-        };
 
-        // Initialize assessment questions list with enhanced framework
-        function initializeAssessment() {
-            if (!assessmentFramework) return;
-            
-            assessmentState.questionsList = [];
-            
-            // Build comprehensive question list from all 14 dimensions
-            Object.keys(assessmentFramework.dimensions).forEach(dimKey => {
-                const dimension = assessmentFramework.dimensions[dimKey];
-                Object.keys(dimension.categories).forEach(catKey => {
-                    const category = dimension.categories[catKey];
-                    category.questions.forEach(question => {
-                        assessmentState.questionsList.push({
-                            dimensionKey: dimKey,
-                            dimensionTitle: dimension.title,
-                            categoryKey: catKey,
-                            categoryTitle: category.title,
-                            questionText: question
-                        });
-                    });
+// Start assessment function
+function startAssessment() {
+    console.log('Starting assessment...');
+    document.getElementById('assessment-section').style.display = 'none';
+    document.getElementById('interactive-assessment').style.display = 'block';
+    
+    // Initialize if not already done
+    if (typeof assessmentState === 'undefined' || assessmentState.totalQuestions === 0) {
+        initializeAssessment();
+    }
+    
+    // Start with first question
+    if (typeof assessmentState !== 'undefined') {
+        assessmentState.currentQuestion = 0;
+        renderQuestion();
+    }
+}
+
+function initializeAssessmentContent() {
+    console.log('Initializing assessment content');
+    
+    // Update statistics
+    const assessmentStats = document.getElementById('assessment-stats');
+    if (assessmentStats && typeof assessmentFramework !== 'undefined') {
+        assessmentStats.innerHTML = `
+            <div class="stat-card">
+                <div class="stat-number">${assessmentFramework.metadata.totalDimensions}</div>
+                <div class="stat-label">Assessment Dimensions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">42</div>
+                <div class="stat-label">Assessment Categories</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">${assessmentFramework.metadata.totalQuestions}+</div>
+                <div class="stat-label">Assessment Questions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">${assessmentFramework.metadata.maturityLevels}</div>
+                <div class="stat-label">Maturity Levels</div>
+            </div>
+        `;
+    }
+}
+
+// Enhanced expandable assessment rendering
+function renderExpandableAssessment() {
+    const container = document.getElementById('assessment-dimensions');
+    if (!container || !assessmentFramework) return;
+
+    container.innerHTML = '';
+
+    Object.keys(assessmentFramework.dimensions).forEach(key => {
+        const dimension = assessmentFramework.dimensions[key];
+        
+        const card = document.createElement('div');
+        card.className = 'dimension-card expandable';
+        card.innerHTML = `
+            <div class="dimension-header" onclick="toggleDimension(this)">
+                <h4>Dimension ${key}: ${dimension.title}</h4>
+                <span class="expand-icon">+</span>
+            </div>
+            <div class="dimension-content" style="display: none;">
+                <div class="dimension-categories">
+                    ${Object.keys(dimension.categories).map(catKey => `
+                        <div class="category">
+                            <h5>${catKey}: ${dimension.categories[catKey].title}</h5>
+                            <ul class="questions">
+                                ${dimension.categories[catKey].questions.map(q => `<li>${q}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+        
+        container.appendChild(card);
+    });
+}
+
+function toggleDimension(header) {
+    const content = header.nextElementSibling;
+    const icon = header.querySelector('.expand-icon');
+    
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+        icon.textContent = '−';
+        header.parentElement.classList.add('expanded');
+    } else {
+        content.style.display = 'none';
+        icon.textContent = '+';
+        header.parentElement.classList.remove('expanded');
+    }
+}
+
+// Enhanced Interactive Assessment Tool Logic with Question-Specific Answers
+let assessmentState = {
+    currentQuestion: 0,
+    answers: {},
+    totalQuestions: 0,
+    questionsList: [],
+    scores: {},
+    naQuestions: [] // Track questions answered with N/A
+};
+
+// Initialize assessment questions list with enhanced framework
+function initializeAssessment() {
+    if (!assessmentFramework) return;
+    
+    assessmentState.questionsList = [];
+    
+    // Build comprehensive question list from all 14 dimensions
+    Object.keys(assessmentFramework.dimensions).forEach(dimKey => {
+        const dimension = assessmentFramework.dimensions[dimKey];
+        Object.keys(dimension.categories).forEach(catKey => {
+            const category = dimension.categories[catKey];
+            category.questions.forEach(question => {
+                assessmentState.questionsList.push({
+                    dimensionKey: dimKey,
+                    dimensionTitle: dimension.title,
+                    categoryKey: catKey,
+                    categoryTitle: category.title,
+                    questionText: question
                 });
             });
-            
-            assessmentState.totalQuestions = assessmentState.questionsList.length;
-            console.log(`Initialized enhanced assessment with ${assessmentState.totalQuestions} questions across 14 dimensions`);
-        }
+        });
+    });
+    
+    assessmentState.totalQuestions = assessmentState.questionsList.length;
+    console.log(`Initialized enhanced assessment with ${assessmentState.totalQuestions} questions across 14 dimensions`);
+}
 
-        // Get sophisticated question-specific answer options
-        function // Get sophisticated question-specific answer options or open-ended input
+// Get sophisticated question-specific answer options
 function getSophisticatedAnswerOptions(questionText) {
     // Check if this is an open-ended question
     if (assessmentFramework.questionTypes && assessmentFramework.questionTypes[questionText] === "open-ended") {
@@ -992,6 +1098,90 @@ function getSophisticatedAnswerOptions(questionText) {
         return assessmentFramework.questionAnswers[questionText];
     }
     
+    // For manufacturing questions, check if N/A option exists
+    if (questionText.includes("manufacturing") || questionText.includes("production")) {
+        return [
+            "N/A - Not applicable to our business model",
+            "Initial Stage - Limited capabilities with basic manual processes",
+            "Developing Stage - Some automation and basic digital tools", 
+            "Defined Stage - Structured approach with integrated systems",
+            "Managed Stage - Advanced capabilities with AI enhancement",
+            "Optimized Stage - Autonomous operations with predictive intelligence"
+        ];
+    }
+    
+    // Use default sophisticated options
+    return assessmentFramework.questionAnswers["default"];
+}
+
+// Render current question
+function renderQuestion() {
+    const current = assessmentState.questionsList[assessmentState.currentQuestion];
+    if (!current) return;
+    
+    // Update dimension info
+    document.getElementById('current-dimension').textContent = 
+        `Dimension ${current.dimensionKey}: ${current.dimensionTitle}`;
+    document.getElementById('current-category').textContent = 
+        `${current.categoryKey}: ${current.categoryTitle}`;
+    
+    // Update progress
+    const progress = ((assessmentState.currentQuestion + 1) / assessmentState.totalQuestions) * 100;
+    document.getElementById('question-progress').style.width = progress + '%';
+    document.getElementById('progress-text').textContent = 
+        `Question ${assessmentState.currentQuestion + 1} of ${assessmentState.totalQuestions}`;
+    
+    // Render question with sophisticated answer options or open-ended input
+    const questionContainer = document.getElementById('current-question');
+    const answerOptions = getSophisticatedAnswerOptions(current.questionText);
+
+    if (answerOptions === "open-ended") {
+        // Render open-ended question
+        questionContainer.innerHTML = `
+            <div class="question-card">
+                <h3 class="question-text">${current.questionText}</h3>
+                <div class="open-ended-container">
+                    <textarea 
+                        id="open-ended-answer" 
+                        placeholder="Please provide your detailed response here..."
+                        rows="6"
+                        style="width: 100%; padding: 1rem; border: 2px solid #e8eeff; border-radius: 12px; font-family: inherit; font-size: 1rem; line-height: 1.5; resize: vertical;"
+                        oninput="handleOpenEndedAnswer(${assessmentState.currentQuestion}, this.value)"
+                    ></textarea>
+                    <div style="margin-top: 1rem; text-align: right;">
+                        <button class="nav-button" onclick="saveOpenEndedAndNext()" disabled id="continue-btn">Continue →</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    } else {
+        // Render multiple choice question
+        questionContainer.innerHTML = `
+            <div class="question-card">
+                <h3 class="question-text">${current.questionText}</h3>
+                <div class="answer-options">
+                    ${answerOptions.map((option, index) => {
+                        const isNA = option.startsWith('N/A');
+                        const value = isNA ? 'NA' : (index + (isNA ? 0 : 1));
+                        return `
+                            <div class="answer-option ${isNA ? 'na-option' : ''}" onclick="selectAnswer(${assessmentState.currentQuestion}, '${value}')">
+                                <div class="option-header">
+                                    <span class="option-level">${isNA ? 'N/A' : `Level ${value}`}</span>
+                                    <span class="option-indicator">○</span>
+                                </div>
+                                <div class="option-description">${option}</div>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    }
+    
+    // Update sidebar progress
+    updateSidebarProgress();
+}
+
 // Handle open-ended answer input
 function handleOpenEndedAnswer(questionIndex, value) {
     const continueBtn = document.getElementById('continue-btn');
@@ -1025,652 +1215,411 @@ function saveOpenEndedAndNext() {
     }
 }
 
-    // For manufacturing questions, check if N/A option exists
-    if (questionText.includes("manufacturing") || questionText.includes("production")) {
-        return [
-            "N/A - Not applicable to our business model",
-            "Initial Stage - Limited capabilities with basic manual processes",
-            "Developing Stage - Some automation and basic digital tools", 
-            "Defined Stage - Structured approach with integrated systems",
-            "Managed Stage - Advanced capabilities with AI enhancement",
-            "Optimized Stage - Autonomous operations with predictive intelligence"
-        ];
+// Enhanced answer selection with N/A handling
+function selectAnswer(questionIndex, value) {
+    const current = assessmentState.questionsList[questionIndex];
+    if (!current) return;
+    
+    // Handle N/A answers
+    if (value === 'NA') {
+        assessmentState.naQuestions.push(questionIndex);
+        assessmentState.answers[questionIndex] = { value: 'NA', score: null };
+    } else {
+        // Remove from N/A list if previously marked as N/A
+        const naIndex = assessmentState.naQuestions.indexOf(questionIndex);
+        if (naIndex > -1) {
+            assessmentState.naQuestions.splice(naIndex, 1);
+        }
+        assessmentState.answers[questionIndex] = { value: parseInt(value), score: parseInt(value) };
     }
     
-    // Use default sophisticated options
-    return assessmentFramework.questionAnswers["default"];
+    // Update UI
+    document.querySelectorAll('.answer-option').forEach(option => {
+        option.classList.remove('selected');
+    });
+    event.target.closest('.answer-option').classList.add('selected');
+    
+    // Auto-advance after selection
+    setTimeout(() => {
+        nextQuestion();
+    }, 800);
 }
 
-      // Render question with sophisticated answer options or open-ended input
-const questionContainer = document.getElementById('current-question');
-const answerOptions = getSophisticatedAnswerOptions(current.questionText);
+// Navigation functions
+function nextQuestion() {
+    if (assessmentState.currentQuestion < assessmentState.totalQuestions - 1) {
+        assessmentState.currentQuestion++;
+        renderQuestion();
+    } else {
+        displayResults();
+    }
+}
 
-if (answerOptions === "open-ended") {
-    // Render open-ended question
-    questionContainer.innerHTML = `
-        <div class="question-card">
-            <h3 class="question-text">${current.questionText}</h3>
-            <div class="open-ended-container">
-                <textarea 
-                    id="open-ended-answer" 
-                    placeholder="Please provide your detailed response here..."
-                    rows="6"
-                    style="width: 100%; padding: 1rem; border: 2px solid #e8eeff; border-radius: 12px; font-family: inherit; font-size: 1rem; line-height: 1.5; resize: vertical;"
-                    oninput="handleOpenEndedAnswer(${assessmentState.currentQuestion}, this.value)"
-                ></textarea>
-                <div style="margin-top: 1rem; text-align: right;">
-                    <button class="nav-button" onclick="saveOpenEndedAndNext()" disabled id="continue-btn">Continue →</button>
+function previousQuestion() {
+    if (assessmentState.currentQuestion > 0) {
+        assessmentState.currentQuestion--;
+        renderQuestion();
+    }
+}
+
+// Progress sidebar update
+function updateSidebarProgress() {
+    const sidebar = document.getElementById('progress-sidebar');
+    const dimensionProgress = {};
+    
+    // Calculate progress per dimension
+    Object.keys(assessmentFramework.dimensions).forEach(dimKey => {
+        const dimensionQuestions = assessmentState.questionsList.filter(q => q.dimensionKey === dimKey);
+        const answeredInDimension = dimensionQuestions.filter((q, index) => {
+            const questionIndex = assessmentState.questionsList.indexOf(q);
+            return assessmentState.answers[questionIndex];
+        }).length;
+        
+        dimensionProgress[dimKey] = {
+            title: assessmentFramework.dimensions[dimKey].title,
+            answered: answeredInDimension,
+            total: dimensionQuestions.length,
+            percentage: Math.round((answeredInDimension / dimensionQuestions.length) * 100)
+        };
+    });
+    
+    const sidebarHTML = `
+        <div class="progress-header">
+            <h3>Assessment Progress</h3>
+            <div class="overall-progress">
+                ${Object.keys(assessmentState.answers).length} / ${assessmentState.totalQuestions} completed
+            </div>
+        </div>
+        <div class="dimension-progress">
+            ${Object.keys(dimensionProgress).map(dimKey => {
+                const prog = dimensionProgress[dimKey];
+                return `
+                    <div class="dimension-progress-item">
+                        <div class="dimension-name">${prog.title}</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${prog.percentage}%"></div>
+                        </div>
+                        <div class="progress-text">${prog.answered}/${prog.total}</div>
+                    </div>
+                `;
+            }).join('')}
+        </div>
+    `;
+    
+    sidebar.innerHTML = sidebarHTML;
+}
+
+// Enhanced results calculation with N/A handling
+function calculateResults() {
+    const dimensionScores = {};
+    const dimensionCounts = {};
+    
+    // Initialize dimension tracking
+    Object.keys(assessmentFramework.dimensions).forEach(dimKey => {
+        dimensionScores[dimKey] = 0;
+        dimensionCounts[dimKey] = 0;
+    });
+    
+    // Calculate scores excluding N/A answers
+    assessmentState.questionsList.forEach((question, index) => {
+        const answer = assessmentState.answers[index];
+        if (answer && answer.score !== null && answer.value !== 'NA') {
+            dimensionScores[question.dimensionKey] += answer.score;
+            dimensionCounts[question.dimensionKey]++;
+        }
+    });
+    
+    // Calculate average scores per dimension
+    Object.keys(dimensionScores).forEach(dimKey => {
+        if (dimensionCounts[dimKey] > 0) {
+            dimensionScores[dimKey] = dimensionScores[dimKey] / dimensionCounts[dimKey];
+        } else {
+            dimensionScores[dimKey] = 0;
+        }
+    });
+    
+    // Calculate overall score (average of all dimension scores)
+    const validDimensions = Object.values(dimensionScores).filter(score => score > 0);
+    const overallScore = validDimensions.length > 0 
+        ? validDimensions.reduce((sum, score) => sum + score, 0) / validDimensions.length 
+        : 0;
+    
+    return {
+        overall: overallScore,
+        dimensions: dimensionScores,
+        totalQuestions: assessmentState.totalQuestions,
+        answeredQuestions: Object.keys(assessmentState.answers).length,
+        naQuestions: assessmentState.naQuestions.length
+    };
+}
+
+// Enhanced maturity level determination
+function getMaturityLevel(score) {
+    if (score >= 4.9) return { name: "Optimized", description: "Autonomous AI-native organization with continuous evolution" };
+    if (score >= 3.9) return { name: "Managed", description: "Advanced AI-powered transformation with intelligent optimization" };
+    if (score >= 2.9) return { name: "Defined", description: "Structured digital transformation with integrated AI capabilities" };
+    if (score >= 1.9) return { name: "Developing", description: "Emerging digital transformation with basic AI experimentation" };
+    return { name: "Initial", description: "Basic digital capabilities with limited AI integration" };
+}
+
+// Enhanced results display with sophisticated insights
+function displayResults() {
+    const results = calculateResults();
+    
+    // Determine maturity level
+    const maturityLevel = getMaturityLevel(results.overall);
+    
+    // Show results section
+    document.getElementById('assessment-questions').style.display = 'none';
+    document.getElementById('results-section').style.display = 'block';
+    
+    // Update results content
+    document.getElementById('overall-score').textContent = results.overall.toFixed(1);
+    document.getElementById('maturity-level').textContent = maturityLevel.name;
+    document.getElementById('maturity-description').textContent = maturityLevel.description;
+    
+    // Color-code maturity level
+    const levelElement = document.getElementById('maturity-level');
+    levelElement.className = `maturity-level maturity-${maturityLevel.name.toLowerCase()}`;
+    
+    // Generate dimension chart
+    generateDimensionChart(results.dimensions);
+    
+    // Generate recommendations
+    generateRecommendations(results);
+    
+    // Update progress sidebar
+    document.getElementById('progress-sidebar').innerHTML = `
+        <div class="completion-summary">
+            <h3>Assessment Complete! 🎉</h3>
+            <div class="summary-stats">
+                <div class="summary-stat">
+                    <span class="stat-value">${results.answeredQuestions}</span>
+                    <span class="stat-label">Questions Answered</span>
+                </div>
+                ${results.naQuestions > 0 ? `
+                <div class="summary-stat">
+                    <span class="stat-value">${results.naQuestions}</span>
+                    <span class="stat-label">N/A Responses</span>
+                </div>
+                ` : ''}
+                <div class="summary-stat">
+                    <span class="stat-value">${Object.keys(results.dimensions).length}</span>
+                    <span class="stat-label">Dimensions Assessed</span>
                 </div>
             </div>
         </div>
     `;
-} else {
-    // Render multiple choice question (existing code)
-    questionContainer.innerHTML = `
-        <div class="question-card">
-            <h3 class="question-text">${current.questionText}</h3>
-            <div class="answer-options">
-                ${answerOptions.map((option, index) => {
-                    const isNA = option.startsWith('N/A');
-                    const value = isNA ? 'NA' : (index + (isNA ? 0 : 1));
-                    return `
-                        <div class="answer-option ${isNA ? 'na-option' : ''}" onclick="selectAnswer(${assessmentState.currentQuestion}, '${value}')">
-                            <div class="option-header">
-                                <span class="option-level">${isNA ? 'N/A' : `Level ${value}`}</span>
-                                <span class="option-indicator">○</span>
-                            </div>
-                            <div class="option-description">${option}</div>
+}
+
+// Enhanced dimension chart generation
+function generateDimensionChart(dimensionScores) {
+    const chartContainer = document.getElementById('dimension-chart');
+    
+    const chartHTML = Object.keys(assessmentFramework.dimensions)
+        .map(dimKey => {
+            const dimension = assessmentFramework.dimensions[dimKey];
+            const score = dimensionScores[dimKey] || 0;
+            const percentage = (score / 5) * 100;
+            const maturityLevel = getMaturityLevel(score);
+            
+            return `
+                <div class="dimension-row">
+                    <div class="dimension-info">
+                        <div class="dimension-title">${dimension.title}</div>
+                        <div class="dimension-score">
+                            <span class="score-value">${score.toFixed(1)}</span>
+                            <span class="maturity-badge maturity-${maturityLevel.name.toLowerCase()}">${maturityLevel.name}</span>
                         </div>
-                    `;
-                }).join('')}
+                    </div>
+                    <div class="dimension-bar">
+                        <div class="bar-fill maturity-${maturityLevel.name.toLowerCase()}" style="width: ${percentage}%"></div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+        
+    chartContainer.innerHTML = chartHTML;
+}
+
+// Enhanced recommendations generation
+function generateRecommendations(results) {
+    const recommendationsContainer = document.getElementById('recommendations');
+    
+    // Find top 3 lowest scoring dimensions for improvement recommendations
+    const sortedDimensions = Object.entries(results.dimensions)
+        .filter(([key, score]) => score > 0) // Exclude dimensions with no scores
+        .sort(([,a], [,b]) => a - b)
+        .slice(0, 3);
+    
+    // Find top performing dimension for strengths
+    const topDimension = Object.entries(results.dimensions)
+        .filter(([key, score]) => score > 0)
+        .sort(([,a], [,b]) => b - a)[0];
+    
+    let recommendationsHTML = `
+        <div class="recommendation-section">
+            <h4>🎯 Priority Improvement Areas</h4>
+            <div class="recommendation-cards">
+    `;
+    
+    sortedDimensions.forEach(([dimKey, score]) => {
+        const dimension = assessmentFramework.dimensions[dimKey];
+        const priority = score < 2.5 ? "High Priority" : score < 3.5 ? "Medium Priority" : "Enhancement Opportunity";
+        const priorityClass = score < 2.5 ? "high" : score < 3.5 ? "medium" : "low";
+        
+        recommendationsHTML += `
+            <div class="recommendation-card">
+                <div class="recommendation-header">
+                    <h5>${dimension.title}</h5>
+                    <span class="priority-badge ${priorityClass}">${priority}</span>
+                </div>
+                <div class="recommendation-content">
+                    <p>Current Level: ${getMaturityLevel(score).name} (${score.toFixed(1)}/5.0)</p>
+                    <div class="recommendation-actions">
+                        ${getRecommendationActions(dimKey, score)}
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+    
+    recommendationsHTML += `
             </div>
         </div>
     `;
-}
-            
-            // Update dimension info
-            document.getElementById('current-dimension').textContent = 
-                `Dimension ${current.dimensionKey}: ${current.dimensionTitle}`;
-            document.getElementById('current-category').textContent = 
-                `${current.categoryKey}: ${current.categoryTitle}`;
-            
-            // Update progress
-            const progress = ((assessmentState.currentQuestion + 1) / assessmentState.totalQuestions) * 100;
-            document.getElementById('question-progress').style.width = progress + '%';
-            document.getElementById('progress-text').textContent = 
-                `Question ${assessmentState.currentQuestion + 1} of ${assessmentState.totalQuestions}`;
-            
-            // Render question with sophisticated answer options
-            const questionContainer = document.getElementById('current-question');
-            const answerOptions = getSophisticatedAnswerOptions(current.questionText);
-            
-            questionContainer.innerHTML = `
-                <div class="question-card">
-                    <h3 class="question-text">${current.questionText}</h3>
-                    <div class="answer-options">
-                        ${answerOptions.map((option, index) => {
-                            const isNA = option.startsWith('N/A');
-                            const value = isNA ? 'NA' : (index + (isNA ? 0 : 1));
-                            return `
-                                <div class="answer-option ${isNA ? 'na-option' : ''}" onclick="selectAnswer(${assessmentState.currentQuestion}, '${value}')">
-                                    <div class="option-header">
-                                        <span class="option-level">${isNA ? 'N/A' : `Level ${value}`}</span>
-                                        <span class="option-indicator">○</span>
-                                    </div>
-                                    <div class="option-description">${option}</div>
-                                </div>
-                            `;
-                        }).join('')}
-                    </div>
-                </div>
-            `;
-            
-            // Update sidebar progress
-            updateSidebarProgress();
-        }
-
-        // Enhanced answer selection with N/A handling
-        function selectAnswer(questionIndex, value) {
-            const current = assessmentState.questionsList[questionIndex];
-            if (!current) return;
-            
-            // Handle N/A answers
-            if (value === 'NA') {
-                assessmentState.naQuestions.push(questionIndex);
-                assessmentState.answers[questionIndex] = { value: 'NA', score: null };
-            } else {
-                // Remove from N/A list if previously marked as N/A
-                const naIndex = assessmentState.naQuestions.indexOf(questionIndex);
-                if (naIndex > -1) {
-                    assessmentState.naQuestions.splice(naIndex, 1);
-                }
-                assessmentState.answers[questionIndex] = { value: parseInt(value), score: parseInt(value) };
-            }
-            
-            // Update UI
-            document.querySelectorAll('.answer-option').forEach(option => {
-                option.classList.remove('selected');
-            });
-            event.target.closest('.answer-option').classList.add('selected');
-            
-            // Auto-advance after selection
-            setTimeout(() => {
-                nextQuestion();
-            }, 800);
-        }
-
-        // Enhanced results calculation with N/A handling
-        function calculateResults() {
-            const dimensionScores = {};
-            const dimensionCounts = {};
-            
-            // Initialize dimension tracking
-            Object.keys(assessmentFramework.dimensions).forEach(dimKey => {
-                dimensionScores[dimKey] = 0;
-                dimensionCounts[dimKey] = 0;
-            });
-            
-            // Calculate scores excluding N/A answers
-            assessmentState.questionsList.forEach((question, index) => {
-                const answer = assessmentState.answers[index];
-                if (answer && answer.score !== null && answer.value !== 'NA') {
-                    dimensionScores[question.dimensionKey] += answer.score;
-                    dimensionCounts[question.dimensionKey]++;
-                }
-            });
-            
-            // Calculate average scores per dimension
-            Object.keys(dimensionScores).forEach(dimKey => {
-                if (dimensionCounts[dimKey] > 0) {
-                    dimensionScores[dimKey] = dimensionScores[dimKey] / dimensionCounts[dimKey];
-                } else {
-                    dimensionScores[dimKey] = 0;
-                }
-            });
-            
-            // Calculate overall score (average of all dimension scores)
-            const validDimensions = Object.values(dimensionScores).filter(score => score > 0);
-            const overallScore = validDimensions.length > 0 
-                ? validDimensions.reduce((sum, score) => sum + score, 0) / validDimensions.length 
-                : 0;
-            
-            return {
-                overall: overallScore,
-                dimensions: dimensionScores,
-                totalQuestions: assessmentState.totalQuestions,
-                answeredQuestions: Object.keys(assessmentState.answers).length,
-                naQuestions: assessmentState.naQuestions.length
-            };
-        }
-
-        // Enhanced results display with sophisticated insights
-        function displayResults() {
-            const results = calculateResults();
-            
-            // Determine maturity level
-            const maturityLevel = getMaturityLevel(results.overall);
-            
-            // Show results section
-            document.getElementById('assessment-questions').style.display = 'none';
-            document.getElementById('results-section').style.display = 'block';
-            
-            // Update results content
-            document.getElementById('overall-score').textContent = results.overall.toFixed(1);
-            document.getElementById('maturity-level').textContent = maturityLevel.name;
-            document.getElementById('maturity-description').textContent = maturityLevel.description;
-            
-            // Color-code maturity level
-            const levelElement = document.getElementById('maturity-level');
-            levelElement.className = `maturity-level maturity-${maturityLevel.name.toLowerCase()}`;
-            
-            // Generate dimension chart
-            generateDimensionChart(results.dimensions);
-            
-            // Generate recommendations
-            generateRecommendations(results);
-            
-            // Update progress sidebar
-            document.getElementById('progress-sidebar').innerHTML = `
-                <div class="completion-summary">
-                    <h3>Assessment Complete! 🎉</h3>
-                    <div class="summary-stats">
-                        <div class="summary-stat">
-                            <span class="stat-value">${results.answeredQuestions}</span>
-                            <span class="stat-label">Questions Answered</span>
-                        </div>
-                        ${results.naQuestions > 0 ? `
-                        <div class="summary-stat">
-                            <span class="stat-value">${results.naQuestions}</span>
-                            <span class="stat-label">N/A Responses</span>
-                        </div>
-                        ` : ''}
-                        <div class="summary-stat">
-                            <span class="stat-value">${Object.keys(results.dimensions).length}</span>
-                            <span class="stat-label">Dimensions Assessed</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        // Enhanced maturity level determination
-        function getMaturityLevel(score) {
-            if (score >= 4.9) return { name: "Optimized", description: "Autonomous AI-native organization with continuous evolution" };
-            if (score >= 3.9) return { name: "Managed", description: "Advanced AI-powered transformation with intelligent optimization" };
-            if (score >= 2.9) return { name: "Defined", description: "Structured digital transformation with integrated AI capabilities" };
-            if (score >= 1.9) return { name: "Developing", description: "Emerging digital transformation with basic AI experimentation" };
-            return { name: "Initial", description: "Basic digital capabilities with limited AI integration" };
-        }
-
-        // Enhanced dimension chart generation
-        function generateDimensionChart(dimensionScores) {
-            const chartContainer = document.getElementById('dimension-chart');
-            
-            const chartHTML = Object.keys(assessmentFramework.dimensions)
-                .map(dimKey => {
-                    const dimension = assessmentFramework.dimensions[dimKey];
-                    const score = dimensionScores[dimKey] || 0;
-                    const percentage = (score / 5) * 100;
-                    const maturityLevel = getMaturityLevel(score);
-                    
-                    return `
-                        <div class="dimension-row">
-                            <div class="dimension-info">
-                                <div class="dimension-title">${dimension.title}</div>
-                                <div class="dimension-score">
-                                    <span class="score-value">${score.toFixed(1)}</span>
-                                    <span class="maturity-badge maturity-${maturityLevel.name.toLowerCase()}">${maturityLevel.name}</span>
-                                </div>
-                            </div>
-                            <div class="dimension-bar">
-                                <div class="bar-fill maturity-${maturityLevel.name.toLowerCase()}" style="width: ${percentage}%"></div>
-                            </div>
-                        </div>
-                    `;
-                }).join('');
-                
-            chartContainer.innerHTML = chartHTML;
-        }
-
-        // Enhanced recommendations generation
-        function generateRecommendations(results) {
-            const recommendationsContainer = document.getElementById('recommendations');
-            
-            // Find top 3 lowest scoring dimensions for improvement recommendations
-            const sortedDimensions = Object.entries(results.dimensions)
-                .filter(([key, score]) => score > 0) // Exclude dimensions with no scores
-                .sort(([,a], [,b]) => a - b)
-                .slice(0, 3);
-            
-            // Find top performing dimension for strengths
-            const topDimension = Object.entries(results.dimensions)
-                .filter(([key, score]) => score > 0)
-                .sort(([,a], [,b]) => b - a)[0];
-            
-            let recommendationsHTML = `
-                <div class="recommendation-section">
-                    <h4>🎯 Priority Improvement Areas</h4>
-                    <div class="recommendation-cards">
-            `;
-            
-            sortedDimensions.forEach(([dimKey, score]) => {
-                const dimension = assessmentFramework.dimensions[dimKey];
-                const priority = score < 2.5 ? "High Priority" : score < 3.5 ? "Medium Priority" : "Enhancement Opportunity";
-                const priorityClass = score < 2.5 ? "high" : score < 3.5 ? "medium" : "low";
-                
-                recommendationsHTML += `
-                    <div class="recommendation-card">
-                        <div class="recommendation-header">
-                            <h5>${dimension.title}</h5>
-                            <span class="priority-badge ${priorityClass}">${priority}</span>
-                        </div>
-                        <div class="recommendation-content">
-                            <p>Current Level: ${getMaturityLevel(score).name} (${score.toFixed(1)}/5.0)</p>
-                            <div class="recommendation-actions">
-                                ${getRecommendationActions(dimKey, score)}
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            recommendationsHTML += `
-                    </div>
-                </div>
-            `;
-            
-            // Add strengths section if there's a top performer
-            if (topDimension && topDimension[1] >= 3.5) {
-                recommendationsHTML += `
-                    <div class="recommendation-section">
-                        <h4>💪 Key Strengths</h4>
-                        <div class="strength-card">
-                            <h5>${assessmentFramework.dimensions[topDimension[0]].title}</h5>
-                            <p>Strong performance at ${getMaturityLevel(topDimension[1]).name} level (${topDimension[1].toFixed(1)}/5.0). 
-                            Consider leveraging this strength to accelerate improvements in other areas.</p>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            recommendationsContainer.innerHTML = recommendationsHTML;
-        }
-
-        // Get specific recommendations based on dimension and score
-        function getRecommendationActions(dimensionKey, score) {
-            const recommendations = {
-                '1': [
-                    "Develop comprehensive digital transformation strategy aligned with business objectives",
-                    "Establish AI governance framework and strategic roadmap",
-                    "Create cross-functional transformation steering committee"
-                ],
-                '9': [
-                    "Implement MACH architecture principles (Microservices, API-first, Cloud-native, Headless)",
-                    "Transition from instruction-driven to intent-driven systems",
-                    "Invest in composable integration platform and digital foundation"
-                ],
-                '13': [
-                    "Establish data product approach and unified data foundation",
-                    "Implement citizen data science and self-service analytics platforms",
-                    "Create comprehensive data governance for responsible AI democratization"
-                ],
-                'default': [
-                    "Conduct detailed capability assessment and gap analysis",
-                    "Develop phased implementation roadmap with clear success metrics",
-                    "Invest in employee training and change management programs"
-                ]
-            };
-            
-            const actions = recommendations[dimensionKey] || recommendations['default'];
-            return actions.map(action => `<div class="action-item">• ${action}</div>`).join('');
-        }
-
-        // Navigation functions
-        function nextQuestion() {
-            if (assessmentState.currentQuestion < assessmentState.totalQuestions - 1) {
-                assessmentState.currentQuestion++;
-                renderQuestion();
-            } else {
-                displayResults();
-            }
-        }
-
-        function previousQuestion() {
-            if (assessmentState.currentQuestion > 0) {
-                assessmentState.currentQuestion--;
-                renderQuestion();
-            }
-        }
-
-        // Progress sidebar update
-        function updateSidebarProgress() {
-            const sidebar = document.getElementById('progress-sidebar');
-            const dimensionProgress = {};
-            
-            // Calculate progress per dimension
-            Object.keys(assessmentFramework.dimensions).forEach(dimKey => {
-                const dimensionQuestions = assessmentState.questionsList.filter(q => q.dimensionKey === dimKey);
-                const answeredInDimension = dimensionQuestions.filter((q, index) => {
-                    const questionIndex = assessmentState.questionsList.indexOf(q);
-                    return assessmentState.answers[questionIndex];
-                }).length;
-                
-                dimensionProgress[dimKey] = {
-                    title: assessmentFramework.dimensions[dimKey].title,
-                    answered: answeredInDimension,
-                    total: dimensionQuestions.length,
-                    percentage: Math.round((answeredInDimension / dimensionQuestions.length) * 100)
-                };
-            });
-            
-            const sidebarHTML = `
-                <div class="progress-header">
-                    <h3>Assessment Progress</h3>
-                    <div class="overall-progress">
-                        ${Object.keys(assessmentState.answers).length} / ${assessmentState.totalQuestions} completed
-                    </div>
-                </div>
-                <div class="dimension-progress">
-                    ${Object.keys(dimensionProgress).map(dimKey => {
-                        const prog = dimensionProgress[dimKey];
-                        return `
-                            <div class="dimension-progress-item">
-                                <div class="dimension-name">${prog.title}</div>
-                                <div class="progress-bar">
-                                    <div class="progress-fill" style="width: ${prog.percentage}%"></div>
-                                </div>
-                                <div class="progress-text">${prog.answered}/${prog.total}</div>
-                            </div>
-                        `;
-                    }).join('')}
-                </div>
-            `;
-            
-            sidebar.innerHTML = sidebarHTML;
-        }
-
-        // Download results function
-        function downloadResults() {
-            const results = calculateResults();
-            const maturityLevel = getMaturityLevel(results.overall);
-            
-            let reportContent = `TransformAI Digital Transformation Assessment Report\n`;
-            reportContent += `Generated on: ${new Date().toLocaleDateString()}\n\n`;
-            reportContent += `OVERALL ASSESSMENT RESULTS\n`;
-            reportContent += `============================\n`;
-            reportContent += `Overall Score: ${results.overall.toFixed(1)}/5.0\n`;
-            reportContent += `Maturity Level: ${maturityLevel.name}\n`;
-            reportContent += `Description: ${maturityLevel.description}\n\n`;
-            
-            reportContent += `DIMENSION SCORES\n`;
-            reportContent += `================\n`;
-            Object.keys(assessmentFramework.dimensions).forEach(dimKey => {
-                const dimension = assessmentFramework.dimensions[dimKey];
-                const score = results.dimensions[dimKey] || 0;
-                const level = getMaturityLevel(score);
-                reportContent += `${dimension.title}: ${score.toFixed(1)}/5.0 (${level.name})\n`;
-            });
-            
-            reportContent += `\nASSESSMENT STATISTICS\n`;
-            reportContent += `=====================\n`;
-            reportContent += `Total Questions: ${results.totalQuestions}\n`;
-            reportContent += `Questions Answered: ${results.answeredQuestions}\n`;
-            reportContent += `N/A Responses: ${results.naQuestions}\n`;
-            reportContent += `Completion Rate: ${Math.round((results.answeredQuestions / results.totalQuestions) * 100)}%\n`;
-            
-            // Create download
-            const blob = new Blob([reportContent], { type: 'text/plain' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `TransformAI_Assessment_Report_${new Date().toISOString().split('T')[0]}.txt`;
-            document.body.appendChild(a);
-            a.click();
-            window.URL.revokeObjectURL(url);
-            document.body.removeChild(a);
-        }
-
-        // Save progress function (localStorage)
-        function saveProgress() {
-            const progressData = {
-                currentQuestion: assessmentState.currentQuestion,
-                answers: assessmentState.answers,
-                naQuestions: assessmentState.naQuestions,
-                timestamp: new Date().toISOString()
-            };
-            
-            // Note: In Claude.ai artifacts, localStorage is not available
-            // This would work in a real deployment
-            console.log('Progress saved (simulation):', progressData);
-            
-            // Show save confirmation
-            const saveBtn = document.getElementById('save-btn');
-            if (saveBtn) {
-                const originalText = saveBtn.textContent;
-                saveBtn.textContent = '✓ Saved!';
-                saveBtn.style.background = '#4caf50';
-                setTimeout(() => {
-                    saveBtn.textContent = originalText;
-                    saveBtn.style.background = '';
-                }, 2000);
-            }
-        }
-
-        // Start assessment function
-        function startAssessment() {
-    document.getElementById('assessment-section').style.display = 'none';
-    document.getElementById('interactive-assessment').style.display = 'block';
     
-    // Initialize if not already done
-    if (assessmentState.totalQuestions === 0) {
-        initializeAssessment();
+    // Add strengths section if there's a top performer
+    if (topDimension && topDimension[1] >= 3.5) {
+        recommendationsHTML += `
+            <div class="recommendation-section">
+                <h4>💪 Key Strengths</h4>
+                <div class="strength-card">
+                    <h5>${assessmentFramework.dimensions[topDimension[0]].title}</h5>
+                    <p>Strong performance at ${getMaturityLevel(topDimension[1]).name} level (${topDimension[1].toFixed(1)}/5.0). 
+                    Consider leveraging this strength to accelerate improvements in other areas.</p>
+                </div>
+            </div>
+        `;
     }
     
-    // Start with first question
-    assessmentState.currentQuestion = 0;
-    renderQuestion();
+    recommendationsContainer.innerHTML = recommendationsHTML;
 }
 
-        // Return to overview function
-        function returnToOverview() {
+// Get specific recommendations based on dimension and score
+function getRecommendationActions(dimensionKey, score) {
+    const recommendations = {
+        '1': [
+            "Develop comprehensive digital transformation strategy aligned with business objectives",
+            "Establish AI governance framework and strategic roadmap",
+            "Create cross-functional transformation steering committee"
+        ],
+        '9': [
+            "Implement MACH architecture principles (Microservices, API-first, Cloud-native, Headless)",
+            "Transition from instruction-driven to intent-driven systems",
+            "Invest in composable integration platform and digital foundation"
+        ],
+        '13': [
+            "Establish data product approach and unified data foundation",
+            "Implement citizen data science and self-service analytics platforms",
+            "Create comprehensive data governance for responsible AI democratization"
+        ],
+        'default': [
+            "Conduct detailed capability assessment and gap analysis",
+            "Develop phased implementation roadmap with clear success metrics",
+            "Invest in employee training and change management programs"
+        ]
+    };
+    
+    const actions = recommendations[dimensionKey] || recommendations['default'];
+    return actions.map(action => `<div class="action-item">• ${action}</div>`).join('');
+}
+
+// Download results function
+function downloadResults() {
+    const results = calculateResults();
+    const maturityLevel = getMaturityLevel(results.overall);
+    
+    let reportContent = `TransformAI Digital Transformation Assessment Report\n`;
+    reportContent += `Generated on: ${new Date().toLocaleDateString()}\n\n`;
+    reportContent += `OVERALL ASSESSMENT RESULTS\n`;
+    reportContent += `============================\n`;
+    reportContent += `Overall Score: ${results.overall.toFixed(1)}/5.0\n`;
+    reportContent += `Maturity Level: ${maturityLevel.name}\n`;
+    reportContent += `Description: ${maturityLevel.description}\n\n`;
+    
+    reportContent += `DIMENSION SCORES\n`;
+    reportContent += `================\n`;
+    Object.keys(assessmentFramework.dimensions).forEach(dimKey => {
+        const dimension = assessmentFramework.dimensions[dimKey];
+        const score = results.dimensions[dimKey] || 0;
+        const level = getMaturityLevel(score);
+        reportContent += `${dimension.title}: ${score.toFixed(1)}/5.0 (${level.name})\n`;
+    });
+    
+    reportContent += `\nASSESSMENT STATISTICS\n`;
+    reportContent += `=====================\n`;
+    reportContent += `Total Questions: ${results.totalQuestions}\n`;
+    reportContent += `Questions Answered: ${results.answeredQuestions}\n`;
+    reportContent += `N/A Responses: ${results.naQuestions}\n`;
+    reportContent += `Completion Rate: ${Math.round((results.answeredQuestions / results.totalQuestions) * 100)}%\n`;
+    
+    // Create download
+    const blob = new Blob([reportContent], { type: 'text/plain' });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `TransformAI_Assessment_Report_${new Date().toISOString().split('T')[0]}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+}
+
+// Save progress function 
+function saveProgress() {
+    const progressData = {
+        currentQuestion: assessmentState.currentQuestion,
+        answers: assessmentState.answers,
+        naQuestions: assessmentState.naQuestions,
+        timestamp: new Date().toISOString()
+    };
+    
+    console.log('Progress saved (simulation):', progressData);
+    
+    // Show save confirmation
+    const saveBtn = document.getElementById('save-btn');
+    if (saveBtn) {
+        const originalText = saveBtn.textContent;
+        saveBtn.textContent = '✓ Saved!';
+        saveBtn.style.background = '#4caf50';
+        setTimeout(() => {
+            saveBtn.textContent = originalText;
+            saveBtn.style.background = '';
+        }, 2000);
+    }
+}
+
+// Return to overview function
+function returnToOverview() {
     document.getElementById('interactive-assessment').style.display = 'none';
     document.getElementById('results-section').style.display = 'none';
     document.getElementById('assessment-questions').style.display = 'block';
     document.getElementById('assessment-section').style.display = 'block';
 }
 
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('Enhanced TransformAI Platform loaded with 14-dimension assessment framework');
-            
-            // Initialize assessment framework
-            setTimeout(() => {
-                if (typeof assessmentFramework !== 'undefined') {
-                    console.log(`Assessment framework loaded: ${assessmentFramework.metadata.totalDimensions} dimensions, ${assessmentFramework.metadata.totalQuestions} questions`);
-                    initializeAssessment();
-                } else {
-                    console.error('Assessment framework not loaded. Please ensure data/assessment-framework.js is available.');
-                }
-            }, 100);
-        });
-
-        // Global navigation functions
-        function showSection(sectionId) {
-            console.log('Showing section:', sectionId);
-            
-            // Hide all sections
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Update navigation
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
-            });
-            
-            // Show target section
-            const targetSection = document.getElementById(sectionId + '-section');
-            if (targetSection) {
-                targetSection.classList.add('active');
-                
-                // Update active nav link
-                const navLink = document.querySelector(`[onclick="showSection('${sectionId}')"]`);
-                if (navLink) {
-                    navLink.classList.add('active');
-                }
-                
-                console.log('Section activated:', sectionId);
-                
-                // Initialize assessment content if needed
-                if (sectionId === 'assessment') {
-                    setTimeout(() => {
-                        if (typeof assessmentFramework !== 'undefined') {
-                            initializeAssessmentContent();
-                            renderExpandableAssessment();
-                        }
-                    }, 100);
-                }
-            } else {
-                console.error('Section not found:', sectionId + '-section');
-            }
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Enhanced TransformAI Platform loaded with 14-dimension assessment framework');
+    
+    // Initialize assessment framework
+    setTimeout(() => {
+        if (typeof assessmentFramework !== 'undefined') {
+            console.log(`Assessment framework loaded: ${assessmentFramework.metadata.totalDimensions} dimensions, ${assessmentFramework.metadata.totalQuestions} questions`);
+            initializeAssessment();
+        } else {
+            console.error('Assessment framework not loaded. Please ensure assessment-framework.js is available.');
         }
-
-        function initializeAssessmentContent() {
-            console.log('Initializing assessment content');
-            
-            // Update statistics
-            const assessmentStats = document.getElementById('assessment-stats');
-            if (assessmentStats && typeof assessmentFramework !== 'undefined') {
-                assessmentStats.innerHTML = `
-                    <div class="stat-card">
-                        <div class="stat-number">${assessmentFramework.metadata.totalDimensions}</div>
-                        <div class="stat-label">Assessment Dimensions</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">42</div>
-                        <div class="stat-label">Assessment Categories</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">${assessmentFramework.metadata.totalQuestions}+</div>
-                        <div class="stat-label">Assessment Questions</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">${assessmentFramework.metadata.maturityLevels}</div>
-                        <div class="stat-label">Maturity Levels</div>
-                    </div>
-                `;
-            }
-        }
-
-        // Enhanced expandable assessment rendering
-        function renderExpandableAssessment() {
-            const container = document.getElementById('assessment-dimensions');
-            if (!container || !assessmentFramework) return;
-
-            container.innerHTML = '';
-
-            Object.keys(assessmentFramework.dimensions).forEach(key => {
-                const dimension = assessmentFramework.dimensions[key];
-                
-                const card = document.createElement('div');
-                card.className = 'dimension-card expandable';
-                card.innerHTML = `
-                    <div class="dimension-header" onclick="toggleDimension(this)">
-                        <h4>Dimension ${key}: ${dimension.title}</h4>
-                        <span class="expand-icon">+</span>
-                    </div>
-                    <div class="dimension-content" style="display: none;">
-                        <div class="dimension-categories">
-                            ${Object.keys(dimension.categories).map(catKey => `
-                                <div class="category">
-                                    <h5>${catKey}: ${dimension.categories[catKey].title}</h5>
-                                    <ul class="questions">
-                                        ${dimension.categories[catKey].questions.map(q => `<li>${q}</li>`).join('')}
-                                    </ul>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
-                
-                container.appendChild(card);
-            });
-        }
-
-        function toggleDimension(header) {
-            const content = header.nextElementSibling;
-            const icon = header.querySelector('.expand-icon');
-            
-            if (content.style.display === 'none') {
-                content.style.display = 'block';
-                icon.textContent = '−';
-                header.parentElement.classList.add('expanded');
-            } else {
-                content.style.display = 'none';
-                icon.textContent = '+';
-                header.parentElement.classList.remove('expanded');
-            }
-        }
-    </script>
-</body>
-</html>
+    }, 100);
+});
+</script>
