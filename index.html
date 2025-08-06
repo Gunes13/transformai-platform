@@ -888,247 +888,286 @@
         </div>
     </footer>
 
-    <<script>
-        // Embedded Assessment Framework Data (for browser compatibility)
-        const assessmentFramework = {
-            metadata: {
-                title: "AI-Powered Digital Transformation Assessment for Fashion Retail",
-                version: "1.0.0",
-                totalDimensions: 12,
-                totalCategories: 36,
-                totalQuestions: 72,
-                description: "Comprehensive maturity assessment framework incorporating Penti Digital Fashion insights and real-world retail AI use cases"
-            },
+    <script>
+        // Navigation and Section Management
+        function showSection(sectionName) {
+            console.log('Showing section:', sectionName); // Debug log
             
-            dimensions: [
+            // Hide all sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show target section
+            const targetSection = document.getElementById(`${sectionName}-section`);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                targetSection.classList.add('fade-in');
+                console.log('Section found and activated:', sectionName);
+            } else {
+                console.error('Section not found:', `${sectionName}-section`);
+            }
+
+            // Update navigation
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Find and activate corresponding nav link
+            const activeNavLink = document.querySelector(`[onclick="showSection('${sectionName}')"]`);
+            if (activeNavLink) {
+                activeNavLink.classList.add('active');
+            }
+
+            // Special handling for assessment platform
+            if (sectionName === 'assessment') {
+                initializeAssessmentContent();
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize Assessment Content
+        function initializeAssessmentContent() {
+            console.log('Initializing assessment content'); // Debug log
+            
+            // Set the assessment platform title and description
+            const platformTitle = document.getElementById('platform-title');
+            const platformDescription = document.getElementById('platform-description');
+            
+            if (platformTitle) {
+                platformTitle.textContent = "AI-Powered Digital Transformation Assessment for Fashion Retail";
+            }
+            if (platformDescription) {
+                platformDescription.textContent = "Comprehensive 12-dimension maturity assessment framework incorporating industry insights";
+            }
+
+            // Generate assessment stats
+            generateAssessmentStats();
+            generateFrameworkDescription();
+            generateDimensions();
+            generateMethodology();
+            generateUseCases();
+            generateInsights();
+        }
+
+        function generateAssessmentStats() {
+            const assessmentStats = document.getElementById('assessment-stats');
+            if (!assessmentStats) return;
+
+            const stats = [
+                { number: "12", label: "Assessment Dimensions" },
+                { number: "36", label: "Evaluation Categories" },
+                { number: "72", label: "Assessment Questions" },
+                { number: "4", label: "Maturity Levels" }
+            ];
+
+            assessmentStats.innerHTML = stats.map(stat => `
+                <div class="stat-card">
+                    <div class="stat-number">${stat.number}</div>
+                    <div class="stat-label">${stat.label}</div>
+                </div>
+            `).join('');
+        }
+
+        function generateFrameworkDescription() {
+            const frameworkDescription = document.getElementById('framework-description');
+            if (!frameworkDescription) return;
+
+            frameworkDescription.innerHTML = `
+                <p style="font-size: 1.1rem; line-height: 1.7; color: #666; margin-bottom: 2rem;">
+                    Comprehensive maturity assessment framework incorporating Penti Digital Fashion insights and real-world retail AI use cases
+                </p>
+                <div style="background: linear-gradient(135deg, #f8f9ff 0%, #e8eeff 100%); padding: 2rem; border-radius: 15px; border: 2px solid #e8eeff;">
+                    <h3 style="color: #667eea; margin-bottom: 1rem;">Framework Highlights</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 0.5rem 0; color: #666; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
+                            Incorporates insights from Penti Digital Fashion transformation research
+                        </li>
+                        <li style="padding: 0.5rem 0; color: #666; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
+                            Real-world use cases from leading fashion retailers like SHEIN, H&M, Zalando
+                        </li>
+                        <li style="padding: 0.5rem 0; color: #666; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
+                            Covers strategic, operational, technical, and organizational dimensions
+                        </li>
+                        <li style="padding: 0.5rem 0; color: #666; position: relative; padding-left: 1.5rem;">
+                            <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
+                            Business-first methodology with proven implementation frameworks
+                        </li>
+                    </ul>
+                </div>
+            `;
+        }
+
+        function generateDimensions() {
+            const dimensionsGrid = document.getElementById('dimensions-grid');
+            if (!dimensionsGrid) return;
+
+            const dimensions = [
                 {
-                    id: "dimension-1",
                     title: "Digital Transformation Strategy & AI Vision",
                     description: "Comprehensive strategic approach to digital transformation utilizing 3DVD technologies and AI-driven value creation",
-                    weight: 0.3,
                     type: "strategic",
-                    categories: [
-                        {
-                            id: "cat-1-1",
-                            title: "Strategic Digital & AI Vision Leadership",
-                            description: "Leadership commitment and strategic vision for AI-powered transformation"
-                        },
-                        {
-                            id: "cat-1-2", 
-                            title: "Digital Transformation Maturity & Implementation Approach",
-                            description: "Organizational maturity in executing digital transformation initiatives"
-                        }
-                    ]
+                    categories: 3,
+                    weight: 30
                 },
                 {
-                    id: "dimension-2",
                     title: "AI-Driven Product Intelligence & Demand Forecasting",
                     description: "Advanced AI capabilities for trend prediction, demand sensing, and intelligent product development",
-                    weight: 0.25,
                     type: "operational",
-                    categories: [
-                        {
-                            id: "cat-2-1",
-                            title: "Advanced Trend Forecasting & Market Intelligence",
-                            description: "AI-powered trend detection and market analysis capabilities"
-                        },
-                        {
-                            id: "cat-2-2",
-                            title: "Digital Twins & Product Intelligence Systems", 
-                            description: "Comprehensive product lifecycle management through digital twin technology"
-                        }
-                    ]
+                    categories: 3,
+                    weight: 25
                 },
                 {
-                    id: "dimension-3", 
                     title: "AI-Powered Personalization & Customer Intelligence",
                     description: "Advanced customer understanding and hyper-personalization capabilities using AI",
-                    weight: 0.25,
                     type: "operational",
-                    categories: [
-                        {
-                            id: "cat-3-1",
-                            title: "Fashion Hyper-Personalization & Customer Segmentation",
-                            description: "Sophisticated personalization engines and customer intelligence"
-                        },
-                        {
-                            id: "cat-3-2",
-                            title: "AI-Driven Fit Technology & Virtual Try-On",
-                            description: "Advanced fit prediction and virtual try-on experiences"
-                        }
-                    ]
+                    categories: 3,
+                    weight: 25
                 },
                 {
-                    id: "dimension-4",
-                    title: "Intelligent Commerce & Omnichannel Integration", 
+                    title: "Intelligent Commerce & Omnichannel Integration",
                     description: "Seamless commerce experiences across all channels with AI-driven optimization",
-                    weight: 0.25,
                     type: "operational",
-                    categories: [
-                        {
-                            id: "cat-4-1",
-                            title: "Connected Retail & Seamless Channel Integration",
-                            description: "Comprehensive omnichannel commerce capabilities"
-                        },
-                        {
-                            id: "cat-4-2",
-                            title: "Immersive Virtual Environments & Metaverse Integration",
-                            description: "Advanced virtual commerce and metaverse capabilities"
-                        }
-                    ]
+                    categories: 3,
+                    weight: 25
                 },
                 {
-                    id: "dimension-5",
                     title: "AI-Enhanced Marketing & Customer Engagement",
                     description: "Intelligent marketing automation and customer engagement powered by AI",
-                    weight: 0.25, 
                     type: "operational",
-                    categories: [
-                        {
-                            id: "cat-5-1",
-                            title: "Generative AI Content Creation & Marketing Automation",
-                            description: "AI-powered content creation and campaign automation"
-                        },
-                        {
-                            id: "cat-5-2",
-                            title: "Digital Models, Influencer Strategy & Virtual Brand Experiences",
-                            description: "AI-generated models and virtual brand experiences"
-                        }
-                    ]
+                    categories: 3,
+                    weight: 25
                 },
                 {
-                    id: "dimension-6",
                     title: "Fashion AI Applications & Industry Innovation",
                     description: "Cutting-edge AI applications specific to fashion retail innovation",
-                    weight: 0.25,
                     type: "technical",
-                    categories: [
-                        {
-                            id: "cat-6-1",
-                            title: "3DVD Technologies & Digital Twins Integration",
-                            description: "Comprehensive 3D modeling, VR/AR, and digital twin implementation"
-                        },
-                        {
-                            id: "cat-6-2",
-                            title: "Advanced Visual AI & Virtual Reality Applications",
-                            description: "Sophisticated visual AI and immersive technology implementation"
-                        },
-                        {
-                            id: "cat-6-3",
-                            title: "Generative AI Design & Creative Innovation",
-                            description: "AI-powered design assistance and creative capabilities"
-                        },
-                        {
-                            id: "cat-6-4",
-                            title: "Web3, Metaverse & Digital Fashion Innovation",
-                            description: "Blockchain, NFT, and virtual fashion capabilities"
-                        }
-                    ]
+                    categories: 4,
+                    weight: 25
                 },
                 {
-                    id: "dimension-7",
                     title: "Intelligent Operations & AI-Driven Supply Chain",
                     description: "AI-optimized operations and intelligent supply chain management",
-                    weight: 0.25,
                     type: "operational",
-                    categories: [
-                        {
-                            id: "cat-7-1", 
-                            title: "Digital Supply Chain Transformation & 3DVD Integration",
-                            description: "Comprehensive supply chain digitalization with 3DVD technologies"
-                        },
-                        {
-                            id: "cat-7-2",
-                            title: "AI-Powered Demand Sensing & Production Intelligence", 
-                            description: "Intelligent demand prediction and production optimization"
-                        }
-                    ]
+                    categories: 5,
+                    weight: 25
                 },
                 {
-                    id: "dimension-8",
                     title: "Data Strategy & AI Governance",
                     description: "Comprehensive data foundation and AI governance framework",
-                    weight: 0.25,
                     type: "technical",
-                    categories: [
-                        {
-                            id: "cat-8-1",
-                            title: "AI Data Foundation & Architecture",
-                            description: "Robust data infrastructure supporting AI operations"
-                        }
-                    ]
+                    categories: 3,
+                    weight: 25
                 },
                 {
-                    id: "dimension-9",
-                    title: "Technology Infrastructure & MACH Architecture", 
+                    title: "Technology Infrastructure & MACH Architecture",
                     description: "Modern, scalable technology foundation supporting AI initiatives",
-                    weight: 0.25,
                     type: "technical",
-                    categories: [
-                        {
-                            id: "cat-9-1",
-                            title: "MACH Architecture Foundation & Implementation",
-                            description: "Microservices, API-first, Cloud-native, Headless architecture"
-                        }
-                    ]
+                    categories: 4,
+                    weight: 25
                 },
                 {
-                    id: "dimension-10",
                     title: "Workforce Transformation & AI Collaboration",
                     description: "Human-AI collaboration and organizational change management",
-                    weight: 0.2,
                     type: "organizational",
-                    categories: [
-                        {
-                            id: "cat-10-1",
-                            title: "AI Literacy & Skills Development",
-                            description: "Comprehensive AI education and skill development programs"
-                        }
-                    ]
+                    categories: 4,
+                    weight: 20
                 },
                 {
-                    id: "dimension-11",
                     title: "Performance Measurement & AI ROI Analytics",
                     description: "Comprehensive measurement and optimization of AI transformation impact",
-                    weight: 0.2,
                     type: "organizational",
-                    categories: [
-                        {
-                            id: "cat-11-1",
-                            title: "AI Impact Measurement & Business Value Tracking",
-                            description: "Sophisticated measurement of AI business impact and ROI"
-                        }
-                    ]
+                    categories: 3,
+                    weight: 20
                 },
                 {
-                    id: "dimension-12",
                     title: "Strategic Growth & Future-Ready Innovation",
                     description: "AI-driven business model innovation and future technology readiness",
-                    weight: 0.3,
                     type: "strategic",
-                    categories: [
-                        {
-                            id: "cat-12-1",
-                            title: "AI-Driven Business Model Innovation & Market Expansion",
-                            description: "Leveraging AI for new business models and growth opportunities"
-                        },
-                        {
-                            id: "cat-12-2",
-                            title: "Emerging Technology Integration & Future Readiness",
-                            description: "Preparedness for adopting emerging AI and fashion technologies"
-                        }
-                    ]
+                    categories: 3,
+                    weight: 30
                 }
-            ],
+            ];
 
-            useCases: [
+            dimensionsGrid.innerHTML = dimensions.map((dimension, index) => `
+                <div class="dimension-card" data-dimension="dimension-${index + 1}">
+                    <div class="dimension-header">
+                        <div>
+                            <div class="dimension-title">${dimension.title}</div>
+                        </div>
+                        <div class="dimension-type">${dimension.type}</div>
+                    </div>
+                    <div class="dimension-description">${dimension.description}</div>
+                    <div class="dimension-details">
+                        <span class="categories-count">${dimension.categories} Categories</span>
+                        <span class="dimension-weight">Weight: ${dimension.weight}%</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function generateMethodology() {
+            const methodologySteps = document.getElementById('methodology-steps');
+            if (!methodologySteps) return;
+
+            const methodology = [
                 {
-                    id: "hyper-personalization",
+                    step: 1,
+                    title: "Strategy Solidification",
+                    description: "Define digital ambition and AI transformation objectives aligned with business strategy"
+                },
+                {
+                    step: 2,
+                    title: "Capability Assessment",
+                    description: "Comprehensive evaluation across all 12 dimensions using our maturity framework"
+                },
+                {
+                    step: 3,
+                    title: "Gap Analysis & Prioritization",
+                    description: "Identify transformation opportunities and prioritize based on business impact and feasibility"
+                },
+                {
+                    step: 4,
+                    title: "Architecture Planning",
+                    description: "Design future-ready technology foundation with MACH principles and AI-native capabilities"
+                },
+                {
+                    step: 5,
+                    title: "Roadmap Development",
+                    description: "Create phased implementation plan with clear milestones and success metrics"
+                },
+                {
+                    step: 6,
+                    title: "Value Delivery & Optimization",
+                    description: "Execute transformation initiatives with continuous measurement and optimization"
+                }
+            ];
+
+            methodologySteps.innerHTML = methodology.map(step => `
+                <div class="methodology-step">
+                    <div class="step-number">${step.step}</div>
+                    <div class="step-title">${step.title}</div>
+                    <div class="step-description">${step.description}</div>
+                </div>
+            `).join('');
+        }
+
+        function generateUseCases() {
+            const useCasesGrid = document.getElementById('use-cases-grid');
+            if (!useCasesGrid) return;
+
+            const useCases = [
+                {
                     title: "Hyper-Personalization Use Cases",
                     examples: [
                         {
                             company: "Zalando",
-                            useCase: "Algorithmic Fashion Companion", 
+                            useCase: "Algorithmic Fashion Companion",
                             description: "AI-powered personal styling with deep customer preference learning"
                         },
                         {
@@ -1137,14 +1176,13 @@
                             description: "Comprehensive fit prediction and personalized recommendations"
                         },
                         {
-                            company: "Stitch Fix", 
+                            company: "Stitch Fix",
                             useCase: "Data Science-Driven Styling",
                             description: "Algorithm-driven personal styling service with human stylist augmentation"
                         }
                     ]
                 },
                 {
-                    id: "intelligent-operations", 
                     title: "Intelligent Operations Use Cases",
                     examples: [
                         {
@@ -1154,7 +1192,7 @@
                         },
                         {
                             company: "H&M",
-                            useCase: "Markdown Optimization", 
+                            useCase: "Markdown Optimization",
                             description: "AI-powered pricing optimization and inventory management"
                         },
                         {
@@ -1165,8 +1203,7 @@
                     ]
                 },
                 {
-                    id: "customer-engagement",
-                    title: "Customer Engagement Use Cases", 
+                    title: "Customer Engagement Use Cases",
                     examples: [
                         {
                             company: "Saks",
@@ -1180,20 +1217,42 @@
                         }
                     ]
                 }
-            ],
+            ];
 
-            insights: {
-                pentiDocument: {
+            useCasesGrid.innerHTML = useCases.map(category => `
+                <div class="use-case-category">
+                    <div class="use-case-header">
+                        <div class="use-case-title">${category.title}</div>
+                    </div>
+                    <div class="use-case-examples">
+                        ${category.examples.map(example => `
+                            <div class="use-case-example">
+                                <div class="company-name">${example.company}</div>
+                                <div class="use-case-name">${example.useCase}</div>
+                                <div class="use-case-desc">${example.description}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function generateInsights() {
+            const insightsGrid = document.getElementById('insights-grid');
+            if (!insightsGrid) return;
+
+            const insights = [
+                {
                     title: "Digital Fashion Transformation Insights",
                     keyPoints: [
                         "3DVD Technologies transforming supply chains: 3D modeling, VR/AR, digital twinning",
-                        "Speed-to-market improvements: 30+ day reductions through digital workflows", 
+                        "Speed-to-market improvements: 30+ day reductions through digital workflows",
                         "Collaborative 3D creation workspaces bridging product lifecycle stages",
                         "Digital transformation clusters: Partial → Full Hybrid → Full Virtual",
                         "Fashion as a Service to Fashion as a Lifestyle strategic evolution"
                     ]
                 },
-                retailAI: {
+                {
                     title: "Retail AI Implementation Insights",
                     keyPoints: [
                         "89% of retailers planning to implement AI-powered personalization by 2025",
@@ -1203,36 +1262,16 @@
                         "Generative AI content creation improving marketing efficiency by 40%"
                     ]
                 }
-            }
-        };
+            ];
 
-        // Navigation and Section Management
-        function showSection(sectionName) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.page-section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // Show target section
-            const targetSection = document.getElementById(`${sectionName}-section`);
-            if (targetSection) {
-                targetSection.classList.add('active');
-                targetSection.classList.add('fade-in');
-            }
-
-            // Update navigation
-            const navLinks = document.querySelectorAll('.nav-links a');
-            navLinks.forEach(link => link.classList.remove('active'));
-            
-            // Find and activate corresponding nav link
-            const activeNavLink = document.querySelector(`[onclick="showSection('${sectionName}')"]`);
-            if (activeNavLink) {
-                activeNavLink.classList.add('active');
-            }
-
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            insightsGrid.innerHTML = insights.map(insight => `
+                <div class="insight-card">
+                    <div class="insight-title">${insight.title}</div>
+                    <ul class="insight-list">
+                        ${insight.keyPoints.map(point => `<li>${point}</li>`).join('')}
+                    </ul>
+                </div>
+            `).join('');
         }
 
         // Assessment Tab Management
@@ -1262,187 +1301,13 @@
             });
         }
 
-        // Generate Assessment Content
-        function generateAssessmentContent() {
-            if (assessmentFramework) {
-                generateOverview();
-                generateDimensions(); 
-                generateMethodologyContent();
-                generateUseCases();
-                generateInsights();
-            } else {
-                console.error('Assessment framework not loaded');
-            }
-        }
-
-        function generateOverview() {
-            const platformTitle = document.getElementById('platform-title');
-            const platformDescription = document.getElementById('platform-description');
-            const assessmentStats = document.getElementById('assessment-stats');
-            const frameworkDescription = document.getElementById('framework-description');
-
-            // Set header content
-            platformTitle.textContent = assessmentFramework.metadata.title;
-            platformDescription.textContent = assessmentFramework.metadata.description;
-
-            // Assessment stats
-            const stats = [
-                { number: assessmentFramework.metadata.totalDimensions, label: "Assessment Dimensions" },
-                { number: assessmentFramework.metadata.totalCategories, label: "Evaluation Categories" },
-                { number: assessmentFramework.metadata.totalQuestions, label: "Assessment Questions" },
-                { number: "4", label: "Maturity Levels" }
-            ];
-
-            assessmentStats.innerHTML = stats.map(stat => `
-                <div class="stat-card">
-                    <div class="stat-number">${stat.number}</div>
-                    <div class="stat-label">${stat.label}</div>
-                </div>
-            `).join('');
-
-            // Framework description
-            frameworkDescription.innerHTML = `
-                <p style="font-size: 1.1rem; line-height: 1.7; color: #666; margin-bottom: 2rem;">
-                    ${assessmentFramework.metadata.description}
-                </p>
-                <div style="background: linear-gradient(135deg, #f8f9ff 0%, #e8eeff 100%); padding: 2rem; border-radius: 15px; border: 2px solid #e8eeff;">
-                    <h3 style="color: #667eea; margin-bottom: 1rem;">Framework Highlights</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="padding: 0.5rem 0; color: #666; position: relative; padding-left: 1.5rem;">
-                            <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
-                            Incorporates insights from Penti Digital Fashion transformation research
-                        </li>
-                        <li style="padding: 0.5rem 0; color: #666; position: relative; padding-left: 1.5rem;">
-                            <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
-                            Real-world use cases from leading fashion retailers like SHEIN, H&M, Zalando
-                        </li>
-                        <li style="padding: 0.5rem 0; color: #666; position: relative; padding-left: 1.5rem;">
-                            <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
-                            Covers strategic, operational, technical, and organizational dimensions
-                        </li>
-                        <li style="padding: 0.5rem 0; color: #666; position: relative; padding-left: 1.5rem;">
-                            <span style="position: absolute; left: 0; color: #667eea; font-weight: bold;">✓</span>
-                            Business-first methodology with proven implementation frameworks
-                        </li>
-                    </ul>
-                </div>
-            `;
-        }
-
-        function generateDimensions() {
-            const dimensionsGrid = document.getElementById('dimensions-grid');
-            
-            dimensionsGrid.innerHTML = assessmentFramework.dimensions.map(dimension => `
-                <div class="dimension-card" data-dimension="${dimension.id}">
-                    <div class="dimension-header">
-                        <div>
-                            <div class="dimension-title">${dimension.title}</div>
-                        </div>
-                        <div class="dimension-type">${dimension.type}</div>
-                    </div>
-                    <div class="dimension-description">${dimension.description}</div>
-                    <div class="dimension-details">
-                        <span class="categories-count">${dimension.categories.length} Categories</span>
-                        <span class="dimension-weight">Weight: ${(dimension.weight * 100).toFixed(0)}%</span>
-                    </div>
-                    <div style="margin-top: 1rem;">
-                        <strong style="color: #667eea; font-size: 0.9rem;">Categories:</strong>
-                        <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #888;">
-                            ${dimension.categories.map(cat => cat.title).join(' • ')}
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function generateMethodologyContent() {
-            const methodologySteps = document.getElementById('methodology-steps');
-            
-            const methodology = [
-                {
-                    step: 1,
-                    title: "Strategy Solidification",
-                    description: "Define digital ambition and AI transformation objectives aligned with business strategy"
-                },
-                {
-                    step: 2, 
-                    title: "Capability Assessment",
-                    description: "Comprehensive evaluation across all 12 dimensions using our maturity framework"
-                },
-                {
-                    step: 3,
-                    title: "Gap Analysis & Prioritization", 
-                    description: "Identify transformation opportunities and prioritize based on business impact and feasibility"
-                },
-                {
-                    step: 4,
-                    title: "Architecture Planning",
-                    description: "Design future-ready technology foundation with MACH principles and AI-native capabilities"
-                },
-                {
-                    step: 5,
-                    title: "Roadmap Development",
-                    description: "Create phased implementation plan with clear milestones and success metrics"
-                },
-                {
-                    step: 6,
-                    title: "Value Delivery & Optimization",
-                    description: "Execute transformation initiatives with continuous measurement and optimization"
-                }
-            ];
-            
-            methodologySteps.innerHTML = methodology.map(step => `
-                <div class="methodology-step">
-                    <div class="step-number">${step.step}</div>
-                    <div class="step-title">${step.title}</div>
-                    <div class="step-description">${step.description}</div>
-                </div>
-            `).join('');
-        }
-
-        function generateUseCases() {
-            const useCasesGrid = document.getElementById('use-cases-grid');
-            
-            useCasesGrid.innerHTML = assessmentFramework.useCases.map(category => `
-                <div class="use-case-category">
-                    <div class="use-case-header">
-                        <div class="use-case-title">${category.title}</div>
-                    </div>
-                    <div class="use-case-examples">
-                        ${category.examples.map(example => `
-                            <div class="use-case-example">
-                                <div class="company-name">${example.company}</div>
-                                <div class="use-case-name">${example.useCase}</div>
-                                <div class="use-case-desc">${example.description}</div>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function generateInsights() {
-            const insightsGrid = document.getElementById('insights-grid');
-            
-            insightsGrid.innerHTML = Object.values(assessmentFramework.insights).map(insight => `
-                <div class="insight-card">
-                    <div class="insight-title">${insight.title}</div>
-                    <ul class="insight-list">
-                        ${insight.keyPoints ? insight.keyPoints.map(point => `<li>${point}</li>`).join('') : ''}
-                    </ul>
-                </div>
-            `).join('');
-        }
-
         // Dimension card interactions
         function initializeDimensionCards() {
             document.addEventListener('click', (e) => {
                 const dimensionCard = e.target.closest('.dimension-card');
                 if (dimensionCard) {
                     const dimensionId = dimensionCard.dataset.dimension;
-                    const dimension = assessmentFramework.dimensions.find(d => d.id === dimensionId);
-                    
-                    alert(`Assessment for "${dimension.title}" coming soon!\n\nThis will launch the detailed assessment questionnaire for this dimension.`);
+                    alert(`Assessment for this dimension coming soon!\n\nThis will launch the detailed assessment questionnaire.`);
                 }
             });
         }
@@ -1450,45 +1315,46 @@
         // Form handling
         function initializeContactForm() {
             const contactForm = document.getElementById('contactForm');
-            
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Get form data
-                const formData = new FormData(this);
-                const data = Object.fromEntries(formData);
-                
-                // Simple success message (in real implementation, send to backend)
-                alert('Thank you for your interest! We will contact you soon to schedule your executive preview.');
-                
-                // Reset form
-                this.reset();
-            });
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const formData = new FormData(this);
+                    const data = Object.fromEntries(formData);
+                    
+                    // Simple success message (in real implementation, send to backend)
+                    alert('Thank you for your interest! We will contact you soon to schedule your executive preview.');
+                    
+                    // Reset form
+                    this.reset();
+                });
+            }
         }
 
         // Initialize everything when page loads
         document.addEventListener('DOMContentLoaded', () => {
-            generateAssessmentContent();
+            console.log('DOM loaded, initializing...');
             initializeAssessmentTabs();
             initializeDimensionCards();
             initializeContactForm();
-            
-            // Add smooth scrolling for navigation
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
         });
 
         // Make showSection globally available
         window.showSection = showSection;
+
+        // Add smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
     </script>
 </body>
 </html>-card">
