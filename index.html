@@ -306,6 +306,307 @@
             font-size: 1rem;
             opacity: 0.9;
         }
+
+        /* Interactive Assessment Styles */
+        .assessment-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .assessment-progress {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            border-radius: 10px;
+            height: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .progress-fill {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            height: 100%;
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .progress-text {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .assessment-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .dimension-info {
+            margin-bottom: 2rem;
+        }
+
+        .dimension-badge {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .dimension-info h3 {
+            margin-top: 1rem;
+            color: #333;
+            font-size: 1.3rem;
+        }
+
+        .question-content h4 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .answer-options {
+            margin-bottom: 2rem;
+        }
+
+        .answer-option {
+            display: block;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .answer-option:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .answer-option.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #f8f9ff 0%, #e8eeff 100%);
+        }
+
+        .answer-option input[type="radio"] {
+            margin-right: 1rem;
+        }
+
+        .question-navigation {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .nav-btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn.primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .nav-btn.primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-btn.secondary {
+            background: #f8f9fa;
+            color: #666;
+            border: 2px solid #e9ecef;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .assessment-sidebar {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 100px;
+        }
+
+        .dimension-overview h4 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .dimension-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .dimension-item:last-child {
+            border-bottom: none;
+        }
+
+        .dimension-name {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .dimension-status {
+            font-size: 0.8rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px;
+        }
+
+        .dimension-status.completed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .dimension-status.current {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .dimension-status.pending {
+            background: #f8f9fa;
+            color: #6c757d;
+        }
+
+        .assessment-actions {
+            margin-top: 2rem;
+            border-top: 1px solid #eee;
+            padding-top: 2rem;
+        }
+
+        .action-btn {
+            display: block;
+            width: 100%;
+            margin-bottom: 0.5rem;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 10px;
+            background: #f8f9fa;
+            color: #666;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: #e9ecef;
+        }
+
+        .action-btn.secondary {
+            color: #dc3545;
+        }
+
+        /* Results Styles */
+        .results-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .overall-score {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .score-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .score-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .maturity-level h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .results-chart, .recommendations {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .recommendation-item {
+            padding: 1rem;
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+        }
+
+        .recommendation-priority {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 0.9rem;
+        }
+
+        .results-actions {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .results-actions .cta-button {
+            margin: 0 0.5rem;
+        }
+
+        .dimension-detail {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
         
         /* Footer */
         footer {
@@ -335,6 +636,20 @@
             
             .dimension-content {
                 padding: 1rem;
+            }
+
+            .assessment-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .overall-score {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -382,9 +697,117 @@
                     <!-- Will be populated by JavaScript -->
                 </div>
                 
+                <!-- Take Assessment Button -->
+                <div style="text-align: center; margin: 3rem 0;">
+                    <button class="cta-button" onclick="startAssessment()">🚀 Take Interactive Assessment</button>
+                </div>
+                
                 <!-- Dimension Cards -->
                 <div class="content-grid" id="dimension-container">
                     <!-- Will be populated by JavaScript with expandable cards -->
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERACTIVE ASSESSMENT SECTION -->
+        <section id="assessment-tool" class="page-section content-section" style="background: #f8f9fa; display: none;">
+            <div class="container">
+                <div class="assessment-header">
+                    <h2 class="section-title">Digital Transformation Assessment</h2>
+                    <div class="assessment-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                        <div class="progress-text">
+                            <span id="current-question">1</span> of <span id="total-questions">72</span> questions
+                        </div>
+                    </div>
+                </div>
+
+                <div class="assessment-container">
+                    <!-- Assessment Question Card -->
+                    <div class="question-card" id="question-card">
+                        <div class="dimension-info">
+                            <span class="dimension-badge" id="dimension-badge">Dimension 1</span>
+                            <h3 id="dimension-title">Loading...</h3>
+                        </div>
+                        
+                        <div class="question-content">
+                            <h4 id="question-text">Loading question...</h4>
+                            <div class="answer-options" id="answer-options">
+                                <!-- Radio buttons will be populated here -->
+                            </div>
+                        </div>
+
+                        <div class="question-navigation">
+                            <button id="prev-btn" class="nav-btn secondary" onclick="previousQuestion()" disabled>Previous</button>
+                            <button id="next-btn" class="nav-btn primary" onclick="nextQuestion()" disabled>Next</button>
+                        </div>
+                    </div>
+
+                    <!-- Assessment Sidebar -->
+                    <div class="assessment-sidebar">
+                        <div class="dimension-overview">
+                            <h4>Assessment Progress</h4>
+                            <div class="dimension-list" id="dimension-progress">
+                                <!-- Will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="assessment-actions">
+                            <button class="action-btn" onclick="saveProgress()">💾 Save Progress</button>
+                            <button class="action-btn" onclick="showResults()" id="show-results-btn" style="display: none;">📊 View Results</button>
+                            <button class="action-btn secondary" onclick="exitAssessment()">❌ Exit Assessment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ASSESSMENT RESULTS SECTION -->
+        <section id="assessment-results" class="page-section content-section" style="display: none;">
+            <div class="container">
+                <div class="results-header">
+                    <h2 class="section-title">Your Transformation Assessment Results</h2>
+                    <div class="overall-score">
+                        <div class="score-circle">
+                            <span class="score-number" id="overall-score">0</span>%
+                            <span class="score-label">Overall Score</span>
+                        </div>
+                        <div class="maturity-level">
+                            <h3 id="maturity-level">Calculating...</h3>
+                            <p id="maturity-description">Analyzing your responses...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-content">
+                    <div class="results-grid">
+                        <div class="results-chart">
+                            <h4>Dimension Scores</h4>
+                            <canvas id="results-chart" width="400" height="400"></canvas>
+                        </div>
+                        
+                        <div class="recommendations">
+                            <h4>Key Recommendations</h4>
+                            <div id="recommendations-list">
+                                <!-- Will be populated based on scores -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="detailed-results">
+                        <h4>Detailed Dimension Analysis</h4>
+                        <div id="dimension-details">
+                            <!-- Will be populated with detailed scoring -->
+                        </div>
+                    </div>
+
+                    <div class="results-actions">
+                        <button class="cta-button" onclick="downloadReport()">📄 Download Report</button>
+                        <button class="cta-button secondary" onclick="retakeAssessment()">🔄 Retake Assessment</button>
+                        <button class="cta-button secondary" onclick="contactExpert()">👥 Contact Expert</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -467,18 +890,6 @@
                 <div style="max-width: 500px; margin: 0 auto; background: rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 15px; backdrop-filter: blur(10px);">
                     <form>
                         <div style="margin-bottom: 1rem;">
-                            <label style="display: block; margin-bottom: 0.5rem;">Name</label>
-                            <input type="text" style="width: 100%; padding: 0.8rem; border: none; border-radius: 8px; font-size: 1rem;">
-                        </div>
-                        <div style="margin-bottom: 1rem;">
-                            <label style="display: block; margin-bottom: 0.5rem;">Company</label>
-                            <input type="text" style="width: 100%; padding: 0.8rem; border: none; border-radius: 8px; font-size: 1rem;">
-                        </div>
-                        <div style="margin-bottom: 1rem;">
-                            <label style="display: block; margin-bottom: 0.5rem;">Email</label>
-                            <input type="email" style="width: 100%; padding: 0.8rem; border: none; border-radius: 8px; font-size: 1rem;">
-                        </div>
-                        <div style="margin-bottom: 1rem;">
                             <label style="display: block; margin-bottom: 0.5rem;">Role</label>
                             <input type="text" placeholder="e.g., CEO, CTO, Digital Director" style="width: 100%; padding: 0.8rem; border: none; border-radius: 8px; font-size: 1rem;">
                         </div>
@@ -504,6 +915,443 @@
 
     <!-- Assessment rendering and interaction functions -->
     <script>
+        // Interactive Assessment Tool Logic
+        let assessmentState = {
+            currentQuestion: 0,
+            answers: {},
+            totalQuestions: 0,
+            questionsList: [],
+            scores: {}
+        };
+
+        // Initialize assessment questions list
+        function initializeAssessment() {
+            if (!assessmentFramework) return;
+            
+            assessmentState.questionsList = [];
+            let questionIndex = 0;
+            
+            Object.keys(assessmentFramework.dimensions).forEach(dimKey => {
+                const dimension = assessmentFramework.dimensions[dimKey];
+                Object.keys(dimension.categories).forEach(catKey => {
+                    const category = dimension.categories[catKey];
+                    category.questions.forEach(question => {
+                        assessmentState.questionsList.push({
+                            questionIndex: questionIndex++,
+                            dimensionKey: dimKey,
+                            categoryKey: catKey,
+                            dimensionTitle: dimension.title,
+                            categoryTitle: category.title,
+                            question: question,
+                            dimensionType: dimension.type
+                        });
+                    });
+                });
+            });
+            
+            assessmentState.totalQuestions = assessmentState.questionsList.length;
+            document.getElementById('total-questions').textContent = assessmentState.totalQuestions;
+        }
+
+        // Start the assessment
+        function startAssessment() {
+            initializeAssessment();
+            
+            // Hide other sections and show assessment
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById('assessment-tool').style.display = 'block';
+            
+            // Reset state
+            assessmentState.currentQuestion = 0;
+            assessmentState.answers = {};
+            assessmentState.scores = {};
+            
+            // Render first question
+            renderQuestion();
+            updateProgress();
+            renderDimensionProgress();
+        }
+
+        // Render current question
+        function renderQuestion() {
+            const current = assessmentState.questionsList[assessmentState.currentQuestion];
+            if (!current) return;
+            
+            // Update dimension info
+            document.getElementById('dimension-badge').textContent = `Dimension ${current.dimensionKey}`;
+            document.getElementById('dimension-title').textContent = current.dimensionTitle;
+            document.getElementById('question-text').textContent = current.question;
+            document.getElementById('current-question').textContent = assessmentState.currentQuestion + 1;
+            
+            // Render answer options (4-point scale)
+            const optionsContainer = document.getElementById('answer-options');
+            const options = [
+                { value: 1, label: 'Strongly Disagree', description: 'Not at all / Very poor' },
+                { value: 2, label: 'Disagree', description: 'Somewhat / Below average' },
+                { value: 3, label: 'Agree', description: 'Mostly / Good' },
+                { value: 4, label: 'Strongly Agree', description: 'Completely / Excellent' }
+            ];
+            
+            const currentAnswer = assessmentState.answers[assessmentState.currentQuestion];
+            
+            optionsContainer.innerHTML = options.map(option => `
+                <label class="answer-option ${currentAnswer == option.value ? 'selected' : ''}" onclick="selectAnswer(${option.value})">
+                    <input type="radio" name="answer" value="${option.value}" ${currentAnswer == option.value ? 'checked' : ''}>
+                    <div>
+                        <strong>${option.label}</strong>
+                        <div style="font-size: 0.9rem; color: #666; margin-top: 0.3rem;">${option.description}</div>
+                    </div>
+                </label>
+            `).join('');
+            
+            // Update navigation buttons
+            document.getElementById('prev-btn').disabled = assessmentState.currentQuestion === 0;
+            document.getElementById('next-btn').disabled = !currentAnswer;
+            
+            if (assessmentState.currentQuestion === assessmentState.totalQuestions - 1) {
+                document.getElementById('next-btn').textContent = 'Finish Assessment';
+            } else {
+                document.getElementById('next-btn').textContent = 'Next';
+            }
+        }
+
+        // Select an answer
+        function selectAnswer(value) {
+            assessmentState.answers[assessmentState.currentQuestion] = value;
+            
+            // Update UI
+            document.querySelectorAll('.answer-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            
+            // Enable next button
+            document.getElementById('next-btn').disabled = false;
+            
+            // Auto-advance after short delay (optional UX improvement)
+            setTimeout(() => {
+                if (assessmentState.currentQuestion < assessmentState.totalQuestions - 1) {
+                    nextQuestion();
+                }
+            }, 800);
+        }
+
+        // Navigate to next question
+        function nextQuestion() {
+            if (assessmentState.currentQuestion < assessmentState.totalQuestions - 1) {
+                assessmentState.currentQuestion++;
+                renderQuestion();
+                updateProgress();
+                renderDimensionProgress();
+            } else {
+                // Finish assessment
+                finishAssessment();
+            }
+        }
+
+        // Navigate to previous question
+        function previousQuestion() {
+            if (assessmentState.currentQuestion > 0) {
+                assessmentState.currentQuestion--;
+                renderQuestion();
+                updateProgress();
+                renderDimensionProgress();
+            }
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const progress = ((assessmentState.currentQuestion + 1) / assessmentState.totalQuestions) * 100;
+            document.getElementById('progress-fill').style.width = `${progress}%`;
+        }
+
+        // Render dimension progress sidebar
+        function renderDimensionProgress() {
+            const container = document.getElementById('dimension-progress');
+            if (!container) return;
+            
+            const dimensionProgress = {};
+            
+            // Calculate progress for each dimension
+            Object.keys(assessmentFramework.dimensions).forEach(dimKey => {
+                const dimension = assessmentFramework.dimensions[dimKey];
+                let totalQuestions = 0;
+                let answeredQuestions = 0;
+                
+                assessmentState.questionsList.forEach((q, index) => {
+                    if (q.dimensionKey == dimKey) {
+                        totalQuestions++;
+                        if (assessmentState.answers[index] !== undefined) {
+                            answeredQuestions++;
+                        }
+                    }
+                });
+                
+                dimensionProgress[dimKey] = {
+                    title: dimension.title,
+                    answered: answeredQuestions,
+                    total: totalQuestions,
+                    status: answeredQuestions === totalQuestions ? 'completed' : 
+                           (answeredQuestions > 0 ? 'current' : 'pending')
+                };
+            });
+            
+            container.innerHTML = Object.keys(dimensionProgress).map(dimKey => {
+                const prog = dimensionProgress[dimKey];
+                return `
+                    <div class="dimension-item">
+                        <div class="dimension-name">${prog.title.substring(0, 25)}...</div>
+                        <div class="dimension-status ${prog.status}">
+                            ${prog.answered}/${prog.total}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Finish assessment and calculate results
+        function finishAssessment() {
+            calculateScores();
+            showResults();
+        }
+
+        // Calculate dimension and overall scores
+        function calculateScores() {
+            const dimensionScores = {};
+            const dimensionCounts = {};
+            
+            // Initialize dimension scores
+            Object.keys(assessmentFramework.dimensions).forEach(dimKey => {
+                dimensionScores[dimKey] = 0;
+                dimensionCounts[dimKey] = 0;
+            });
+            
+            // Calculate scores for each dimension
+            assessmentState.questionsList.forEach((q, index) => {
+                const answer = assessmentState.answers[index];
+                if (answer !== undefined) {
+                    dimensionScores[q.dimensionKey] += answer;
+                    dimensionCounts[q.dimensionKey]++;
+                }
+            });
+            
+            // Convert to percentages and weighted scores
+            let totalWeightedScore = 0;
+            let totalWeight = 0;
+            
+            Object.keys(dimensionScores).forEach(dimKey => {
+                const dimension = assessmentFramework.dimensions[dimKey];
+                if (dimensionCounts[dimKey] > 0) {
+                    // Calculate average score (1-4) and convert to percentage
+                    const avgScore = dimensionScores[dimKey] / dimensionCounts[dimKey];
+                    const percentage = ((avgScore - 1) / 3) * 100; // Convert 1-4 scale to 0-100%
+                    
+                    dimensionScores[dimKey] = Math.round(percentage);
+                    
+                    // Add to weighted total
+                    totalWeightedScore += percentage * dimension.weight;
+                    totalWeight += dimension.weight;
+                }
+            });
+            
+            // Calculate overall score
+            const overallScore = totalWeight > 0 ? Math.round(totalWeightedScore / totalWeight) : 0;
+            
+            assessmentState.scores = {
+                overall: overallScore,
+                dimensions: dimensionScores
+            };
+        }
+
+        // Show results section
+        function showResults() {
+            // Hide assessment tool and show results
+            document.getElementById('assessment-tool').style.display = 'none';
+            document.getElementById('assessment-results').style.display = 'block';
+            
+            // Display overall score
+            document.getElementById('overall-score').textContent = assessmentState.scores.overall;
+            
+            // Determine maturity level
+            const maturityLevel = getMaturityLevel(assessmentState.scores.overall);
+            document.getElementById('maturity-level').textContent = maturityLevel.name;
+            document.getElementById('maturity-description').textContent = maturityLevel.description;
+            
+            // Render recommendations
+            renderRecommendations();
+            
+            // Render dimension details
+            renderDimensionDetails();
+            
+            // Render chart (simple text-based for now)
+            renderResultsChart();
+        }
+
+        // Get maturity level based on score
+        function getMaturityLevel(score) {
+            if (score >= 85) return { name: 'AI-Native Leader', description: 'You are at the forefront of AI transformation with advanced capabilities across all dimensions.' };
+            if (score >= 70) return { name: 'Advanced Transformer', description: 'You have strong digital foundations with integrated AI implementations.' };
+            if (score >= 50) return { name: 'Digital Adopter', description: 'You are developing digital capabilities with some AI experimentation.' };
+            return { name: 'Transformation Starter', description: 'You are beginning your digital transformation journey with significant opportunities ahead.' };
+        }
+
+        // Render recommendations based on scores
+        function renderRecommendations() {
+            const container = document.getElementById('recommendations-list');
+            const recommendations = [];
+            
+            // Find lowest scoring dimensions
+            const sortedDimensions = Object.keys(assessmentState.scores.dimensions)
+                .map(dimKey => ({
+                    key: dimKey,
+                    score: assessmentState.scores.dimensions[dimKey],
+                    title: assessmentFramework.dimensions[dimKey].title
+                }))
+                .sort((a, b) => a.score - b.score);
+            
+            // Generate recommendations for lowest scoring areas
+            sortedDimensions.slice(0, 3).forEach((dim, index) => {
+                const priority = ['High Priority', 'Medium Priority', 'Focus Area'][index];
+                recommendations.push({
+                    priority: priority,
+                    title: `Improve ${dim.title}`,
+                    description: `Current score: ${dim.score}%. Focus on building capabilities in this critical area.`
+                });
+            });
+            
+            container.innerHTML = recommendations.map(rec => `
+                <div class="recommendation-item">
+                    <div class="recommendation-priority">${rec.priority}</div>
+                    <strong>${rec.title}</strong>
+                    <div>${rec.description}</div>
+                </div>
+            `).join('');
+        }
+
+        // Render detailed dimension analysis
+        function renderDimensionDetails() {
+            const container = document.getElementById('dimension-details');
+            
+            container.innerHTML = Object.keys(assessmentState.scores.dimensions).map(dimKey => {
+                const dimension = assessmentFramework.dimensions[dimKey];
+                const score = assessmentState.scores.dimensions[dimKey];
+                
+                return `
+                    <div class="dimension-detail">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                            <h5>${dimension.title}</h5>
+                            <span style="font-size: 1.2rem; font-weight: bold; color: #667eea;">${score}%</span>
+                        </div>
+                        <div style="background: #e9ecef; height: 8px; border-radius: 4px; margin-bottom: 1rem;">
+                            <div style="background: linear-gradient(45deg, #667eea, #764ba2); height: 100%; width: ${score}%; border-radius: 4px;"></div>
+                        </div>
+                        <p style="color: #666; font-size: 0.9rem;">${dimension.description}</p>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Simple results chart (text-based for now)
+        function renderResultsChart() {
+            const canvas = document.getElementById('results-chart');
+            const ctx = canvas.getContext('2d');
+            
+            // Simple bar chart
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#f8f9fa';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            const dimensions = Object.keys(assessmentState.scores.dimensions);
+            const barHeight = 25;
+            const barSpacing = 35;
+            const maxBarWidth = canvas.width - 100;
+            
+            dimensions.forEach((dimKey, index) => {
+                const score = assessmentState.scores.dimensions[dimKey];
+                const dimension = assessmentFramework.dimensions[dimKey];
+                const y = 50 + index * barSpacing;
+                
+                // Background bar
+                ctx.fillStyle = '#e9ecef';
+                ctx.fillRect(90, y, maxBarWidth, barHeight);
+                
+                // Score bar
+                const barWidth = (score / 100) * maxBarWidth;
+                ctx.fillStyle = '#667eea';
+                ctx.fillRect(90, y, barWidth, barHeight);
+                
+                // Label
+                ctx.fillStyle = '#333';
+                ctx.font = '10px Arial';
+                ctx.textAlign = 'right';
+                ctx.fillText(`Dim ${dimKey}`, 85, y + 16);
+                
+                // Score text
+                ctx.fillStyle = '#666';
+                ctx.textAlign = 'left';
+                ctx.fillText(`${score}%`, 95 + barWidth, y + 16);
+            });
+        }
+
+        // Utility functions
+        function saveProgress() {
+            try {
+                localStorage.setItem('transformai_assessment', JSON.stringify(assessmentState));
+                alert('Progress saved successfully!');
+            } catch (e) {
+                alert('Unable to save progress. Please continue with the assessment.');
+            }
+        }
+
+        function exitAssessment() {
+            if (confirm('Are you sure you want to exit the assessment? Your progress will be lost.')) {
+                document.getElementById('assessment-tool').style.display = 'none';
+                document.getElementById('assessment').scrollIntoView();
+            }
+        }
+
+        function retakeAssessment() {
+            if (confirm('Are you sure you want to retake the assessment?')) {
+                startAssessment();
+            }
+        }
+
+        function downloadReport() {
+            // Simple text report (in a real implementation, you'd generate a PDF)
+            const report = generateTextReport();
+            const blob = new Blob([report], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'transformai_assessment_report.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function generateTextReport() {
+            let report = 'TransformAI Digital Transformation Assessment Report\n';
+            report += '=================================================\n\n';
+            report += `Overall Score: ${assessmentState.scores.overall}%\n`;
+            report += `Maturity Level: ${getMaturityLevel(assessmentState.scores.overall).name}\n\n`;
+            report += 'Dimension Scores:\n';
+            report += '-----------------\n';
+            
+            Object.keys(assessmentState.scores.dimensions).forEach(dimKey => {
+                const dimension = assessmentFramework.dimensions[dimKey];
+                const score = assessmentState.scores.dimensions[dimKey];
+                report += `${dimension.title}: ${score}%\n`;
+            });
+            
+            return report;
+        }
+
+        function contactExpert() {
+            // Scroll to contact section
+            document.getElementById('contact').scrollIntoView();
+        }
+
         // Render assessment statistics
         function renderAssessmentStats() {
             const container = document.getElementById('assessment-stats');
@@ -611,4 +1459,16 @@
         });
     </script>
 </body>
-</html>
+</html>="display: block; margin-bottom: 0.5rem;">Name</label>
+                            <input type="text" style="width: 100%; padding: 0.8rem; border: none; border-radius: 8px; font-size: 1rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem;">Company</label>
+                            <input type="text" style="width: 100%; padding: 0.8rem; border: none; border-radius: 8px; font-size: 1rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem;">Email</label>
+                            <input type="email" style="width: 100%; padding: 0.8rem; border: none; border-radius: 8px; font-size: 1rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style
