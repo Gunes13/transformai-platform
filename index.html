@@ -912,6 +912,60 @@
 
     <!-- Load the enhanced 14-dimension assessment framework data -->
     <script src="assessment-framework.js"></script>
+<script src="assessment-framework.js"></script>
+<script>
+// Quick fix for missing question content
+if (typeof assessmentFramework !== 'undefined') {
+    // Add basic questions for testing
+    assessmentFramework.dimensions = {
+        "1": {
+            title: "Digital Transformation Strategy & AI Vision",
+            categories: {
+                "1.1": {
+                    title: "Strategic Alignment",
+                    questions: [
+                        "How well is your digital transformation strategy aligned with overall business objectives?",
+                        "To what extent does your organization have a clear AI vision and strategy?",
+                        "How comprehensive is your digital transformation roadmap?"
+                    ]
+                },
+                "1.2": {
+                    title: "Leadership & Governance",
+                    questions: [
+                        "How strong is executive leadership commitment to digital transformation?",
+                        "What governance structures exist for digital transformation initiatives?"
+                    ]
+                }
+            }
+        },
+        "2": {
+            title: "Customer Experience & Omnichannel Integration",
+            categories: {
+                "2.1": {
+                    title: "Customer Journey Optimization", 
+                    questions: [
+                        "How well do you understand and map customer journeys across all touchpoints?",
+                        "To what extent do you personalize customer experiences using AI and data?"
+                    ]
+                }
+            }
+        }
+    };
+    
+    // Add question answers
+    assessmentFramework.questionAnswers = {
+        "default": [
+            "Initial Stage - Limited capabilities",
+            "Developing Stage - Basic implementation", 
+            "Defined Stage - Structured approach",
+            "Managed Stage - Advanced capabilities",
+            "Optimized Stage - Cutting-edge implementation"
+        ]
+    };
+    
+    console.log('Assessment framework enhanced with basic questions');
+}
+</script>
 <script>
 // Global navigation functions
 function showSection(sectionId) {
