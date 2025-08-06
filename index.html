@@ -910,7 +910,7 @@
         </div>
     </footer>
 
-    <!-- Load the headless assessment framework data -->
+   <!-- Load the headless assessment framework data -->
     <script src="data/assessment-framework.js"></script>
 
     <!-- Assessment rendering and interaction functions -->
@@ -974,7 +974,151 @@
             renderDimensionProgress();
         }
 
-        // Render current question
+        // Function to get sophisticated answer options based on dimension and category
+        function getSophisticatedAnswerOptions(dimensionKey, categoryKey) {
+            const dimension = assessmentFramework.dimensions[dimensionKey];
+            const dimensionType = dimension.type;
+            
+            // Strategic dimensions (1, 12)
+            if (dimensionType === 'strategic') {
+                return [
+                    { 
+                        value: 1, 
+                        label: 'Initial Stage', 
+                        description: 'Limited strategic focus on digital transformation. Ad-hoc initiatives without clear vision or roadmap.' 
+                    },
+                    { 
+                        value: 2, 
+                        label: 'Developing Strategy', 
+                        description: 'Basic digital strategy in place with some defined objectives. Beginning to align digital initiatives with business goals.' 
+                    },
+                    { 
+                        value: 3, 
+                        label: 'Mature Strategy', 
+                        description: 'Comprehensive digital transformation strategy with clear AI roadmap. Well-defined governance and investment priorities.' 
+                    },
+                    { 
+                        value: 4, 
+                        label: 'Strategic Leadership', 
+                        description: 'AI-native strategic approach driving industry innovation. Continuous strategy evolution with measurable transformation outcomes.' 
+                    }
+                ];
+            }
+            
+            // Technical dimensions (6, 8, 9)
+            else if (dimensionType === 'technical') {
+                return [
+                    { 
+                        value: 1, 
+                        label: 'Basic Technology', 
+                        description: 'Legacy systems with minimal integration. Limited cloud adoption and basic digital tools.' 
+                    },
+                    { 
+                        value: 2, 
+                        label: 'Developing Infrastructure', 
+                        description: 'Modernizing technology stack with some cloud migration. Beginning API development and system integration.' 
+                    },
+                    { 
+                        value: 3, 
+                        label: 'Advanced Architecture', 
+                        description: 'MACH architecture implementation with robust APIs. Cloud-native applications and AI/ML infrastructure in place.' 
+                    },
+                    { 
+                        value: 4, 
+                        label: 'Technology Leadership', 
+                        description: 'Fully headless, microservices architecture. AI-native infrastructure with advanced MLOps and continuous innovation.' 
+                    }
+                ];
+            }
+            
+            // Operational dimensions (2, 3, 4, 5, 7)
+            else if (dimensionType === 'operational') {
+                // Customize further based on specific categories
+                if (dimensionKey == '2' || dimensionKey == '3') { // AI-driven capabilities
+                    return [
+                        { 
+                            value: 1, 
+                            label: 'Manual Processes', 
+                            description: 'Primarily manual operations with basic data collection. Limited analytics and decision-making capabilities.' 
+                        },
+                        { 
+                            value: 2, 
+                            label: 'Basic Automation', 
+                            description: 'Some automated processes with basic analytics. Beginning to use data for operational decisions.' 
+                        },
+                        { 
+                            value: 3, 
+                            label: 'AI-Enhanced Operations', 
+                            description: 'Integrated AI solutions driving key operations. Advanced analytics with predictive capabilities implemented.' 
+                        },
+                        { 
+                            value: 4, 
+                            label: 'AI-Native Excellence', 
+                            description: 'Fully AI-driven operations with autonomous decision-making. Continuous optimization and industry-leading capabilities.' 
+                        }
+                    ];
+                } else { // Commerce and marketing
+                    return [
+                        { 
+                            value: 1, 
+                            label: 'Traditional Approach', 
+                            description: 'Conventional methods with limited digital integration. Basic online presence and manual processes.' 
+                        },
+                        { 
+                            value: 2, 
+                            label: 'Digital Integration', 
+                            description: 'Growing digital capabilities with some automation. Multi-channel approach with basic personalization.' 
+                        },
+                        { 
+                            value: 3, 
+                            label: 'Advanced Digital', 
+                            description: 'Sophisticated digital ecosystem with AI-powered features. Omnichannel excellence and advanced personalization.' 
+                        },
+                        { 
+                            value: 4, 
+                            label: 'Innovation Leadership', 
+                            description: 'Industry-leading digital innovation with cutting-edge AI applications. Seamless, personalized customer experiences.' 
+                        }
+                    ];
+                }
+            }
+            
+            // Organizational dimensions (10, 11)
+            else if (dimensionType === 'organizational') {
+                return [
+                    { 
+                        value: 1, 
+                        label: 'Traditional Organization', 
+                        description: 'Conventional organizational structure with limited digital skills. Resistance to change and minimal AI awareness.' 
+                    },
+                    { 
+                        value: 2, 
+                        label: 'Evolving Capabilities', 
+                        description: 'Developing digital skills with some change management. Beginning AI literacy programs and cultural transformation.' 
+                    },
+                    { 
+                        value: 3, 
+                        label: 'Transformation Ready', 
+                        description: 'Strong digital culture with advanced AI skills. Effective change management and human-AI collaboration.' 
+                    },
+                    { 
+                        value: 4, 
+                        label: 'Future-Ready Organization', 
+                        description: 'AI-native workforce with continuous learning culture. Leading change management and innovation-driven organization.' 
+                    }
+                ];
+            }
+            
+            // Default fallback (should not be reached)
+            return [
+                { value: 1, label: 'Basic Level', description: 'Limited capabilities in this area' },
+                { value: 2, label: 'Developing Level', description: 'Some progress with room for improvement' },
+                { value: 3, label: 'Advanced Level', description: 'Strong capabilities with good implementation' },
+                { value: 4, label: 'Leading Level', description: 'Industry-leading capabilities and innovation' }
+            ];
+        }
+
+        // Render current question with sophisticated answer options
         function renderQuestion() {
             const current = assessmentState.questionsList[assessmentState.currentQuestion];
             if (!current) return;
@@ -985,14 +1129,9 @@
             document.getElementById('question-text').textContent = current.question;
             document.getElementById('current-question').textContent = assessmentState.currentQuestion + 1;
             
-            // Render answer options (4-point scale)
+            // Get sophisticated answer options based on dimension and question type
             const optionsContainer = document.getElementById('answer-options');
-            const options = [
-                { value: 1, label: 'Strongly Disagree', description: 'Not at all / Very poor' },
-                { value: 2, label: 'Disagree', description: 'Somewhat / Below average' },
-                { value: 3, label: 'Agree', description: 'Mostly / Good' },
-                { value: 4, label: 'Strongly Agree', description: 'Completely / Excellent' }
-            ];
+            const options = getSophisticatedAnswerOptions(current.dimensionKey, current.categoryKey);
             
             const currentAnswer = assessmentState.answers[assessmentState.currentQuestion];
             
@@ -1001,7 +1140,7 @@
                     <input type="radio" name="answer" value="${option.value}" ${currentAnswer == option.value ? 'checked' : ''}>
                     <div>
                         <strong>${option.label}</strong>
-                        <div style="font-size: 0.9rem; color: #666; margin-top: 0.3rem;">${option.description}</div>
+                        <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem; line-height: 1.4;">${option.description}</div>
                     </div>
                 </label>
             `).join('');
@@ -1035,7 +1174,7 @@
                 if (assessmentState.currentQuestion < assessmentState.totalQuestions - 1) {
                     nextQuestion();
                 }
-            }, 800);
+            }, 1200); // Increased delay to allow reading sophisticated descriptions
         }
 
         // Navigate to next question
@@ -1185,19 +1324,31 @@
             // Render dimension details
             renderDimensionDetails();
             
-            // Render chart (simple text-based for now)
+            // Render chart
             renderResultsChart();
         }
 
-        // Get maturity level based on score
+        // Get maturity level based on score with sophisticated descriptions
         function getMaturityLevel(score) {
-            if (score >= 85) return { name: 'AI-Native Leader', description: 'You are at the forefront of AI transformation with advanced capabilities across all dimensions.' };
-            if (score >= 70) return { name: 'Advanced Transformer', description: 'You have strong digital foundations with integrated AI implementations.' };
-            if (score >= 50) return { name: 'Digital Adopter', description: 'You are developing digital capabilities with some AI experimentation.' };
-            return { name: 'Transformation Starter', description: 'You are beginning your digital transformation journey with significant opportunities ahead.' };
+            if (score >= 85) return { 
+                name: 'AI-Native Leader', 
+                description: 'You are at the forefront of AI transformation with advanced capabilities across all dimensions. Your organization represents industry best practices.' 
+            };
+            if (score >= 70) return { 
+                name: 'Advanced Transformer', 
+                description: 'You have strong digital foundations with integrated AI implementations. Your organization is well-positioned for continued innovation.' 
+            };
+            if (score >= 50) return { 
+                name: 'Digital Adopter', 
+                description: 'You are developing digital capabilities with some AI experimentation. Focus on accelerating implementation across key dimensions.' 
+            };
+            return { 
+                name: 'Transformation Starter', 
+                description: 'You are beginning your digital transformation journey. Significant opportunities exist to build foundational capabilities and drive competitive advantage.' 
+            };
         }
 
-        // Render recommendations based on scores
+        // Render sophisticated recommendations based on scores
         function renderRecommendations() {
             const container = document.getElementById('recommendations-list');
             const recommendations = [];
@@ -1207,17 +1358,31 @@
                 .map(dimKey => ({
                     key: dimKey,
                     score: assessmentState.scores.dimensions[dimKey],
-                    title: assessmentFramework.dimensions[dimKey].title
+                    title: assessmentFramework.dimensions[dimKey].title,
+                    type: assessmentFramework.dimensions[dimKey].type
                 }))
                 .sort((a, b) => a.score - b.score);
             
-            // Generate recommendations for lowest scoring areas
+            // Generate sophisticated recommendations for lowest scoring areas
             sortedDimensions.slice(0, 3).forEach((dim, index) => {
                 const priority = ['High Priority', 'Medium Priority', 'Focus Area'][index];
+                let actionableAdvice = '';
+                
+                // Provide specific advice based on dimension type and score
+                if (dim.score < 25) {
+                    actionableAdvice = 'Establish foundational capabilities and develop basic competencies in this critical area.';
+                } else if (dim.score < 50) {
+                    actionableAdvice = 'Accelerate development with focused investment in tools, processes, and capabilities.';
+                } else if (dim.score < 75) {
+                    actionableAdvice = 'Optimize existing capabilities and integrate advanced features to achieve excellence.';
+                } else {
+                    actionableAdvice = 'Maintain leadership position while exploring innovative applications and industry partnerships.';
+                }
+                
                 recommendations.push({
                     priority: priority,
-                    title: `Improve ${dim.title}`,
-                    description: `Current score: ${dim.score}%. Focus on building capabilities in this critical area.`
+                    title: `Enhance ${dim.title}`,
+                    description: `Current maturity: ${dim.score}%. ${actionableAdvice}`
                 });
             });
             
@@ -1238,11 +1403,32 @@
                 const dimension = assessmentFramework.dimensions[dimKey];
                 const score = assessmentState.scores.dimensions[dimKey];
                 
+                // Determine maturity level for this dimension
+                let maturityLabel = '';
+                let maturityColor = '#dc3545';
+                
+                if (score >= 85) {
+                    maturityLabel = 'Leading';
+                    maturityColor = '#28a745';
+                } else if (score >= 70) {
+                    maturityLabel = 'Advanced';
+                    maturityColor = '#17a2b8';
+                } else if (score >= 50) {
+                    maturityLabel = 'Developing';
+                    maturityColor = '#ffc107';
+                } else {
+                    maturityLabel = 'Basic';
+                    maturityColor = '#dc3545';
+                }
+                
                 return `
                     <div class="dimension-detail">
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
                             <h5>${dimension.title}</h5>
-                            <span style="font-size: 1.2rem; font-weight: bold; color: #667eea;">${score}%</span>
+                            <div style="display: flex; align-items: center; gap: 1rem;">
+                                <span style="background: ${maturityColor}; color: white; padding: 0.3rem 0.8rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">${maturityLabel}</span>
+                                <span style="font-size: 1.2rem; font-weight: bold; color: #667eea;">${score}%</span>
+                            </div>
                         </div>
                         <div style="background: #e9ecef; height: 8px; border-radius: 4px; margin-bottom: 1rem;">
                             <div style="background: linear-gradient(45deg, #667eea, #764ba2); height: 100%; width: ${score}%; border-radius: 4px;"></div>
@@ -1253,20 +1439,26 @@
             }).join('');
         }
 
-        // Simple results chart (text-based for now)
+        // Enhanced results chart
         function renderResultsChart() {
             const canvas = document.getElementById('results-chart');
             const ctx = canvas.getContext('2d');
             
-            // Simple bar chart
+            // Clear canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = '#f8f9fa';
+            ctx.fillStyle = '#ffffff';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
             const dimensions = Object.keys(assessmentState.scores.dimensions);
             const barHeight = 25;
             const barSpacing = 35;
-            const maxBarWidth = canvas.width - 100;
+            const maxBarWidth = canvas.width - 120;
+            
+            // Add title
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 14px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Dimension Maturity Scores', canvas.width / 2, 25);
             
             dimensions.forEach((dimKey, index) => {
                 const score = assessmentState.scores.dimensions[dimKey];
@@ -1275,23 +1467,38 @@
                 
                 // Background bar
                 ctx.fillStyle = '#e9ecef';
-                ctx.fillRect(90, y, maxBarWidth, barHeight);
+                ctx.fillRect(100, y, maxBarWidth, barHeight);
                 
-                // Score bar
+                // Score bar with gradient
                 const barWidth = (score / 100) * maxBarWidth;
-                ctx.fillStyle = '#667eea';
-                ctx.fillRect(90, y, barWidth, barHeight);
+                const gradient = ctx.createLinearGradient(100, y, 100 + barWidth, y);
+                
+                // Color based on score
+                if (score >= 75) {
+                    gradient.addColorStop(0, '#28a745');
+                    gradient.addColorStop(1, '#20c997');
+                } else if (score >= 50) {
+                    gradient.addColorStop(0, '#ffc107');
+                    gradient.addColorStop(1, '#fd7e14');
+                } else {
+                    gradient.addColorStop(0, '#dc3545');
+                    gradient.addColorStop(1, '#e83e8c');
+                }
+                
+                ctx.fillStyle = gradient;
+                ctx.fillRect(100, y, barWidth, barHeight);
                 
                 // Label
                 ctx.fillStyle = '#333';
-                ctx.font = '10px Arial';
+                ctx.font = '11px Arial';
                 ctx.textAlign = 'right';
-                ctx.fillText(`Dim ${dimKey}`, 85, y + 16);
+                ctx.fillText(`D${dimKey}`, 95, y + 16);
                 
                 // Score text
                 ctx.fillStyle = '#666';
+                ctx.font = 'bold 11px Arial';
                 ctx.textAlign = 'left';
-                ctx.fillText(`${score}%`, 95 + barWidth, y + 16);
+                ctx.fillText(`${score}%`, 105 + barWidth, y + 16);
             });
         }
 
@@ -1299,57 +1506,81 @@
         function saveProgress() {
             try {
                 localStorage.setItem('transformai_assessment', JSON.stringify(assessmentState));
-                alert('Progress saved successfully!');
+                alert('Progress saved successfully! You can resume your assessment later.');
             } catch (e) {
                 alert('Unable to save progress. Please continue with the assessment.');
             }
         }
 
         function exitAssessment() {
-            if (confirm('Are you sure you want to exit the assessment? Your progress will be lost.')) {
+            if (confirm('Are you sure you want to exit the assessment? Any unsaved progress will be lost.')) {
                 document.getElementById('assessment-tool').style.display = 'none';
                 document.getElementById('assessment').scrollIntoView();
             }
         }
 
         function retakeAssessment() {
-            if (confirm('Are you sure you want to retake the assessment?')) {
+            if (confirm('Are you sure you want to retake the assessment? This will reset all your responses.')) {
                 startAssessment();
             }
         }
 
         function downloadReport() {
-            // Simple text report (in a real implementation, you'd generate a PDF)
-            const report = generateTextReport();
+            const report = generateDetailedTextReport();
             const blob = new Blob([report], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'transformai_assessment_report.txt';
+            a.download = `transformai_assessment_report_${new Date().toISOString().split('T')[0]}.txt`;
             a.click();
             URL.revokeObjectURL(url);
         }
 
-        function generateTextReport() {
+        function generateDetailedTextReport() {
+            const maturityLevel = getMaturityLevel(assessmentState.scores.overall);
             let report = 'TransformAI Digital Transformation Assessment Report\n';
             report += '=================================================\n\n';
-            report += `Overall Score: ${assessmentState.scores.overall}%\n`;
-            report += `Maturity Level: ${getMaturityLevel(assessmentState.scores.overall).name}\n\n`;
-            report += 'Dimension Scores:\n';
-            report += '-----------------\n';
+            report += `Assessment Date: ${new Date().toLocaleDateString()}\n`;
+            report += `Overall Maturity Score: ${assessmentState.scores.overall}%\n`;
+            report += `Maturity Level: ${maturityLevel.name}\n`;
+            report += `Assessment: ${maturityLevel.description}\n\n`;
+            
+            report += 'Detailed Dimension Analysis:\n';
+            report += '----------------------------\n';
             
             Object.keys(assessmentState.scores.dimensions).forEach(dimKey => {
                 const dimension = assessmentFramework.dimensions[dimKey];
                 const score = assessmentState.scores.dimensions[dimKey];
-                report += `${dimension.title}: ${score}%\n`;
+                let maturityLabel = score >= 85 ? 'Leading' : score >= 70 ? 'Advanced' : score >= 50 ? 'Developing' : 'Basic';
+                
+                report += `\n${dimension.title}: ${score}% (${maturityLabel})\n`;
+                report += `Type: ${dimension.type.charAt(0).toUpperCase() + dimension.type.slice(1)}\n`;
+                report += `Weight: ${dimension.weight}%\n`;
+                report += `Description: ${dimension.description}\n`;
             });
+            
+            report += '\n\nKey Recommendations:\n';
+            report += '-------------------\n';
+            const sortedDimensions = Object.keys(assessmentState.scores.dimensions)
+                .map(dimKey => ({
+                    title: assessmentFramework.dimensions[dimKey].title,
+                    score: assessmentState.scores.dimensions[dimKey]
+                }))
+                .sort((a, b) => a.score - b.score);
+                
+            sortedDimensions.slice(0, 3).forEach((dim, index) => {
+                const priority = ['High Priority', 'Medium Priority', 'Focus Area'][index];
+                report += `\n${priority}: ${dim.title} (${dim.score}%)\n`;
+            });
+            
+            report += '\n---\nGenerated by TransformAI Assessment Platform\n';
+            report += 'For detailed consulting and implementation support, contact our experts.\n';
             
             return report;
         }
 
         function contactExpert() {
-            // Scroll to contact section
-            document.getElementById('contact').scrollIntoView();
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
         }
 
         // Render assessment statistics
@@ -1377,11 +1608,9 @@
             const container = document.getElementById('dimension-container');
             if (!container || !assessmentFramework) return;
 
-            // Clear existing content
             container.innerHTML = '';
-            container.style.gridTemplateColumns = '1fr'; // Single column for expandable cards
+            container.style.gridTemplateColumns = '1fr';
 
-            // Render each dimension as an expandable card
             Object.keys(assessmentFramework.dimensions).forEach(key => {
                 const dimension = assessmentFramework.dimensions[key];
                 
@@ -1428,7 +1657,7 @@
             }
         }
 
-        // Simple smooth scrolling for anchor links
+        // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1442,7 +1671,7 @@
             });
         });
 
-        // Simple form handling
+        // Form handling
         document.querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('Thank you for your interest! We will contact you soon to schedule your executive preview.');
@@ -1451,7 +1680,6 @@
 
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            // Small delay to ensure data is loaded
             setTimeout(() => {
                 renderAssessmentStats();
                 renderExpandableAssessment();
