@@ -1,522 +1,530 @@
-// TransformAI Assessment Framework - Headless Data Structure
+// Enhanced TransformAI Assessment Framework - Headless Data Structure
+// 14-Dimension AI-Powered Digital Transformation Assessment for Fashion Retail
 // No brand names - industry-focused terminology only
 
 const assessmentFramework = {
   metadata: {
     title: "AI-Powered Digital Transformation Assessment for Fashion Retail",
-    version: "1.0.0",
-    totalDimensions: 12,
-    totalCategories: 36,
-    totalQuestions: 72,
-    maturityLevels: 4
+    version: "2.0.0",
+    totalDimensions: 14,
+    totalQuestions: 90,
+    maturityLevels: 5,
+    lastUpdated: "2025-01-08"
   },
 
   dimensions: {
     1: {
-      id: "strategy-ai-vision",
       title: "Digital Transformation Strategy & AI Vision",
-      description: "Comprehensive strategic approach to digital transformation utilizing advanced technologies and AI-driven value creation",
-      type: "strategic",
-      weight: 30,
       categories: {
         "1.1": {
-          title: "Strategic Vision & Digital Ambition",
+          title: "Strategic Alignment & Transformation Scope",
           questions: [
-            "How comprehensive is your digital transformation strategy and vision?",
-            "How well-defined is your AI strategy and roadmap?",
-            "How aligned are your digital initiatives with business objectives?"
+            "How well is your digital transformation strategy aligned with your core business strategy?",
+            "What is the scope and ambition of your digital transformation?"
           ]
         },
         "1.2": {
-          title: "Leadership & Governance",
+          title: "Competitive Intelligence & Market Positioning", 
           questions: [
-            "How committed is leadership to digital transformation?",
-            "How effective is your digital governance structure?",
-            "How well do you manage digital transformation investments?"
+            "Given the rapid AI adoption rates and market growth projections, where do you see the most immediate competitive pressure or untapped opportunity within your specific market segment?",
+            "How do you currently benchmark your AI adoption and investment strategy against industry leaders?"
           ]
         },
         "1.3": {
-          title: "Innovation Culture",
+          title: "Strategic Planning Framework",
           questions: [
-            "How innovation-driven is your organizational culture?",
-            "How effectively do you experiment with new technologies?",
-            "How do you balance innovation with operational excellence?"
+            "How do you approach transformation planning across the four key areas: Aspiration → Strategy → Operating Model → Execution?"
+          ]
+        },
+        "1.4": {
+          title: "AI Strategy & Use Case Development",
+          questions: [
+            "How strategic is your approach to AI adoption and use case development?"
+          ]
+        },
+        "1.5": {
+          title: "Leadership & Governance",
+          questions: [
+            "How does leadership drive and govern digital transformation initiatives?"
           ]
         }
-      },
-      insights: [
-        "Executive leadership commitment is critical for transformation success",
-        "Clear AI vision drives focused investment and resource allocation",
-        "Innovation culture enables rapid adoption of emerging technologies"
-      ]
+      }
     },
 
     2: {
-      id: "product-intelligence",
-      title: "AI-Driven Product Intelligence & Demand Forecasting", 
-      description: "Advanced AI capabilities for trend prediction, demand sensing, and intelligent product development",
-      type: "operational",
-      weight: 25,
+      title: "AI-Driven Product Intelligence & Demand Forecasting",
       categories: {
         "2.1": {
-          title: "Trend Analysis & Market Intelligence",
+          title: "PLM Integration & Product Development",
           questions: [
-            "How effectively do you analyze fashion trends and market signals?",
-            "How advanced are your predictive analytics capabilities?",
-            "How well do you integrate external market data?"
+            "How integrated and digitized is your Product Lifecycle Management (PLM) process from concept to delivery?",
+            "How do you leverage AI and data analytics in your merchandise planning and product development decisions?"
           ]
         },
         "2.2": {
-          title: "Demand Forecasting & Planning",
+          title: "Merchandise Financial Planning & Forecasting",
           questions: [
-            "How accurate is your demand forecasting?",
-            "How effectively do you predict seasonal variations?",
-            "How well do you optimize inventory planning?"
+            "How sophisticated is your merchandise financial planning process from strategic objectives to execution?",
+            "How advanced is your demand forecasting and inventory optimization approach?"
           ]
         },
         "2.3": {
-          title: "Product Development Intelligence",
+          title: "Integrated Planning & Market Intelligence",
           questions: [
-            "How data-driven is your product development process?",
-            "How effectively do you analyze product performance?",
-            "How well do you optimize product mix and assortment?"
+            "How effectively do you integrate market intelligence, trend analysis, and competitive insights into your product and financial planning?",
+            "How well do you optimize pricing, markdown, and promotional strategies through the product lifecycle?"
           ]
         }
-      },
-      useCases: [
-        {
-          category: "Trend Prediction",
-          examples: [
-            "Leading retailers use AI to analyze social media and runway data for trend prediction",
-            "Advanced demand sensing algorithms reduce forecast error by 20-30%",
-            "Real-time market intelligence drives responsive product development"
-          ]
-        }
-      ]
+      }
     },
 
     3: {
-      id: "personalization-intelligence",
       title: "AI-Powered Personalization & Customer Intelligence",
-      description: "Advanced customer understanding and hyper-personalization capabilities using AI",
-      type: "operational", 
-      weight: 25,
       categories: {
         "3.1": {
-          title: "Customer Data & Analytics",
+          title: "Algorithmic Personal Shopping & Curation",
           questions: [
-            "How comprehensive is your customer data collection?",
-            "How advanced are your customer analytics capabilities?",
-            "How effectively do you create unified customer profiles?"
+            "How advanced is your approach to creating personalized product discovery and curation experiences?",
+            "How sophisticated is your product attribution and semantic search capability?"
           ]
         },
         "3.2": {
-          title: "Personalization Engine",
+          title: "AI-Powered Fit & Style Intelligence",
           questions: [
-            "How sophisticated is your personalization technology?",
-            "How effectively do you deliver personalized experiences?",
-            "How well do you optimize recommendation algorithms?"
+            "How do you leverage AI to solve fit uncertainty and style discovery challenges?",
+            "How effectively do you provide personalized styling and outfit recommendations?"
           ]
         },
         "3.3": {
-          title: "Customer Journey Optimization",
+          title: "Real-Time Personalization & Dynamic Engagement",
           questions: [
-            "How well do you understand customer journeys?",
-            "How effectively do you optimize touchpoint experiences?",
-            "How advanced is your customer lifecycle management?"
+            "How real-time and dynamic is your personalization engine?",
+            "How sophisticated is your approach to personalized promotions and loyalty optimization?"
+          ]
+        },
+        "3.4": {
+          title: "Visual Search & Discovery Innovation",
+          questions: [
+            "How advanced are your visual search and discovery capabilities?"
           ]
         }
-      },
-      useCases: [
-        {
-          category: "Hyper-Personalization",
-          examples: [
-            "Fashion platforms achieve 15-20% engagement increases through AI personalization",
-            "Advanced recommendation engines drive 25-30% of total revenue",
-            "Real-time personalization improves conversion rates significantly"
-          ]
-        }
-      ]
+      }
     },
 
     4: {
-      id: "intelligent-commerce",
       title: "Intelligent Commerce & Omnichannel Integration",
-      description: "Seamless commerce experiences across all channels with AI-driven optimization",
-      type: "operational",
-      weight: 25,
       categories: {
         "4.1": {
-          title: "Omnichannel Strategy & Execution",
+          title: "Unified Commerce Foundation & Order Management",
           questions: [
-            "How integrated are your sales channels?",
-            "How seamless is your customer experience across channels?",
-            "How effectively do you manage inventory across channels?"
+            "How sophisticated is your unified commerce approach to eliminating context loss between digital and physical channels?",
+            "How advanced is your order management and fulfillment orchestration system?"
           ]
         },
         "4.2": {
-          title: "E-commerce Intelligence",
+          title: "Unified Basket & Context Preservation",
           questions: [
-            "How advanced is your e-commerce platform?",
-            "How effective is your digital merchandising?",
-            "How well do you optimize online conversion?"
+            "How effectively do you provide unified cart, wishlist, and purchase history across all channels and devices?",
+            "How advanced are your payment flexibility and checkout capabilities across channels?"
           ]
         },
         "4.3": {
-          title: "Mobile & Social Commerce",
+          title: "Dynamic Promising & Fulfillment Intelligence",
           questions: [
-            "How optimized is your mobile commerce experience?",
-            "How effectively do you leverage social commerce?",
-            "How advanced are your mobile-first features?"
+            "How sophisticated is your approach to dynamic promising and delivery optimization?",
+            "How flexible and customer-centric are your fulfillment and post-purchase modification capabilities?"
+          ]
+        },
+        "4.4": {
+          title: "Comprehensive Service & Experience Integration",
+          questions: [
+            "How comprehensive and unified is your customer service and support across all touchpoints?",
+            "How effectively do you leverage store associates and frontline employees as unified commerce enablers?"
+          ]
+        },
+        "4.5": {
+          title: "Commerce Platform Architecture & Technology Foundation",
+          questions: [
+            "How sophisticated is your commerce platform architecture and its alignment with modern MACH principles?",
+            "How advanced are your fashion-specific commerce capabilities and industry-focused features?"
+          ]
+        },
+        "4.6": {
+          title: "Integration Ecosystem & Vendor Strategy",
+          questions: [
+            "How strategic is your approach to commerce platform selection and vendor ecosystem integration?",
+            "How effectively does your commerce platform enable rapid deployment while maintaining scalability and flexibility?"
           ]
         }
       }
     },
 
     5: {
-      id: "marketing-engagement",
       title: "AI-Enhanced Marketing & Customer Engagement",
-      description: "Intelligent marketing automation and customer engagement powered by AI",
-      type: "operational",
-      weight: 25,
       categories: {
         "5.1": {
-          title: "Marketing Automation & Intelligence",
+          title: "AI-Powered Customer Segmentation & Analytics",
           questions: [
-            "How sophisticated is your marketing automation?",
-            "How effectively do you use AI for campaign optimization?",
-            "How advanced is your customer segmentation?"
+            "How sophisticated is your approach to AI-driven customer segmentation and behavioral analytics?",
+            "How effectively do you leverage AI to optimize customer acquisition, retention, and lifetime value?"
           ]
         },
         "5.2": {
-          title: "Content & Creative Optimization",
+          title: "Intelligent Content & Campaign Optimization",
           questions: [
-            "How do you optimize marketing content and creative?",
-            "How effectively do you personalize marketing messages?",
-            "How advanced is your content generation and management?"
+            "How advanced is your use of AI for content creation, optimization, and campaign management?",
+            "How sophisticated is your approach to AI-powered marketing automation and customer journey orchestration?"
           ]
         },
         "5.3": {
-          title: "Customer Engagement & Retention",
+          title: "Advanced Personalization & Recommendation Engines",
           questions: [
-            "How effective are your customer engagement strategies?",
-            "How sophisticated is your loyalty program?",
-            "How well do you manage customer retention and lifetime value?"
+            "How advanced are your AI-powered recommendation systems and personalization capabilities?",
+            "How effectively do you use AI for dynamic pricing, promotion optimization, and offer personalization?"
+          ]
+        },
+        "5.4": {
+          title: "Conversational AI & Customer Engagement",
+          questions: [
+            "How advanced is your use of conversational AI and chatbot technology for customer engagement?",
+            "How sophisticated is your approach to AI-driven social media marketing and influencer engagement?"
           ]
         }
       }
     },
 
     6: {
-      id: "fashion-ai",
       title: "Fashion AI Applications & Industry Innovation",
-      description: "Cutting-edge AI applications specific to fashion retail innovation",
-      type: "technical",
-      weight: 25,
       categories: {
         "6.1": {
-          title: "Visual AI & Image Recognition",
+          title: "AI-Driven Fashion Intelligence & Trend Analysis",
           questions: [
-            "How advanced are your visual AI capabilities?",
-            "How effectively do you use image recognition for search and discovery?",
-            "How well do you leverage computer vision for product analysis?"
+            "How advanced is your use of AI for fashion trend detection, analysis, and prediction?",
+            "How sophisticated is your approach to AI-powered style intelligence and fashion curation?"
           ]
         },
         "6.2": {
-          title: "Virtual Try-On & AR/VR",
+          title: "Visual AI & Product Intelligence",
           questions: [
-            "How sophisticated are your virtual try-on solutions?",
-            "How effectively do you use AR/VR for customer experience?",
-            "How advanced is your 3D modeling and visualization?"
+            "How effectively do you leverage visual AI for product recognition, tagging, and catalog management?",
+            "How advanced is your implementation of visual search and style matching capabilities?"
           ]
         },
         "6.3": {
-          title: "Conversational AI & Virtual Styling",
+          title: "Fit Technology & Sizing Intelligence",
           questions: [
-            "How advanced are your AI chatbots and virtual assistants?",
-            "How effectively do you provide AI-powered styling advice?",
-            "How sophisticated is your natural language processing?"
+            "How sophisticated is your use of AI for fit prediction, sizing recommendations, and virtual try-on experiences?",
+            "How effectively do you use AI to reduce returns and improve customer satisfaction through fit optimization?"
           ]
         },
         "6.4": {
-          title: "Generative AI & Creative Applications",
+          title: "Supply Chain & Inventory Intelligence",
           questions: [
-            "How do you leverage generative AI for design and creativity?",
-            "How effectively do you use AI for content creation?",
-            "How advanced is your AI-powered design assistance?"
+            "How advanced is your use of AI for demand forecasting and inventory optimization in fashion retail?",
+            "How sophisticated is your approach to AI-powered fashion product development and design assistance?"
+          ]
+        },
+        "6.5": {
+          title: "Sustainability & Circular Economy AI",
+          questions: [
+            "How effectively do you leverage AI to support sustainability initiatives and circular economy practices?",
+            "How advanced is your use of AI for ethical sourcing, supply chain transparency, and responsible fashion practices?"
           ]
         }
       }
     },
 
     7: {
-      id: "intelligent-operations",
-      title: "Intelligent Operations & AI-Driven Supply Chain",
-      description: "AI-optimized operations and intelligent supply chain management",
-      type: "operational",
-      weight: 25,
+      title: "Digital Supply Chain & Smart Manufacturing",
       categories: {
         "7.1": {
-          title: "Supply Chain Intelligence",
+          title: "Smart Manufacturing & Production Intelligence",
           questions: [
-            "How intelligent and responsive is your supply chain?",
-            "How effectively do you optimize supplier relationships?",
-            "How advanced is your supply chain visibility and tracking?"
+            "How advanced is your implementation of smart manufacturing technologies and Industry 4.0 principles?",
+            "How sophisticated is your approach to AI-powered quality management and defect prediction?"
           ]
         },
         "7.2": {
-          title: "Inventory & Demand Management",
+          title: "Supply Chain Visibility & Orchestration",
           questions: [
-            "How optimized is your inventory management?",
-            "How effectively do you balance supply and demand?",
-            "How sophisticated is your pricing and markdown optimization?"
+            "How comprehensive is your end-to-end supply chain visibility and real-time tracking capabilities?",
+            "How effectively do you leverage AI for supply chain risk management and resilience planning?"
           ]
         },
         "7.3": {
-          title: "Logistics & Fulfillment Optimization",
+          title: "Sustainable Supply Chain & Circular Manufacturing",
           questions: [
-            "How efficient are your logistics and fulfillment operations?",
-            "How effectively do you optimize delivery and shipping?",
-            "How advanced is your warehouse automation?"
-          ]
-        },
-        "7.4": {
-          title: "Sustainability & Circular Economy",
-          questions: [
-            "How well do you integrate sustainability into operations?",
-            "How effectively do you implement circular economy principles?",
-            "How advanced is your sustainable supply chain management?"
-          ]
-        },
-        "7.5": {
-          title: "Quality & Compliance Management",
-          questions: [
-            "How robust are your quality management systems?",
-            "How effectively do you ensure compliance across operations?",
-            "How advanced is your risk management and mitigation?"
+            "How advanced is your integration of sustainability metrics and circular economy principles into supply chain operations?"
           ]
         }
       }
     },
 
     8: {
-      id: "data-governance",
-      title: "Data Strategy & AI Governance",
-      description: "Comprehensive data foundation and AI governance framework",
-      type: "technical",
-      weight: 25,
+      title: "Data Architecture & Analytics Intelligence",
       categories: {
         "8.1": {
-          title: "Data Strategy & Architecture",
+          title: "Data Foundation & Architecture",
           questions: [
-            "How comprehensive is your data strategy?",
-            "How robust is your data architecture and infrastructure?",
-            "How effectively do you manage data quality and governance?"
+            "How sophisticated is your data architecture and infrastructure for supporting AI-driven digital transformation?",
+            "How advanced are your data governance, quality management, and security practices?"
           ]
         },
         "8.2": {
-          title: "AI Ethics & Responsible AI",
+          title: "Analytics & Business Intelligence",
           questions: [
-            "How well do you address AI ethics and bias?",
-            "How robust is your responsible AI framework?",
-            "How effectively do you ensure AI transparency and explainability?"
+            "How sophisticated is your approach to advanced analytics and business intelligence across the organization?",
+            "How effectively do you leverage real-time analytics and streaming data for operational decision-making?"
           ]
         },
         "8.3": {
-          title: "Privacy & Security",
+          title: "Machine Learning & AI Model Management",
           questions: [
-            "How comprehensive is your data privacy protection?",
-            "How robust are your cybersecurity measures?",
-            "How effectively do you manage regulatory compliance?"
+            "How mature is your machine learning operations (MLOps) and AI model lifecycle management?"
           ]
         }
       }
     },
 
     9: {
-      id: "technology-infrastructure",
-      title: "Technology Infrastructure & MACH Architecture",
-      description: "Modern, scalable technology foundation supporting AI initiatives",
-      type: "technical",
-      weight: 25,
+      title: "Digital Foundation & Intent-Driven Architecture",
       categories: {
         "9.1": {
           title: "MACH Architecture Implementation",
           questions: [
-            "How well do you implement microservices architecture?",
-            "How API-first is your technology approach?",
-            "How cloud-native are your applications and infrastructure?"
+            "How advanced is your implementation of MACH (Microservices, API-first, Cloud-native, Headless) architecture principles?",
+            "How effectively does your architecture enable rapid deployment while maintaining enterprise scalability and flexibility?"
           ]
         },
         "9.2": {
-          title: "AI Infrastructure & MLOps",
+          title: "Intent-Driven vs Instruction-Driven Systems",
           questions: [
-            "How robust is your AI/ML infrastructure?",
-            "How mature are your MLOps practices?",
-            "How effectively do you manage model lifecycle?"
+            "How advanced is your transition from instruction-driven to intent-driven systems powered by AI?",
+            "How sophisticated is your composable integration approach for enabling dynamic resource orchestration?"
           ]
         },
         "9.3": {
-          title: "Integration & Ecosystem",
+          title: "Digital Foundation & Infrastructure Excellence",
           questions: [
-            "How well-integrated is your technology ecosystem?",
-            "How effectively do you manage third-party integrations?",
-            "How robust is your API management?"
-          ]
-        },
-        "9.4": {
-          title: "Security & Compliance",
-          questions: [
-            "How comprehensive is your technology security?",
-            "How effectively do you manage compliance requirements?",
-            "How robust is your disaster recovery and business continuity?"
+            "How mature is your cloud-native infrastructure and digital foundation architecture?",
+            "How effectively do you balance technical debt remediation with strategic innovation investments?"
           ]
         }
       }
     },
 
     10: {
-      id: "workforce-transformation",
-      title: "Workforce Transformation & AI Collaboration",
-      description: "Human-AI collaboration and organizational change management",
-      type: "organizational",
-      weight: 20,
+      title: "DevOps Excellence & Security Architecture",
       categories: {
         "10.1": {
-          title: "AI Literacy & Skills Development",
+          title: "DevOps & Continuous Integration/Deployment",
           questions: [
-            "How AI-literate is your workforce?",
-            "How comprehensive are your AI training programs?",
-            "How effectively do you develop digital skills?"
+            "How mature are your DevOps practices and CI/CD pipeline capabilities?",
+            "How effectively do you implement infrastructure as code and automated operations management?"
           ]
         },
         "10.2": {
-          title: "Human-AI Collaboration",
+          title: "Security Architecture & Zero-Trust Implementation",
           questions: [
-            "How effectively do humans and AI work together?",
-            "How well do you design AI-augmented workflows?",
-            "How do you optimize human-AI interaction?"
-          ]
-        },
-        "10.3": {
-          title: "Change Management & Culture",
-          questions: [
-            "How effective is your change management approach?",
-            "How well do you manage organizational transformation?",
-            "How do you foster an AI-ready culture?"
-          ]
-        },
-        "10.4": {
-          title: "Future Workforce Planning",
-          questions: [
-            "How well do you plan for future workforce needs?",
-            "How effectively do you manage talent acquisition and retention?",
-            "How do you prepare for the future of work?"
+            "How comprehensive is your security architecture and zero-trust implementation?",
+            "How advanced is your approach to AI-powered threat detection and autonomous security response?"
           ]
         }
       }
     },
 
     11: {
-      id: "performance-measurement",
-      title: "Performance Measurement & AI ROI Analytics",
-      description: "Comprehensive measurement and optimization of AI transformation impact",
-      type: "organizational",
-      weight: 20,
+      title: "Organizational Capabilities & Change Management",
       categories: {
         "11.1": {
-          title: "AI Impact Measurement",
+          title: "Digital Culture & Mindset Transformation",
           questions: [
-            "How comprehensively do you measure AI impact?",
-            "How effectively do you track business value from AI?",
-            "How robust are your AI performance metrics?"
+            "How effectively has your organization developed a digital-first culture and growth mindset?",
+            "How sophisticated is your approach to employee experience and digital workplace transformation?"
           ]
         },
         "11.2": {
-          title: "Advanced Analytics & Insights",
+          title: "Skills Development & Capability Building",
           questions: [
-            "How advanced are your analytics capabilities?",
-            "How effectively do you generate actionable insights?",
-            "How well do you predict and optimize performance?"
+            "How advanced is your approach to digital skills development and continuous learning programs?"
           ]
         },
         "11.3": {
-          title: "Customer-Centric Metrics",
+          title: "Agile Organization & Operating Model",
           questions: [
-            "How customer-focused are your success metrics?",
-            "How effectively do you measure customer experience?",
-            "How well do you track customer satisfaction and loyalty?"
+            "How effectively has your organization adopted agile operating models and cross-functional collaboration?"
           ]
         }
       }
     },
 
     12: {
-      id: "strategic-growth",
-      title: "Strategic Growth & Future-Ready Innovation",
-      description: "AI-driven business model innovation and future technology readiness",
-      type: "strategic",
-      weight: 30,
+      title: "Innovation Management & Future Readiness",
       categories: {
         "12.1": {
-          title: "Business Model Innovation",
+          title: "Innovation Strategy & Ecosystem",
           questions: [
-            "How innovative are your AI-driven business models?",
-            "How effectively do you create new revenue streams?",
-            "How well do you leverage AI for competitive advantage?"
+            "How sophisticated is your approach to innovation management and ecosystem development?",
+            "How effectively do you leverage emerging technologies and maintain technology foresight capabilities?"
           ]
         },
         "12.2": {
-          title: "Emerging Technology Integration",
+          title: "Future-Ready Business Models",
           questions: [
-            "How effectively do you evaluate and integrate emerging technologies?",
-            "How prepared are you for future technological disruptions?",
-            "How advanced is your technology roadmap and planning?"
+            "How advanced is your exploration and development of future-ready business models and revenue streams?"
+          ]
+        }
+      }
+    },
+
+    13: {
+      title: "Data & AI Democratization",
+      categories: {
+        "13.1": {
+          title: "Data Foundation & Trustworthy Data Products",
+          questions: [
+            "How advanced is your unified data foundation and data product approach?",
+            "How effectively do you treat data as a strategic asset with product-level governance and reusability?"
           ]
         },
-        "12.3": {
-          title: "Innovation Ecosystem",
+        "13.2": {
+          title: "Data Citizen Empowerment & Self-Service Analytics",
           questions: [
-            "How robust is your innovation ecosystem and partnerships?",
-            "How effectively do you collaborate with technology providers?",
-            "How well do you leverage external innovation resources?"
+            "How effectively have you enabled employees to become confident 'data citizens' with self-service analytics capabilities?",
+            "How sophisticated is your approach to building data-driven culture and collaborative data usage across departments?"
+          ]
+        },
+        "13.3": {
+          title: "AI Democratization & Citizen AI Development",
+          questions: [
+            "How effectively have you democratized AI capabilities to enable non-technical users to leverage AI in their workflows?",
+            "How advanced is your implementation of AI agents and assistants to augment employee capabilities across functions?"
+          ]
+        },
+        "13.4": {
+          title: "Governance for Responsible Democratization",
+          questions: [
+            "How comprehensive is your governance framework for managing the risks of democratized data and AI access?",
+            "How effectively do you balance innovation enablement with responsible AI and data usage across your democratized environment?"
+          ]
+        }
+      }
+    },
+
+    14: {
+      title: "Performance Management & Continuous Improvement",
+      categories: {
+        "14.1": {
+          title: "Digital Transformation ROI & Value Measurement",
+          questions: [
+            "How sophisticated is your approach to measuring and optimizing digital transformation ROI and business value?",
+            "How effectively do you implement continuous improvement frameworks and optimization processes?"
+          ]
+        },
+        "14.2": {
+          title: "Strategic Performance Monitoring & Governance",
+          questions: [
+            "How advanced is your strategic performance monitoring and transformation governance framework?"
           ]
         }
       }
     }
   },
 
-  useCaseCategories: [
-    {
-      title: "Hyper-Personalization Solutions",
-      examples: [
-        "Fashion platforms achieve 15-20% engagement increases through AI personalization",
-        "Advanced recommendation engines drive 25-30% of total revenue", 
-        "Real-time personalization improves conversion rates significantly"
-      ]
-    },
-    {
-      title: "Intelligent Operations",
-      examples: [
-        "AI-powered demand sensing reduces forecast error by 20-30%",
-        "Dynamic pricing optimization improves margins by 10-15%",
-        "Automated inventory management reduces stockouts by 25%"
-      ]
-    },
-    {
-      title: "Customer Engagement Innovation",
-      examples: [
-        "Conversational commerce increases conversion rates by 25-30%",
-        "AI customer service reduces response times by 60%",
-        "Virtual styling increases average order value by 20%"
-      ]
-    }
-  ],
+  // Question-specific answer definitions for sophisticated maturity-based responses
+  questionAnswers: {
+    // Dimension 1 - Strategic answers
+    "How well is your digital transformation strategy aligned with your core business strategy?": [
+      "Digital initiatives exist in isolation from business strategy",
+      "Some digital projects support business goals but limited integration", 
+      "Digital strategy clearly derived from and supports business objectives",
+      "Digital and business strategies are fully integrated with mutual reinforcement",
+      "Digital transformation IS the business strategy - inseparable and holistic"
+    ],
+    "What is the scope and ambition of your digital transformation?": [
+      "Focus only on improving existing processes and offerings (Core)",
+      "Some exploration of adjacent markets/capabilities (Core + Adjacent)",
+      "Strategic approach spanning core, adjacent, and some transformational opportunities", 
+      "Comprehensive transformation across all three horizons with clear prioritization",
+      "Dynamic portfolio approach balancing core optimization, adjacent expansion, and transformational innovation"
+    ],
+
+    // Dimension 9 - MACH Architecture answers
+    "How advanced is your implementation of MACH (Microservices, API-first, Cloud-native, Headless) architecture principles?": [
+      "Legacy monolithic architecture with limited API capabilities and basic integration patterns",
+      "Some microservices adoption with basic API development and partial cloud migration",
+      "Comprehensive MACH implementation with microservices architecture, API gateway, and headless capabilities",
+      "Advanced MACH compliance with composable architecture, extensive API ecosystem, and cloud-native operations", 
+      "Full MACH maturity with zero vendor lock-in, 300+ APIs, complete composability, and autonomous scaling"
+    ],
+
+    // Dimension 13 - Data Democratization answers  
+    "How effectively have you enabled employees to become confident 'data citizens' with self-service analytics capabilities?": [
+      "Limited data access with traditional IT-dependent reporting and minimal data literacy",
+      "Basic self-service BI tools with some data visualization capabilities and introductory training programs",
+      "Comprehensive self-service analytics platform with data visualization tools, guided analytics, and structured data literacy programs",
+      "Advanced self-service ecosystem with intelligent data discovery, automated insights, and widespread data citizen capabilities",
+      "Autonomous self-service platform with AI-powered data assistance, predictive insights, and organization-wide data citizenship"
+    ],
+
+    // Manufacturing questions with N/A options
+    "How advanced is your implementation of smart manufacturing technologies and Industry 4.0 principles?": [
+      "N/A - We do not own or operate manufacturing facilities (contract/outsourced manufacturing only)",
+      "Traditional manufacturing processes with limited automation and basic quality control systems",
+      "Some automated manufacturing with basic IoT sensors and digital monitoring capabilities", 
+      "Connected manufacturing with IoT integration, digital twin modeling, and predictive maintenance capabilities",
+      "Advanced smart manufacturing with AI-powered quality control, autonomous production optimization, and real-time supply chain integration",
+      "Fully autonomous manufacturing ecosystem with AI-driven production orchestration, predictive quality management, and self-optimizing production systems"
+    ],
+
+    // Generic fallback options for remaining questions
+    "default": [
+      "Initial Stage - Limited capabilities with basic manual processes",
+      "Developing Stage - Some automation and basic digital tools in place", 
+      "Defined Stage - Structured approach with integrated systems and clear processes",
+      "Managed Stage - Advanced capabilities with AI enhancement and optimization",
+      "Optimized Stage - Autonomous operations with predictive intelligence and continuous evolution"
+    ]
+  },
 
   maturityLevels: {
-    1: { name: "Basic", description: "Limited digital capabilities, manual processes" },
-    2: { name: "Developing", description: "Some digital tools, basic automation" },
-    3: { name: "Advanced", description: "Integrated digital systems, AI implementation" },
-    4: { name: "Leading", description: "AI-native operations, continuous innovation" }
-  }
+    1: { name: "Initial", range: [1.0, 1.8], description: "Basic digital capabilities with limited AI integration" },
+    2: { name: "Developing", range: [1.9, 2.8], description: "Emerging digital transformation with basic AI experimentation" },
+    3: { name: "Defined", range: [2.9, 3.8], description: "Structured digital transformation with integrated AI capabilities" }, 
+    4: { name: "Managed", range: [3.9, 4.8], description: "Advanced AI-powered transformation with intelligent optimization" },
+    5: { name: "Optimized", range: [4.9, 5.0], description: "Autonomous AI-native organization with continuous evolution" }
+  },
+
+  useCases: [
+    {
+      title: "Hyper-Personalization Engine",
+      description: "AI-powered product recommendations and personalized shopping experiences",
+      dimensions: [3, 5, 13],
+      impact: "25-40% increase in conversion rates"
+    },
+    {
+      title: "Intelligent Demand Forecasting", 
+      description: "AI-driven inventory optimization and demand prediction",
+      dimensions: [2, 6, 8],
+      impact: "30-50% reduction in inventory costs"
+    },
+    {
+      title: "Omnichannel Commerce Platform",
+      description: "Unified customer experience across all touchpoints",
+      dimensions: [4, 9, 10],
+      impact: "20-35% improvement in customer satisfaction"
+    },
+    {
+      title: "Fashion Trend Intelligence",
+      description: "AI-powered trend detection and product development",
+      dimensions: [6, 12, 13],
+      impact: "40-60% faster time-to-market"
+    },
+    {
+      title: "Data-Driven Organization",
+      description: "Enterprise-wide data democratization and citizen analytics", 
+      dimensions: [8, 13, 14],
+      impact: "50-70% improvement in decision-making speed"
+    }
+  ]
 };
