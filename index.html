@@ -974,187 +974,194 @@
             renderDimensionProgress();
         }
 
-        // Function to get sophisticated answer options based on dimension and category
-        function getSophisticatedAnswerOptions(dimensionKey, categoryKey) {
-            const dimension = assessmentFramework.dimensions[dimensionKey];
-            const dimensionType = dimension.type;
-            
-            // Strategic dimensions (1, 12)
-            if (dimensionType === 'strategic') {
-                return [
-                    { 
-                        value: 1, 
-                        label: 'Initial Stage', 
-                        description: 'Limited strategic focus on digital transformation. Ad-hoc initiatives without clear vision or roadmap.' 
-                    },
-                    { 
-                        value: 2, 
-                        label: 'Developing Strategy', 
-                        description: 'Basic digital strategy in place with some defined objectives. Beginning to align digital initiatives with business goals.' 
-                    },
-                    { 
-                        value: 3, 
-                        label: 'Mature Strategy', 
-                        description: 'Comprehensive digital transformation strategy with clear AI roadmap. Well-defined governance and investment priorities.' 
-                    },
-                    { 
-                        value: 4, 
-                        label: 'Strategic Leadership', 
-                        description: 'AI-native strategic approach driving industry innovation. Continuous strategy evolution with measurable transformation outcomes.' 
-                    }
-                ];
-            }
-            
-            // Technical dimensions (6, 8, 9)
-            else if (dimensionType === 'technical') {
-                return [
-                    { 
-                        value: 1, 
-                        label: 'Basic Technology', 
-                        description: 'Legacy systems with minimal integration. Limited cloud adoption and basic digital tools.' 
-                    },
-                    { 
-                        value: 2, 
-                        label: 'Developing Infrastructure', 
-                        description: 'Modernizing technology stack with some cloud migration. Beginning API development and system integration.' 
-                    },
-                    { 
-                        value: 3, 
-                        label: 'Advanced Architecture', 
-                        description: 'MACH architecture implementation with robust APIs. Cloud-native applications and AI/ML infrastructure in place.' 
-                    },
-                    { 
-                        value: 4, 
-                        label: 'Technology Leadership', 
-                        description: 'Fully headless, microservices architecture. AI-native infrastructure with advanced MLOps and continuous innovation.' 
-                    }
-                ];
-            }
-            
-            // Operational dimensions (2, 3, 4, 5, 7)
-            else if (dimensionType === 'operational') {
-                // Customize further based on specific categories
-                if (dimensionKey == '2' || dimensionKey == '3') { // AI-driven capabilities
-                    return [
-                        { 
-                            value: 1, 
-                            label: 'Manual Processes', 
-                            description: 'Primarily manual operations with basic data collection. Limited analytics and decision-making capabilities.' 
-                        },
-                        { 
-                            value: 2, 
-                            label: 'Basic Automation', 
-                            description: 'Some automated processes with basic analytics. Beginning to use data for operational decisions.' 
-                        },
-                        { 
-                            value: 3, 
-                            label: 'AI-Enhanced Operations', 
-                            description: 'Integrated AI solutions driving key operations. Advanced analytics with predictive capabilities implemented.' 
-                        },
-                        { 
-                            value: 4, 
-                            label: 'AI-Native Excellence', 
-                            description: 'Fully AI-driven operations with autonomous decision-making. Continuous optimization and industry-leading capabilities.' 
-                        }
-                    ];
-                } else { // Commerce and marketing
-                    return [
-                        { 
-                            value: 1, 
-                            label: 'Traditional Approach', 
-                            description: 'Conventional methods with limited digital integration. Basic online presence and manual processes.' 
-                        },
-                        { 
-                            value: 2, 
-                            label: 'Digital Integration', 
-                            description: 'Growing digital capabilities with some automation. Multi-channel approach with basic personalization.' 
-                        },
-                        { 
-                            value: 3, 
-                            label: 'Advanced Digital', 
-                            description: 'Sophisticated digital ecosystem with AI-powered features. Omnichannel excellence and advanced personalization.' 
-                        },
-                        { 
-                            value: 4, 
-                            label: 'Innovation Leadership', 
-                            description: 'Industry-leading digital innovation with cutting-edge AI applications. Seamless, personalized customer experiences.' 
-                        }
-                    ];
-                }
-            }
-            
-            // Organizational dimensions (10, 11)
-            else if (dimensionType === 'organizational') {
-                return [
-                    { 
-                        value: 1, 
-                        label: 'Traditional Organization', 
-                        description: 'Conventional organizational structure with limited digital skills. Resistance to change and minimal AI awareness.' 
-                    },
-                    { 
-                        value: 2, 
-                        label: 'Evolving Capabilities', 
-                        description: 'Developing digital skills with some change management. Beginning AI literacy programs and cultural transformation.' 
-                    },
-                    { 
-                        value: 3, 
-                        label: 'Transformation Ready', 
-                        description: 'Strong digital culture with advanced AI skills. Effective change management and human-AI collaboration.' 
-                    },
-                    { 
-                        value: 4, 
-                        label: 'Future-Ready Organization', 
-                        description: 'AI-native workforce with continuous learning culture. Leading change management and innovation-driven organization.' 
-                    }
-                ];
-            }
-            
-            // Default fallback (should not be reached)
-            return [
-                { value: 1, label: 'Basic Level', description: 'Limited capabilities in this area' },
-                { value: 2, label: 'Developing Level', description: 'Some progress with room for improvement' },
-                { value: 3, label: 'Advanced Level', description: 'Strong capabilities with good implementation' },
-                { value: 4, label: 'Leading Level', description: 'Industry-leading capabilities and innovation' }
-            ];
-        }
+        // Updated function to get question-specific answer options
+function getSophisticatedAnswerOptions(dimensionKey, categoryKey, questionText) {
+    // Question-specific answer mappings
+    const questionAnswers = {
+        // DIMENSION 1 - Strategic Vision & AI Vision
+        "How comprehensive is your digital transformation strategy and vision?": [
+            { value: 1, label: 'No Formal Strategy', description: 'No documented digital strategy. Ad-hoc technology initiatives without clear business alignment.' },
+            { value: 2, label: 'Basic Strategy Document', description: 'High-level digital strategy exists but lacks detail. Limited alignment with business objectives.' },
+            { value: 3, label: 'Comprehensive Strategy', description: 'Well-defined digital strategy with clear roadmap. Strong business alignment and governance structure.' },
+            { value: 4, label: 'Dynamic Strategic Leadership', description: 'Adaptive, data-driven strategy that evolves continuously. Industry-leading vision with measurable outcomes.' }
+        ],
+        
+        "How well-defined is your AI strategy and roadmap?": [
+            { value: 1, label: 'No AI Strategy', description: 'No formal AI strategy or roadmap. Limited understanding of AI opportunities and applications.' },
+            { value: 2, label: 'Emerging AI Vision', description: 'Basic AI strategy in development. Some pilot projects but no comprehensive implementation plan.' },
+            { value: 3, label: 'Structured AI Roadmap', description: 'Clear AI strategy with defined use cases and implementation timeline. Resource allocation and governance in place.' },
+            { value: 4, label: 'AI-First Strategy', description: 'AI integrated into core business strategy. Continuous innovation pipeline with advanced AI capabilities.' }
+        ],
+        
+        "How committed is leadership to digital transformation?": [
+            { value: 1, label: 'Limited Commitment', description: 'Leadership shows minimal involvement. Digital transformation seen as IT initiative rather than business priority.' },
+            { value: 2, label: 'Growing Support', description: 'Leadership beginning to understand importance. Some investment approved but not consistent prioritization.' },
+            { value: 3, label: 'Strong Leadership', description: 'C-level champions driving transformation. Regular communication and resource allocation for digital initiatives.' },
+            { value: 4, label: 'Transformation Champions', description: 'Leadership actively models digital behaviors. Transformation is core to executive agenda and decision-making.' }
+        ],
+        
+        "How effectively do you manage digital transformation investments?": [
+            { value: 1, label: 'Ad-hoc Investment', description: 'No systematic approach to digital investment. Limited ROI tracking and business case development.' },
+            { value: 2, label: 'Basic Investment Process', description: 'Some structure around digital investments. Beginning to track outcomes and measure success.' },
+            { value: 3, label: 'Portfolio Management', description: 'Structured investment portfolio with clear prioritization. Regular ROI assessment and optimization.' },
+            { value: 4, label: 'Strategic Investment Excellence', description: 'Advanced portfolio management with predictive analytics. Optimal resource allocation and value realization.' }
+        ],
+        
+        // DIMENSION 2 - Product Intelligence
+        "How effectively do you analyze fashion trends and market signals?": [
+            { value: 1, label: 'Manual Trend Research', description: 'Primarily manual trend analysis using traditional sources. Limited real-time market intelligence capabilities.' },
+            { value: 2, label: 'Basic Analytics Tools', description: 'Some digital tools for trend analysis. Beginning to integrate multiple data sources for market insights.' },
+            { value: 3, label: 'Advanced Analytics', description: 'AI-powered trend analysis with social media and market data integration. Predictive trend capabilities.' },
+            { value: 4, label: 'Real-time Intelligence', description: 'Fully automated trend detection with AI algorithms. Real-time market signals driving product decisions.' }
+        ],
+        
+        "How accurate is your demand forecasting?": [
+            { value: 1, label: 'Basic Historical Analysis', description: 'Simple historical sales analysis. Limited accuracy and frequent stock-outs or overstock situations.' },
+            { value: 2, label: 'Statistical Forecasting', description: 'Statistical models with some external data. Improving accuracy but still reactive to market changes.' },
+            { value: 3, label: 'Advanced Predictive Models', description: 'Machine learning models incorporating multiple variables. Good accuracy with proactive inventory planning.' },
+            { value: 4, label: 'AI-Native Forecasting', description: 'Real-time AI forecasting with continuous learning. Industry-leading accuracy and dynamic optimization.' }
+        ],
+        
+        // DIMENSION 3 - Personalization
+        "How comprehensive is your customer data collection?": [
+            { value: 1, label: 'Basic Transaction Data', description: 'Limited to basic purchase history and contact information. Fragmented data across touchpoints.' },
+            { value: 2, label: 'Multi-channel Data', description: 'Collecting data across multiple channels. Beginning to create unified customer profiles.' },
+            { value: 3, label: 'Rich Customer Profiles', description: 'Comprehensive customer data including behavioral, preference, and contextual information.' },
+            { value: 4, label: 'Real-time Customer Intelligence', description: 'Dynamic, real-time customer profiles with predictive insights and automated data enrichment.' }
+        ],
+        
+        "How sophisticated is your personalization technology?": [
+            { value: 1, label: 'Basic Segmentation', description: 'Simple demographic or purchase-based customer segments. Limited personalization capabilities.' },
+            { value: 2, label: 'Rule-based Personalization', description: 'Rule-based personalization with basic recommendation engines. Some dynamic content delivery.' },
+            { value: 3, label: 'AI-Powered Personalization', description: 'Machine learning algorithms driving personalized experiences. Advanced recommendation systems.' },
+            { value: 4, label: 'Hyper-Personalization', description: 'Real-time, context-aware personalization. Individual-level experiences with predictive recommendations.' }
+        ],
+        
+        // Add more question-specific mappings...
+        // For now, we'll create a fallback system that generates appropriate answers based on question content
+    };
+    
+    // First, try to find exact question match
+    if (questionAnswers[questionText]) {
+        return questionAnswers[questionText];
+    }
+    
+    // Fallback: Generate contextual answers based on question keywords
+    return generateContextualAnswers(questionText, dimensionKey, categoryKey);
+}
 
-        // Render current question with sophisticated answer options
-        function renderQuestion() {
-            const current = assessmentState.questionsList[assessmentState.currentQuestion];
-            if (!current) return;
-            
-            // Update dimension info
-            document.getElementById('dimension-badge').textContent = `Dimension ${current.dimensionKey}`;
-            document.getElementById('dimension-title').textContent = current.dimensionTitle;
-            document.getElementById('question-text').textContent = current.question;
-            document.getElementById('current-question').textContent = assessmentState.currentQuestion + 1;
-            
-            // Get sophisticated answer options based on dimension and question type
-            const optionsContainer = document.getElementById('answer-options');
-            const options = getSophisticatedAnswerOptions(current.dimensionKey, current.categoryKey);
-            
-            const currentAnswer = assessmentState.answers[assessmentState.currentQuestion];
-            
-            optionsContainer.innerHTML = options.map(option => `
-                <label class="answer-option ${currentAnswer == option.value ? 'selected' : ''}" onclick="selectAnswer(${option.value})">
-                    <input type="radio" name="answer" value="${option.value}" ${currentAnswer == option.value ? 'checked' : ''}>
-                    <div>
-                        <strong>${option.label}</strong>
-                        <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem; line-height: 1.4;">${option.description}</div>
-                    </div>
-                </label>
-            `).join('');
-            
-            // Update navigation buttons
-            document.getElementById('prev-btn').disabled = assessmentState.currentQuestion === 0;
-            document.getElementById('next-btn').disabled = !currentAnswer;
-            
-            if (assessmentState.currentQuestion === assessmentState.totalQuestions - 1) {
-                document.getElementById('next-btn').textContent = 'Finish Assessment';
-            } else {
-                document.getElementById('next-btn').textContent = 'Next';
-            }
-        }
+// Fallback function to generate contextual answers based on question content
+function generateContextualAnswers(questionText, dimensionKey, categoryKey) {
+    const question = questionText.toLowerCase();
+    
+    // Strategy/Vision related questions
+    if (question.includes('strategy') || question.includes('vision') || question.includes('roadmap')) {
+        return [
+            { value: 1, label: 'No Formal Approach', description: 'Limited or no formal strategy in this area. Ad-hoc initiatives without clear direction.' },
+            { value: 2, label: 'Developing Framework', description: 'Basic framework in place with some defined objectives. Beginning structured approach.' },
+            { value: 3, label: 'Mature Strategy', description: 'Well-defined strategy with clear implementation plan. Strong governance and execution.' },
+            { value: 4, label: 'Strategic Excellence', description: 'Industry-leading strategic approach with continuous evolution and measurable outcomes.' }
+        ];
+    }
+    
+    // Technology/Infrastructure questions
+    if (question.includes('technology') || question.includes('system') || question.includes('infrastructure') || question.includes('platform')) {
+        return [
+            { value: 1, label: 'Legacy Systems', description: 'Primarily legacy technology with minimal integration. Limited scalability and flexibility.' },
+            { value: 2, label: 'Modernizing Stack', description: 'Beginning technology modernization with some cloud adoption. Hybrid architecture approach.' },
+            { value: 3, label: 'Modern Architecture', description: 'Cloud-native architecture with API-first design. Scalable and integrated technology stack.' },
+            { value: 4, label: 'Cutting-edge Innovation', description: 'Industry-leading technology architecture. Fully automated, AI-enhanced infrastructure.' }
+        ];
+    }
+    
+    // Analytics/Data questions
+    if (question.includes('analytic') || question.includes('data') || question.includes('insight') || question.includes('intelligence')) {
+        return [
+            { value: 1, label: 'Basic Reporting', description: 'Simple reports and basic data analysis. Limited insights and manual processes.' },
+            { value: 2, label: 'Structured Analytics', description: 'Organized data collection with standard analytics tools. Some automated insights.' },
+            { value: 3, label: 'Advanced Analytics', description: 'Machine learning and predictive analytics capabilities. Data-driven decision making.' },
+            { value: 4, label: 'AI-Driven Intelligence', description: 'Autonomous analytics with real-time insights. Predictive and prescriptive capabilities.' }
+        ];
+    }
+    
+    // Customer/Experience questions
+    if (question.includes('customer') || question.includes('experience') || question.includes('personalization') || question.includes('engagement')) {
+        return [
+            { value: 1, label: 'Traditional Approach', description: 'Conventional customer approach with limited personalization. One-size-fits-all experiences.' },
+            { value: 2, label: 'Segmented Experiences', description: 'Basic customer segmentation with some tailored experiences. Growing personalization efforts.' },
+            { value: 3, label: 'Personalized Engagement', description: 'Advanced personalization with data-driven customer experiences. Omnichannel consistency.' },
+            { value: 4, label: 'Hyper-Personalized Excellence', description: 'Individual-level personalization with real-time adaptation. Industry-leading customer experience.' }
+        ];
+    }
+    
+    // Process/Operations questions
+    if (question.includes('process') || question.includes('operation') || question.includes('workflow') || question.includes('automation')) {
+        return [
+            { value: 1, label: 'Manual Processes', description: 'Primarily manual operations with limited automation. Time-intensive and error-prone processes.' },
+            { value: 2, label: 'Basic Automation', description: 'Some process automation with digital tools. Beginning to streamline operations.' },
+            { value: 3, label: 'Optimized Operations', description: 'Well-automated processes with integrated systems. Efficient and scalable operations.' },
+            { value: 4, label: 'Autonomous Excellence', description: 'Fully automated, self-optimizing processes. AI-driven operations with continuous improvement.' }
+        ];
+    }
+    
+    // Default fallback based on dimension type
+    const dimension = assessmentFramework.dimensions[dimensionKey];
+    const dimensionType = dimension.type;
+    
+    if (dimensionType === 'strategic') {
+        return [
+            { value: 1, label: 'Initial Stage', description: 'Limited strategic development in this area. Basic awareness but no formal approach.' },
+            { value: 2, label: 'Developing Capabilities', description: 'Growing focus with some structured initiatives. Building foundational capabilities.' },
+            { value: 3, label: 'Advanced Implementation', description: 'Well-developed capabilities with strong execution. Competitive advantage in this area.' },
+            { value: 4, label: 'Industry Leadership', description: 'Market-leading capabilities with continuous innovation. Setting industry standards.' }
+        ];
+    } else {
+        return [
+            { value: 1, label: 'Basic Level', description: 'Limited capabilities with significant room for improvement.' },
+            { value: 2, label: 'Developing Level', description: 'Growing capabilities with structured improvement efforts.' },
+            { value: 3, label: 'Advanced Level', description: 'Strong capabilities with competitive differentiation.' },
+            { value: 4, label: 'Leading Level', description: 'Industry-leading capabilities with continuous innovation.' }
+        ];
+    }
+}
+
+       // Updated renderQuestion function that passes question text for specific answers
+function renderQuestion() {
+    const current = assessmentState.questionsList[assessmentState.currentQuestion];
+    if (!current) return;
+    
+    // Update dimension info
+    document.getElementById('dimension-badge').textContent = `Dimension ${current.dimensionKey}`;
+    document.getElementById('dimension-title').textContent = current.dimensionTitle;
+    document.getElementById('question-text').textContent = current.question;
+    document.getElementById('current-question').textContent = assessmentState.currentQuestion + 1;
+    
+    // Get question-specific answer options (now passing the question text)
+    const optionsContainer = document.getElementById('answer-options');
+    const options = getSophisticatedAnswerOptions(current.dimensionKey, current.categoryKey, current.question);
+    
+    const currentAnswer = assessmentState.answers[assessmentState.currentQuestion];
+    
+    optionsContainer.innerHTML = options.map(option => `
+        <label class="answer-option ${currentAnswer == option.value ? 'selected' : ''}" onclick="selectAnswer(${option.value})">
+            <input type="radio" name="answer" value="${option.value}" ${currentAnswer == option.value ? 'checked' : ''}>
+            <div>
+                <strong>${option.label}</strong>
+                <div style="font-size: 0.9rem; color: #666; margin-top: 0.5rem; line-height: 1.4;">${option.description}</div>
+            </div>
+        </label>
+    `).join('');
+    
+    // Update navigation buttons
+    document.getElementById('prev-btn').disabled = assessmentState.currentQuestion === 0;
+    document.getElementById('next-btn').disabled = !currentAnswer;
+    
+    if (assessmentState.currentQuestion === assessmentState.totalQuestions - 1) {
+        document.getElementById('next-btn').textContent = 'Finish Assessment';
+    } else {
+        document.getElementById('next-btn').textContent = 'Next';
+    }
+}
 
         // Select an answer
         function selectAnswer(value) {
