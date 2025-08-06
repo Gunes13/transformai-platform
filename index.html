@@ -912,7 +912,34 @@
 
     <!-- Load the enhanced 14-dimension assessment framework data -->
     <script src="assessment-framework.js"></script>
-
+<script>
+// Global navigation functions - move this to the top
+function showSection(sectionId) {
+    console.log('Showing section:', sectionId);
+    
+    // Hide all sections
+    document.querySelectorAll('.page-section').forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    // Update navigation
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.classList.remove('active');
+    });
+    
+    // Show target section
+    const targetSection = document.getElementById(sectionId + '-section');
+    if (targetSection) {
+        targetSection.classList.add('active');
+        
+        // Update active nav link
+        const navLink = document.querySelector(`[onclick="showSection('${sectionId}')"]`);
+        if (navLink) {
+            navLink.classList.add('active');
+        }
+    }
+}
+</script>
     <!-- Assessment rendering and interaction functions -->
     <script>
         // Enhanced Interactive Assessment Tool Logic with Question-Specific Answers
