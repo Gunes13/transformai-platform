@@ -683,12 +683,14 @@
         <nav class="nav-container">
             <div class="logo">TransformAI</div>
             <ul class="nav-links">
-                <li><a onclick="showSection('home')" class="active">Home</a></li>
-                <li><a onclick="showSection('assessment')">Assessment Platform</a></li>
-                <li><a onclick="showSection('platform')">Platform</a></li>
-                <li><a onclick="showSection('methodology')">Methodology</a></li>
-                <li><a onclick="showSection('contact')">Contact</a></li>
-            </ul>
+    <li><a onclick="showSection('home')" class="active">Home</a></li>
+    <li><a onclick="showSection('platform')">Platform</a></li>
+    <li><a onclick="showSection('assessment')">Assessment</a></li>
+    <li><a onclick="showSection('usecases')">Use Cases</a></li>
+    <li><a onclick="showSection('roadmap')">Roadmap</a></li>
+    <li><a onclick="showSection('methodology')">Best Practices</a></li>
+    <li><a onclick="showSection('contact')">Contact</a></li>
+</ul>
         </nav>
     </header>
 
@@ -696,39 +698,273 @@
     <main class="main-content">
         
         <!-- Home Section -->
-        <section id="home-section" class="page-section active">
-            <div class="hero">
-                <div class="container">
-                    <h1>Revolutionary AI-Powered Digital Transformation</h1>
-                    <p>The world's first comprehensive 14-dimension maturity assessment platform specifically designed for fashion retail transformation</p>
-                    <button class="cta-button" onclick="showSection('assessment')">Explore Assessment Platform</button>
+<!-- Replace your current Home Section with this -->
+<section id="home-section" class="page-section active">
+    <div class="hero">
+        <div class="container">
+            <h1>AI-Powered Digital Transformation Assistant</h1>
+            <p>Complete transformation platform that guides fashion retail businesses from assessment to execution with AI-driven insights, personalized roadmaps, and industry-proven strategies</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem; flex-wrap: wrap;">
+                <button class="cta-button" onclick="showSection('platform')" style="background: linear-gradient(45deg, #667eea, #764ba2);">🚀 Explore Platform</button>
+                <button class="cta-button" onclick="showSection('assessment')" style="background: linear-gradient(45deg, #ff6b6b, #ff8e8e);">📊 Start Assessment</button>
+            </div>
+            <p style="font-size: 0.9rem; margin-top: 1rem; opacity: 0.8;">Step 1: Assess → Step 2: Plan → Step 3: Execute</p>
+        </div>
+    </div>
+
+    <div class="revolutionary">
+        <div class="container">
+            <h2 class="section-title">Complete Transformation Journey</h2>
+            <div class="revolutionary-features">
+                <div class="feature-card">
+                    <h4>🎯 Intelligent Assessment</h4>
+                    <p>14-dimension maturity evaluation covering strategy, technology, operations, and organizational capabilities with AI-powered insights</p>
+                    <button onclick="showSection('assessment')" style="margin-top: 1rem; padding: 8px 16px; background: #667eea; color: white; border: none; border-radius: 20px; cursor: pointer;">Take Assessment</button>
+                </div>
+                <div class="feature-card">
+                    <h4>🗺️ Transformation Roadmaps</h4>
+                    <p>Personalized, phased implementation plans based on your assessment results, industry benchmarks, and business priorities</p>
+                    <button onclick="showSection('roadmap')" style="margin-top: 1rem; padding: 8px 16px; background: #667eea; color: white; border: none; border-radius: 20px; cursor: pointer;">Build Roadmap</button>
+                </div>
+                <div class="feature-card">
+                    <h4>💡 Use Case Explorer</h4>
+                    <p>Curated library of AI and digital transformation use cases with ROI data, implementation guides, and success stories</p>
+                    <button onclick="showSection('usecases')" style="margin-top: 1rem; padding: 8px 16px; background: #667eea; color: white; border: none; border-radius: 20px; cursor: pointer;">Explore Use Cases</button>
+                </div>
+                <div class="feature-card">
+                    <h4>📚 Best Practices Library</h4>
+                    <p>Industry insights, proven strategies, and implementation frameworks from successful fashion retail transformations</p>
+                    <button onclick="showSection('methodology')" style="margin-top: 1rem; padding: 8px 16px; background: #667eea; color: white; border: none; border-radius: 20px; cursor: pointer;">View Best Practices</button>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <div class="revolutionary">
-                <div class="container">
-                    <h2 class="section-title">Industry-First Innovation</h2>
-                    <div class="revolutionary-features">
-                        <div class="feature-card">
-                            <h4>14-Dimension Framework</h4>
-                            <p>Comprehensive assessment covering strategy, technology, operations, and organizational capabilities with sophisticated maturity scales</p>
+    <!-- How It Works Section -->
+    <div style="padding: 4rem 0; background: white;">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem;">
+                <div style="text-align: center; padding: 2rem;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.5rem; font-weight: bold;">1</div>
+                    <h3 style="color: #333; margin-bottom: 1rem;">Assess Current State</h3>
+                    <p style="color: #666;">Complete our 14-dimension assessment to understand your digital transformation maturity across all key areas</p>
+                </div>
+                <div style="text-align: center; padding: 2rem;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.5rem; font-weight: bold;">2</div>
+                    <h3 style="color: #333; margin-bottom: 1rem;">Generate Roadmap</h3>
+                    <p style="color: #666;">Receive a personalized transformation roadmap with prioritized initiatives, timelines, and resource requirements</p>
+                </div>
+                <div style="text-align: center; padding: 2rem;">
+                    <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #667eea, #764ba2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.5rem; font-weight: bold;">3</div>
+                    <h3 style="color: #333; margin-bottom: 1rem;">Execute & Monitor</h3>
+                    <p style="color: #666;">Implement with guided use cases, best practices, and continuous monitoring to track your transformation progress</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Add these new sections after your existing sections -->
+
+<!-- Use Cases Section -->
+<section id="usecases-section" class="page-section">
+    <div class="revolutionary">
+        <div class="container">
+            <h2 class="section-title">AI Transformation Use Cases</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: #666;">Explore proven AI and digital transformation use cases specifically for fashion retail</p>
+            
+            <div class="revolutionary-features">
+                <div class="feature-card">
+                    <h4>🎨 AI-Powered Trend Intelligence</h4>
+                    <p><strong>Impact:</strong> 40-60% faster time-to-market</p>
+                    <p>Use computer vision and social media analysis to identify emerging trends, predict demand, and optimize product development cycles</p>
+                    <ul style="margin: 1rem 0; padding-left: 1rem; color: #666;">
+                        <li>Social listening and trend detection</li>
+                        <li>Visual trend analysis from runways and street style</li>
+                        <li>Predictive demand modeling</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>🛍️ Personalized Shopping Experience</h4>
+                    <p><strong>Impact:</strong> 25-40% increase in conversion rates</p>
+                    <p>AI-driven personalization engines that understand individual style preferences and provide tailored product recommendations</p>
+                    <ul style="margin: 1rem 0; padding-left: 1rem; color: #666;">
+                        <li>Individual style profiling</li>
+                        <li>Real-time product recommendations</li>
+                        <li>Personalized marketing campaigns</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>📦 Intelligent Inventory Management</h4>
+                    <p><strong>Impact:</strong> 30-50% reduction in overstock</p>
+                    <p>ML-powered demand forecasting and inventory optimization to reduce waste and improve profitability</p>
+                    <ul style="margin: 1rem 0; padding-left: 1rem; color: #666;">
+                        <li>Dynamic demand forecasting</li>
+                        <li>Automated replenishment</li>
+                        <li>Markdown optimization</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>🔍 Visual Search & Discovery</h4>
+                    <p><strong>Impact:</strong> 20-35% improvement in search engagement</p>
+                    <p>Enable customers to search using images and discover products through visual similarity and style matching</p>
+                    <ul style="margin: 1rem 0; padding-left: 1rem; color: #666;">
+                        <li>Image-based product search</li>
+                        <li>Style similarity matching</li>
+                        <li>Outfit completion suggestions</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>🌍 Sustainable Fashion Intelligence</h4>
+                    <p><strong>Impact:</strong> 15-25% reduction in environmental footprint</p>
+                    <p>AI-driven sustainability optimization across the entire fashion value chain</p>
+                    <ul style="margin: 1rem 0; padding-left: 1rem; color: #666;">
+                        <li>Sustainable material selection</li>
+                        <li>Circular economy optimization</li>
+                        <li>Supply chain transparency</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>🛒 Omnichannel Experience</h4>
+                    <p><strong>Impact:</strong> 20-35% improvement in customer satisfaction</p>
+                    <p>Seamless integration across online, mobile, and physical stores with unified customer experiences</p>
+                    <ul style="margin: 1rem 0; padding-left: 1rem; color: #666;">
+                        <li>Unified customer profiles</li>
+                        <li>Cross-channel inventory visibility</li>
+                        <li>Flexible fulfillment options</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Roadmap Builder Section -->
+<section id="roadmap-section" class="page-section">
+    <div class="revolutionary">
+        <div class="container">
+            <h2 class="section-title">Transformation Roadmap Builder</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: #666;">Create your personalized digital transformation roadmap based on assessment results</p>
+            
+            <div style="background: white; border-radius: 20px; padding: 3rem; margin: 2rem 0; box-shadow: 0 10px 40px rgba(0,0,0,0.08);">
+                <h3 style="color: #333; margin-bottom: 2rem; text-align: center;">Roadmap Development Process</h3>
+                
+                <div style="display: grid; gap: 2rem;">
+                    <div style="display: flex; align-items: center; gap: 2rem; padding: 1.5rem; background: #f8f9ff; border-radius: 15px;">
+                        <div style="min-width: 40px; height: 40px; background: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">1</div>
+                        <div>
+                            <h4 style="color: #333; margin-bottom: 0.5rem;">Assessment Results Analysis</h4>
+                            <p style="color: #666; margin: 0;">Your 14-dimension assessment results are analyzed to identify strengths, gaps, and priority areas for improvement</p>
                         </div>
-                        <div class="feature-card">
-                            <h4>MACH Architecture Assessment</h4>
-                            <p>Evaluate your Microservices, API-first, Cloud-native, and Headless architecture maturity for future-ready systems</p>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 2rem; padding: 1.5rem; background: #f8f9ff; border-radius: 15px;">
+                        <div style="min-width: 40px; height: 40px; background: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">2</div>
+                        <div>
+                            <h4 style="color: #333; margin-bottom: 0.5rem;">Strategic Prioritization</h4>
+                            <p style="color: #666; margin: 0;">Initiatives are prioritized based on business impact, implementation complexity, and resource requirements</p>
                         </div>
-                        <div class="feature-card">
-                            <h4>AI Democratization Insights</h4>
-                            <p>Assess data citizen capabilities, self-service analytics, and responsible AI governance across your organization</p>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 2rem; padding: 1.5rem; background: #f8f9ff; border-radius: 15px;">
+                        <div style="min-width: 40px; height: 40px; background: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">3</div>
+                        <div>
+                            <h4 style="color: #333; margin-bottom: 0.5rem;">Phased Implementation Plan</h4>
+                            <p style="color: #666; margin: 0;">A detailed 12-24 month roadmap with specific milestones, timelines, and success metrics</p>
                         </div>
-                        <div class="feature-card">
-                            <h4>Intent-Driven Systems</h4>
-                            <p>Evaluate your transition from instruction-driven to AI-powered intent-driven systems and cognitive architecture</p>
+                    </div>
+                    
+                    <div style="display: flex; align-items: center; gap: 2rem; padding: 1.5rem; background: #f8f9ff; border-radius: 15px;">
+                        <div style="min-width: 40px; height: 40px; background: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">4</div>
+                        <div>
+                            <h4 style="color: #333; margin-bottom: 0.5rem;">Resource & Budget Planning</h4>
+                            <p style="color: #666; margin: 0;">Detailed resource requirements, budget estimates, and ROI projections for each initiative</p>
                         </div>
                     </div>
                 </div>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <button class="cta-button" onclick="showSection('assessment')" style="margin-right: 1rem;">📊 Complete Assessment First</button>
+                    <button class="cta-button" onclick="alert('Roadmap builder will be available after completing the assessment')" style="background: #ccc; cursor: not-allowed;">🗺️ Generate Roadmap</button>
+                </div>
             </div>
-        </section>
+        </div>
+    </div>
+</section>
+
+<!-- Updated Platform Section -->
+<section id="platform-section" class="page-section">
+    <div class="revolutionary">
+        <div class="container">
+            <h2 class="section-title">Platform Capabilities</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: #666;">Comprehensive digital transformation platform designed specifically for fashion retail</p>
+            
+            <div class="revolutionary-features">
+                <div class="feature-card">
+                    <h4>🎯 AI-Powered Assessment Engine</h4>
+                    <p>Sophisticated 14-dimension maturity framework with AI-driven insights and industry benchmarking</p>
+                    <ul style="margin: 1rem 0; padding-left: 1rem; color: #666;">
+                        <li>Real-time assessment with 90+ industry-specific questions</li>
+                        <li>Automatic scoring and maturity level determination</li>
+                        <li>Benchmarking against industry leaders</li>
+                        <li>Personalized improvement recommendations</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>🗺️ Intelligent Roadmap Generation</h4>
+                    <p>Automated transformation planning with prioritized initiatives and implementation guidance</p>
+                    <ul style="margin: 1rem 0; padding-left: 1rem; color: #666;">
+                        <li>Personalized roadmaps based on assessment results</li>
+                        <li>Phase-by-phase implementation planning</li>
+                        <li>Resource and budget estimation</li>
+                        <li>Risk assessment and mitigation strategies</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>💡 Use Case Repository</h4>
+                    <p>Curated library of proven AI and digital transformation use cases with implementation guides</p>
+                    <ul style="margin: 1rem 0; padding-left: 1rem; color: #666;">
+                        <li>Industry-specific AI use cases</li>
+                        <li>ROI data and business impact metrics</li>
+                        <li>Implementation complexity ratings</li>
+                        <li>Technology stack recommendations</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>📊 Progress Tracking & Analytics</h4>
+                    <p>Continuous monitoring and measurement of your transformation journey</p>
+                    <ul style="margin: 1rem 0; padding-left: 1rem; color: #666;">
+                        <li>KPI tracking and dashboard analytics</li>
+                        <li>Milestone achievement monitoring</li>
+                        <li>ROI measurement and reporting</li>
+                        <li>Quarterly progress assessments</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>🤝 Expert Guidance & Support</h4>
+                    <p>Access to transformation experts and industry best practices</p>
+                    <ul style="margin: 1rem 0; padding-left: 1rem; color: #666;">
+                        <li>Expert consultation and guidance</li>
+                        <li>Industry best practice library</li>
+                        <li>Implementation support resources</li>
+                        <li>Community of transformation leaders</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>🔧 Integration & Ecosystem</h4>
+                    <p>Seamless integration with existing systems and technology partners</p>
+                    <ul style="margin: 1rem 0; padding-left: 1rem; color: #666;">
+                        <li>API integrations with major platforms</li>
+                        <li>Technology vendor recommendations</li>
+                        <li>Implementation partner network</li>
+                        <li>Custom integration support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
         <!-- Assessment Platform Section -->
         <section id="assessment-section" class="page-section assessment-platform">
