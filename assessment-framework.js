@@ -31,7 +31,7 @@ const assessmentFramework = {
         },
         "1.2": {
           title: "Competitive Intelligence & Market Positioning", 
-          questions: [questionAnswers 
+          questions: [
             "Given the rapid AI adoption rates and market growth projections, where do you see the most immediate competitive pressure or untapped opportunity within your specific market segment?",
             "How do you currently benchmark your AI adoption and investment strategy against industry leaders?"
           ]
