@@ -1081,71 +1081,68 @@
 
     </main>
 
-    <!-- Interactive Assessment Modal -->
- style="padding-top: 80px !important; margin-top: 0 !important;">
-        <div class="assessment-container">
-            <div class="assessment-main">
-                <div class="assessment-header">
-                    <h2>Digital Transformation Assessment</h2>
-                    <div id="current-dimension">Dimension 1: Digital Transformation Strategy & AI Vision</div>
-                    <div id="current-category">Category 1.1: Strategic Alignment</div>
-                    <div class="progress-bar">
-                        <div id="question-progress" class="progress-fill" style="width: 0%"></div>
-                    </div>
-                    <div id="progress-text">Question 1 of 90+</div>
+<!-- Interactive Assessment Modal -->
+<div id="interactive-assessment" class="interactive-assessment" style="display: none;">
+    <div class="assessment-container">
+        <div class="assessment-main">
+            <div class="assessment-header">
+                <h2>Digital Transformation Assessment</h2>
+                <div id="current-dimension">Dimension 1: Digital Transformation Strategy & AI Vision</div>
+                <div id="current-category">Category 1.1: Strategic Alignment</div>
+                <div class="progress-bar">
+                    <div id="question-progress" class="progress-fill" style="width: 0%"></div>
                 </div>
+                <div id="progress-text">Question 1 of 90+</div>
+            </div>
 
-                <div id="assessment-questions" class="assessment-questions">
-                    <div id="current-question">
-                        <!-- Question content will be populated by JavaScript -->
-                    </div>
-                </div>
-
-                <div id="results-section" class="results-section">
-                    <div class="results-overview">
-                        <h2>Your Digital Transformation Maturity</h2>
-                        <div id="overall-score" class="overall-score">0.0</div>
-                        <div id="maturity-level" class="maturity-level">Assessment Complete</div>
-                        <p id="maturity-description">Your comprehensive assessment results</p>
-                    </div>
-
-                    <div id="dimension-chart" class="dimension-chart">
-                        <h3>Dimension Scores</h3>
-                        <!-- Chart will be populated by JavaScript -->
-                    </div>
-
-                    <div id="recommendations" class="recommendations">
-                        <h3>Personalized Recommendations</h3>
-                        <!-- Recommendations will be populated by JavaScript -->
-                    </div>
-
-                    <div style="text-align: center; margin-top: 2rem;">
-                        <button class="nav-button" onclick="downloadResults()">📄 Download Report</button>
-                        <button class="nav-button" onclick="returnToOverview()" style="margin-left: 1rem;">🔄 New Assessment</button>
-                    </div>
-                </div>
-
-                <div class="nav-buttons">
-                    <button id="prev-btn" class="nav-button" onclick="previousQuestion()" disabled>← Previous</button>
-                    <div>
-                        <button id="save-btn" class="nav-button" onclick="saveProgress()" style="background: #4caf50;">💾 Save Progress</button>
-                    </div>
-                    <button id="next-btn" class="nav-button" onclick="nextQuestion()">Next →</button>
+            <div id="assessment-questions" class="assessment-questions">
+                <div id="current-question">
+                    <!-- Question content will be populated by JavaScript -->
                 </div>
             </div>
 
-            <div id="progress-sidebar" class="progress-sidebar">
-                <div class="progress-header">
-                    <h3>Assessment Progress</h3>
-                    <div class="overall-progress">0 / 90+ completed</div>
+            <div id="results-section" class="results-section">
+                <div class="results-overview">
+                    <h2>Your Digital Transformation Maturity</h2>
+                    <div id="overall-score" class="overall-score">0.0</div>
+                    <div id="maturity-level" class="maturity-level">Assessment Complete</div>
+                    <p id="maturity-description">Your comprehensive assessment results</p>
                 </div>
-                <!-- Progress details will be populated by JavaScript -->
+
+                <div id="dimension-chart" class="dimension-chart">
+                    <h3>Dimension Scores</h3>
+                </div>
+
+                <div id="recommendations" class="recommendations">
+                    <h3>Personalized Recommendations</h3>
+                </div>
+
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="nav-button" onclick="downloadResults()">📄 Download Report</button>
+                    <button class="nav-button" onclick="returnToOverview()" style="margin-left: 1rem;">🔄 New Assessment</button>
+                </div>
+            </div>
+
+            <div class="nav-buttons">
+                <button id="prev-btn" class="nav-button" onclick="previousQuestion()" disabled>← Previous</button>
+                <div>
+                    <button id="save-btn" class="nav-button" onclick="saveProgress()" style="background: #4caf50;">💾 Save Progress</button>
+                </div>
+                <button id="next-btn" class="nav-button" onclick="nextQuestion()">Next →</button>
             </div>
         </div>
 
-        <!-- Close Assessment Button -->
-        <button onclick="returnToOverview()" style="position: fixed; top: 100px; right: 2rem; background: rgba(0,0,0,0.7); color: white; border: none; padding: 10px; border-radius: 50%; cursor: pointer; z-index: 1001;">✕</button>
+        <div id="progress-sidebar" class="progress-sidebar">
+            <div class="progress-header">
+                <h3>Assessment Progress</h3>
+                <div class="overall-progress">0 / 90+ completed</div>
+            </div>
+        </div>
     </div>
+
+    <!-- Close Assessment Button -->
+    <button onclick="returnToOverview()" style="position: fixed; top: 100px; right: 2rem; background: rgba(0,0,0,0.7); color: white; border: none; padding: 10px; border-radius: 50%; cursor: pointer; z-index: 1001;">✕</button>
+</div>
 
     <!-- Load the enhanced 14-dimension assessment framework data -->
 <script src="./assessment-framework.js"></script>
