@@ -534,3 +534,4 @@ const assessmentFramework = {
     }
   ]
 };
+console.log('Assessment framework loaded:', assessmentFramework.metadata);
