@@ -6,7 +6,7 @@ const bestPracticesFramework = {
     title: "TransformAI Best Practices Library",
     version: "1.0.0",
     totalArticles: 1,
-    lastUpdated: "2025-01-15",
+publishDate: "2025-07-01",
     description: "Curated insights and proven strategies for retail digital transformation"
   },
 
