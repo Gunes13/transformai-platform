@@ -261,7 +261,7 @@
         }
 
         /* Interactive Assessment */
-       .interactive-assessment {
+      .interactive-assessment {
     display: none;
     position: fixed;
     top: 80px;
@@ -269,7 +269,7 @@
     right: 0;
     bottom: 0;
     background: linear-gradient(135deg, #f8f9ff 0%, #e8eeff 100%);
-    overflow-y: auto;
+    overflow-y: auto; /* This should already be here */
     z-index: 999;
 }
 
@@ -1174,12 +1174,7 @@
                 <!-- Table of contents will be populated by JavaScript -->
             </div>
             
-            <div style="margin-top: 2rem; padding: 1rem; background: #f8f9ff; border-radius: 12px;">
-                <h4 style="color: #667eea; margin-bottom: 1rem; font-size: 0.9rem;">Related Actions</h4>
-                <button class="nav-button" onclick="showSection('assessment')" style="width: 100%; margin-bottom: 0.5rem; font-size: 0.8rem;">📊 Take Assessment</button>
-                <button class="nav-button" onclick="showSection('usecases')" style="width: 100%; margin-bottom: 0.5rem; font-size: 0.8rem;">💡 Explore Use Cases</button>
-                <button class="nav-button" onclick="showSection('roadmap')" style="width: 100%; font-size: 0.8rem;">🗺️ Build Roadmap</button>
-            </div>
+            <!-- Remove this entire section -->
         </div>
         
         <!-- Article Content -->
@@ -2086,6 +2081,7 @@ function closeArticleReader() {
     document.getElementById('methodology-section').style.display = 'block';
 }
 </script>
+
 
 
 
