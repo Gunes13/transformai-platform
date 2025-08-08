@@ -16,7 +16,7 @@ const bestPracticesFramework = {
       title: "From Products to Platforms: The Retail Transformation Imperative",
       subtitle: "How leading retailers are moving beyond transactions to build ecosystem value and sustainable competitive advantage",
       author: "Retail Strategy Team",
-      publishDate: "2025-01-15",
+      publishDate: "2025 July",
       readTime: "12 min",
       category: "Strategic Transformation",
       tags: ["retail", "digital-transformation", "platform-strategy", "ecosystem-value"],
