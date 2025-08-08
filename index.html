@@ -680,8 +680,7 @@
             .revolutionary-features {
                 grid-template-columns: 1fr;
             }
-        }
-    </style>
+            </style>
 </head>
 <body>
     <!-- Header -->
@@ -1020,7 +1019,7 @@
                         <li>Implementation partner network</li>
                         <li>Custom integration support</li>
                     </ul>
-                </div>
+                    </div>
             </div>
         </div>
     </div>
@@ -1100,30 +1099,103 @@
         </section>
 
         <!-- Methodology Section -->
-        <section id="methodology-section" class="page-section">
-            <div class="revolutionary">
-                <div class="container">
-                    <h2 class="section-title">Assessment Methodology</h2>
-                    <div class="revolutionary-features">
-                        <div class="feature-card">
-                            <h4>Maturity-Based Scoring</h4>
-                            <p>Five-level maturity scale from Initial to Optimized, with detailed progression criteria for each dimension</p>
+        <!-- Best Practices Section -->
+<section id="methodology-section" class="page-section">
+    <div class="revolutionary">
+        <div class="container">
+            <h2 class="section-title">Best Practices & Strategic Insights</h2>
+            <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; color: #666;">
+                Proven strategies and insights from decades of digital transformation consulting experience
+            </p>
+            
+            <!-- Featured Article: Products to Platforms -->
+            <div class="featured-article" style="background: white; border-radius: 20px; padding: 3rem; margin: 2rem 0; box-shadow: 0 10px 40px rgba(0,0,0,0.08); border-left: 5px solid #667eea;">
+                <div style="display: flex; justify-content: between; align-items: start; gap: 2rem;">
+                    <div style="flex: 1;">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <span style="background: #667eea; color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">FEATURED</span>
+                            <span style="color: #666; font-size: 0.9rem;">Strategic Transformation</span>
                         </div>
-                        <div class="feature-card">
-                            <h4>Question-Specific Answers</h4>
-                            <p>Sophisticated answer options tailored to each question, reflecting real-world transformation scenarios</p>
+                        <h3 style="color: #333; margin-bottom: 1rem; font-size: 1.8rem; line-height: 1.3;">From Products to Platforms: The Retail Transformation Imperative</h3>
+                        <p style="color: #666; margin-bottom: 1.5rem; line-height: 1.6; font-size: 1.1rem;">How leading retailers are moving beyond transactions to build ecosystem value and sustainable competitive advantage</p>
+                        
+                        <div style="display: flex; align-items: center; gap: 2rem; margin-bottom: 1.5rem; font-size: 0.9rem; color: #666;">
+                            <span>📖 12 min read</span>
+                            <span>👤 Retail Strategy Team</span>
+                            <span>📅 Jan 15, 2025</span>
                         </div>
-                        <div class="feature-card">
-                            <h4>Comprehensive Analysis</h4>
-                            <p>Multi-dimensional scoring with weighted recommendations based on strategic priorities and industry benchmarks</p>
+                        
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem;">
+                            <span style="background: #e8eeff; color: #667eea; padding: 4px 12px; border-radius: 12px; font-size: 0.8rem;">retail</span>
+                            <span style="background: #e8eeff; color: #667eea; padding: 4px 12px; border-radius: 12px; font-size: 0.8rem;">platform-strategy</span>
+                            <span style="background: #e8eeff; color: #667eea; padding: 4px 12px; border-radius: 12px; font-size: 0.8rem;">ecosystem-value</span>
                         </div>
-                        <div class="feature-card">
-                            <h4>Actionable Insights</h4>
-                            <p>Personalized recommendations with specific next steps, technology choices, and implementation guidance</p>
-                        </div>
+                        
+                        <button class="cta-button" onclick="openArticleReader('products-to-platforms')" style="background: linear-gradient(45deg, #667eea, #764ba2);">
+                            📖 Read Full Article
+                        </button>
+                    </div>
+                    
+                    <div style="min-width: 200px; background: linear-gradient(135deg, #f8f9ff, #e8eeff); padding: 1.5rem; border-radius: 15px;">
+                        <h4 style="color: #333; margin-bottom: 1rem; font-size: 1rem;">Article Highlights</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0; color: #666; font-size: 0.9rem;">
+                            <li style="margin-bottom: 0.5rem;">✓ Platform economics vs product limitations</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Data as strategic ecosystem foundation</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Network effects and value creation</li>
+                            <li style="margin-bottom: 0.5rem;">✓ Practical implementation steps</li>
+                        </ul>
                     </div>
                 </div>
             </div>
+
+            <!-- Article Grid for Future Articles -->
+            <div id="articles-grid" class="revolutionary-features">
+                <div class="feature-card" style="border: 2px dashed #e8eeff; text-align: center; color: #666;">
+                    <h4 style="color: #667eea;">🚀 More Articles Coming Soon</h4>
+                    <p>Technical implementation guides, organizational change strategies, and industry-specific use cases</p>
+                    <button class="nav-button" onclick="showSection('assessment')" style="margin-top: 1rem;">Take Assessment to Get Personalized Insights</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Article Reader Modal -->
+<div id="article-reader" class="interactive-assessment" style="display: none;">
+    <div class="assessment-container" style="grid-template-columns: 300px 1fr;">
+        <!-- Article Navigation Sidebar -->
+        <div class="progress-sidebar" style="position: sticky; top: 2rem; height: fit-content;">
+            <div class="progress-header">
+                <h3 id="article-title-sidebar">Article Navigation</h3>
+                <button onclick="closeArticleReader()" style="background: #ff6b6b; color: white; border: none; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 0.8rem;">✕ Close</button>
+            </div>
+            
+            <div id="article-toc" class="dimension-progress">
+                <!-- Table of contents will be populated by JavaScript -->
+            </div>
+            
+            <div style="margin-top: 2rem; padding: 1rem; background: #f8f9ff; border-radius: 12px;">
+                <h4 style="color: #667eea; margin-bottom: 1rem; font-size: 0.9rem;">Related Actions</h4>
+                <button class="nav-button" onclick="showSection('assessment')" style="width: 100%; margin-bottom: 0.5rem; font-size: 0.8rem;">📊 Take Assessment</button>
+                <button class="nav-button" onclick="showSection('usecases')" style="width: 100%; margin-bottom: 0.5rem; font-size: 0.8rem;">💡 Explore Use Cases</button>
+                <button class="nav-button" onclick="showSection('roadmap')" style="width: 100%; font-size: 0.8rem;">🗺️ Build Roadmap</button>
+            </div>
+        </div>
+        
+        <!-- Article Content -->
+        <div class="assessment-main">
+            <div class="assessment-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                <div id="article-header-content">
+                    <!-- Article header will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <div id="article-content" class="assessment-questions" style="padding: 3rem;">
+                <!-- Article sections will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
         </section>
 
         <!-- Contact Section -->
@@ -1206,6 +1278,7 @@
 
     <!-- Load the enhanced 14-dimension assessment framework data -->
 <script src="./assessment-framework.js"></script>
+    <script src="./best-practices-framework.js"></script>
 <script>
 // Global navigation functions
 function showSection(sectionId) {
@@ -1916,8 +1989,104 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 100);
 });
+// Article management functions
+function openArticleReader(articleId) {
+    if (!bestPracticesFramework || !bestPracticesFramework.articles[articleId]) {
+        console.error('Article not found:', articleId);
+        return;
+    }
+    
+    const article = bestPracticesFramework.articles[articleId];
+    
+    // Show article reader
+    document.getElementById('methodology-section').style.display = 'none';
+    document.getElementById('article-reader').style.display = 'block';
+    
+    // Populate article header
+    const headerContent = document.getElementById('article-header-content');
+    headerContent.innerHTML = `
+        <h1 style="color: white; font-size: 2.2rem; margin-bottom: 1rem; line-height: 1.3;">${article.title}</h1>
+        <p style="color: rgba(255,255,255,0.9); font-size: 1.2rem; margin-bottom: 1.5rem; line-height: 1.5;">${article.subtitle}</p>
+        <div style="display: flex; align-items: center; gap: 2rem; color: rgba(255,255,255,0.8); font-size: 0.9rem;">
+            <span>📖 ${article.readTime}</span>
+            <span>👤 ${article.author}</span>
+            <span>📅 ${new Date(article.publishDate).toLocaleDateString()}</span>
+        </div>
+    `;
+    
+    // Populate table of contents
+    const tocContainer = document.getElementById('article-toc');
+    const sections = Object.keys(article.sections).sort((a, b) => 
+        article.sections[a].order - article.sections[b].order
+    );
+    
+    tocContainer.innerHTML = sections.map(sectionId => {
+        const section = article.sections[sectionId];
+        return `
+            <div class="toc-item" onclick="scrollToSection('${sectionId}')">
+                <h5>${section.order}. ${section.title}</h5>
+            </div>
+        `;
+    }).join('');
+    
+    // Populate article content
+    const contentContainer = document.getElementById('article-content');
+    contentContainer.innerHTML = sections.map(sectionId => {
+        const section = article.sections[sectionId];
+        return `
+            <div class="article-section" id="section-${sectionId}">
+                <h2>${section.title}</h2>
+                <div class="section-content">
+                    ${formatArticleContent(section.content)}
+                </div>
+                ${section.keyPoints ? `
+                    <div class="key-points">
+                        <h4>🎯 Key Takeaways</h4>
+                        <ul>
+                            ${section.keyPoints.map(point => `<li>${point}</li>`).join('')}
+                        </ul>
+                    </div>
+                ` : ''}
+            </div>
+        `;
+    }).join('');
+    
+    // Update sidebar title
+    document.getElementById('article-title-sidebar').textContent = article.title;
+}
 
+function formatArticleContent(content) {
+    // Convert markdown-like formatting to HTML
+    return content
+        .split('\n\n')
+        .map(paragraph => {
+            if (paragraph.startsWith('**') && paragraph.includes(':**')) {
+                // Handle bold headers
+                const [header, ...rest] = paragraph.split(':**');
+                return `<p><strong>${header.replace(/\*\*/g, '')}:</strong> ${rest.join(':**')}</p>`;
+            }
+            return `<p>${paragraph}</p>`;
+        })
+        .join('');
+}
+
+function scrollToSection(sectionId) {
+    const element = document.getElementById('section-' + sectionId);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // Update active TOC item
+        document.querySelectorAll('.toc-item').forEach(item => item.classList.remove('active'));
+        event.target.closest('.toc-item').classList.add('active');
+    }
+}
+
+function closeArticleReader() {
+    document.getElementById('article-reader').style.display = 'none';
+    document.getElementById('methodology-section').style.display = 'block';
+}
 </script>
+
 
 
 
