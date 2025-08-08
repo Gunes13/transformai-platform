@@ -662,6 +662,13 @@
             color: #666;
         }
 
+ /* ADD THIS NEW RULE HERE */
+        #article-content {
+            padding: 3rem;
+            max-height: calc(100vh - 300px);
+            overflow-y: auto;
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .assessment-container {
@@ -1174,7 +1181,6 @@
                 <!-- Table of contents will be populated by JavaScript -->
             </div>
             
-            <!-- Remove this entire section -->
         </div>
         
         <!-- Article Content -->
@@ -2081,6 +2087,7 @@ function closeArticleReader() {
     document.getElementById('methodology-section').style.display = 'block';
 }
 </script>
+
 
 
 
